@@ -34,6 +34,9 @@
       <Filter>Global Definitions</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="translate.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ChangeLog.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="Configuration\stdafx.h">
       <Filter>Global Definitions</Filter>
+    </ClInclude>
+    <ClInclude Include="translate.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

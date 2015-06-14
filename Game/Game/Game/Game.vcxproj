@@ -83,6 +83,7 @@
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\stdafx.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="translate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Configuration\global.cpp" />
@@ -99,6 +100,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="translate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

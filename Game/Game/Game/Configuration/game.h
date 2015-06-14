@@ -7,3 +7,5 @@
 #define MAXIMUM_LEVEL_SERVER TRUE
 
 #pragma endregion
+
+#define TOTAL_TEXT_TRANSLATED 1000
