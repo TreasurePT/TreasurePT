@@ -1,9 +1,6 @@
 #pragma once
 #include "..\stdafx.h"
-
-#define PDATA 0
-#define EDATA 0
-#define VDATA 0
+#include "global.h"
 
 #pragma region Level_Definition
 
