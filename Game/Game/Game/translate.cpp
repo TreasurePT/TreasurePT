@@ -19,14 +19,15 @@ CTranslate::CTranslate( )
 
 void CTranslate::Translate( long Address, const char* Text, ... )
 {
-	char* Buffer = new char[ lstrlenA( Text ) + 1 ]( );
+	char Buffer[ 1024 ] = { 0 };
 
 	va_list Args = { 0 };
 	va_start( Args, Text );
 
-	if( StringCbVPrintfA( Buffer, 512, Text, Args ) >= 0 )
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
 	{
-		lstrcpyA( ( char* )( Address + m_Spacements ), Buffer );
+		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
+		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
 		m_Spacements += lstrlenA( Buffer ) + 1;
 
 		goto End;
@@ -34,7 +35,6 @@ void CTranslate::Translate( long Address, const char* Text, ... )
 
 End:
 	va_end( Args );
-	delete[ ] Buffer;
 	return;
 };
 
