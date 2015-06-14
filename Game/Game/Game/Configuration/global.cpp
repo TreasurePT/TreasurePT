@@ -1,6 +1,2 @@
 #include "stdafx.h"
-
-void Main( )
-{
-	
-};
+#include "global.h"
