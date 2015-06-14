@@ -26,8 +26,12 @@ void CTranslate::Translate( long Address, const char* Text, ... )
 
 	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
 	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		VirtualProtect( ( void* )( Address ), 4, PAGE_READWRITE, &Old_Protect );
 		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
 		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
 		m_Spacements += lstrlenA( Buffer ) + 1;
 
 		goto End;
