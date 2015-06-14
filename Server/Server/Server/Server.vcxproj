@@ -79,6 +79,7 @@
     <Text Include="ChangeLog.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Configuration\server.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
