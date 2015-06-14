@@ -76,7 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ChangeLog.txt" />
+    <Text Include="ChangeLog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

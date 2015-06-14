@@ -31,6 +31,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ChangeLog.txt" />
+    <Text Include="ChangeLog.h">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
