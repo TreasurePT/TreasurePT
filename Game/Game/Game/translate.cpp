@@ -45,6 +45,8 @@ End:
 void CTranslate::SetTexts( )
 {
 	//Translate( 0x00, "" );
+
+	//Login
 	Translate( 0x008368F0, "TreasurePT" );
 	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
 	Translate( 0x005A94FD, "Versão: " );
@@ -55,6 +57,18 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2C98, "Conta banida" );
 	Translate( 0x009F2C9C, "Esta conta já está logada" );
 	Translate( 0x009F2CA4, "O servidor está cheio" );
+	
+	//Char Select
+	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );
+	Translate( 0x009F2CF4, "Você deseja continuar esta aventura?" );
+	Translate( 0x009F2CF8, "Cada conta só pode ter no máximo 5 personagens" );
+	Translate( 0x009F2CFC, "Você tem certeza que deseja este nome para o seu personagem?" );
+	Translate( 0x009F2D00, "Digite um nome para o seu personagem" );
+	Translate( 0x009F2D04, "Já existe um personagem com este nome. Por favor, escolha outro" );
+	Translate( 0x009F2D08, "Escolha um personagem" );
+	Translate( 0x009F2D0C, "Escolha uma tribo" );
+	Translate( 0x009F2D10, "Escolha uma classe" );
+	Translate( 0x009F2D18, "Este personagem faz parte de um Clã e por isso não pode ser deletado" );
 };
 
 void __cdecl _SetTexts( )
