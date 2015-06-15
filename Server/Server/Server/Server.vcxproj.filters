@@ -36,6 +36,9 @@
     <ClInclude Include="Configuration\stdafx.h">
       <Filter>Global Definitions</Filter>
     </ClInclude>
+    <ClInclude Include="translate.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Global Definitions</Filter>
     </ClCompile>
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="translate.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ChangeLog.h">
