@@ -11,3 +11,5 @@
 #define LEVEL_MULTIPLIER 1.1f
 
 #pragma endregion
+
+#define TOTAL_TEXT_TRANSLATED 1000
