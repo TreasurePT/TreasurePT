@@ -44,7 +44,17 @@ End:
 
 void CTranslate::SetTexts( )
 {
-
+	//Translate( 0x00, "" );
+	Translate( 0x008368F0, "TreasurePT" );
+	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
+	Translate( 0x005A94FD, "Versão: " );
+	Translate( 0x009F2C88, "Estabelecendo a conexão..." );
+	Translate( 0x009F2C8C, "Impossível conectar" );
+	Translate( 0x009F2C90, "Conta incorreta" );
+	Translate( 0x009F2C94, "Senha incorreta" );
+	Translate( 0x009F2C98, "Conta banida" );
+	Translate( 0x009F2C9C, "Esta conta já está logada" );
+	Translate( 0x009F2CA4, "O servidor está cheio" );
 };
 
 void __cdecl _SetTexts( )
