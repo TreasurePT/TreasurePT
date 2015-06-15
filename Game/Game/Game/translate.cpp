@@ -40,8 +40,7 @@ End:
 
 void CTranslate::SetTexts( )
 {
-	Translate( 0x005EDA28, "Prova: %s",
-			   "Titulo traduzido" );
+
 };
 
 void __cdecl _SetTexts( )
