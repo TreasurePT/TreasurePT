@@ -69,6 +69,16 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2D0C, "Escolha uma tribo" );
 	Translate( 0x009F2D10, "Escolha uma classe" );
 	Translate( 0x009F2D18, "Este personagem faz parte de um Clã e por isso não pode ser deletado" );
+	Translate( 0x009F2D50, "Tempskron" );
+	Translate( 0x00837EC4, "Mecânico" );
+	Translate( 0x00837EF0, "Lutador" );
+	Translate( 0x00837F1C, "Pike" );
+	Translate( 0x00837F48, "Arqueira" );
+	Translate( 0x009F2D34, "Morion" );
+	Translate( 0x00838310, "Cavaleiro" );
+	Translate( 0x0083833C, "Atalanta" );
+	Translate( 0x00838368, "Sacerdotisa" );
+	Translate( 0x00838394, "Mago" );
 };
 
 void __cdecl _SetTexts( )
