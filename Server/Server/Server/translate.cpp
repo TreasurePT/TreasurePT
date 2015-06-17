@@ -44,7 +44,7 @@ End:
 
 void CTranslate::SetTexts( )
 {
-
+	//Translate( 0x00, "" );
 };
 
 void __cdecl _SetTexts( )

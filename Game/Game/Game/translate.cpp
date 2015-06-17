@@ -44,8 +44,6 @@ End:
 
 void CTranslate::SetTexts( )
 {
-	//Translate( 0x00, "" );
-
 	//Login
 	Translate( 0x008368F0, "TreasurePT" );
 	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
@@ -70,15 +68,28 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2D10, "Escolha uma classe" );
 	Translate( 0x009F2D18, "Este personagem faz parte de um Clã e por isso não pode ser deletado" );
 	Translate( 0x009F2D50, "Tempskron" );
+	Translate( 0x009F2D34, "Morion" );
+
+	//Classes
 	Translate( 0x00837EC4, "Mecânico" );
 	Translate( 0x00837EF0, "Lutador" );
 	Translate( 0x00837F1C, "Pike" );
-	Translate( 0x00837F48, "Arqueira" );
-	Translate( 0x009F2D34, "Morion" );
+	Translate( 0x00837F48, "Arqueira" );	
 	Translate( 0x00838310, "Cavaleiro" );
 	Translate( 0x0083833C, "Atalanta" );
 	Translate( 0x00838368, "Sacerdotisa" );
 	Translate( 0x00838394, "Mago" );
+
+	//Ajuda e Guia
+	Translate( 0x0098E524, "    Ajuda" );
+	Translate( 0x0064FFF6, "> Abrir Guia" );
+	Translate( 0x00650015, "> Abrir Guia" );
+
+	//Comandos
+	Translate( 0x004ACEB4, "/nivel" );
+	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
+
+	//Translate( 0x00, "" );
 };
 
 void __cdecl _SetTexts( )
