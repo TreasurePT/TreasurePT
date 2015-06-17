@@ -85,6 +85,11 @@ void CTranslate::SetTexts( )
 	Translate( 0x0064FFF6, "> Abrir Guia" );
 	Translate( 0x00650015, "> Abrir Guia" );
 
+	//Menu D
+	Translate( 0x009F2D5C, "Ignorados: %d / %d" );
+	Translate( 0x009F2D58, "Amigos: %d / %d" );
+	Translate( 0x009F2D54, "Recentes: %d / %d" );
+
 	//Comandos
 	Translate( 0x004ACEB4, "/nivel" );
 	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
