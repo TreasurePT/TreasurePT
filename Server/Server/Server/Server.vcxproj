@@ -83,6 +83,7 @@
     <Text Include="ChangeLog.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bug_fixes.h" />
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\server.h" />
     <ClInclude Include="Configuration\stdafx.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="translate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bug_fixes.cpp" />
     <ClCompile Include="Configuration\global.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
