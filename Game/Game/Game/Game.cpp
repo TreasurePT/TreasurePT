@@ -5,6 +5,7 @@ extern void __cdecl _SetTexts( );
 class CGame
 {
 public:
+
 	void RemoveXTrap( );
 	void Main( );
 };
@@ -20,6 +21,7 @@ void CGame::Main( )
 	_SetTexts( );
 	RemoveXTrap( );
 };
+
 
 void CGame::RemoveXTrap( )
 {

@@ -3,9 +3,8 @@
 
 void _WriteMemory( long Address, long Value, long NumberOfBytes )
 {
-	DWORD Old_Protect = 0, New_Protect = 0;
-	VirtualProtect( ( void* )( Address ), 4, PAGE_EXECUTE_READWRITE, &Old_Protect );
-	New_Protect = Old_Protect;
+	DWORD VP = 0;
+	VirtualProtect( ( void* )( Address ), 4, PAGE_EXECUTE_READWRITE, &VP );
 	switch( NumberOfBytes )
 	{
 		case 1:
@@ -18,5 +17,5 @@ void _WriteMemory( long Address, long Value, long NumberOfBytes )
 			*( long* )( Address ) = ( long )( Value );
 			break;
 	}
-	VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
+	VirtualProtect( ( void* )( Address ), 4, VP, &VP );
 };
