@@ -15,6 +15,7 @@ public:
 	CSkillTranslate( );
 	void Name( const char* Text, ... );
 	void Description( const char* Text, ... );
+	void SetTexts( );
 private:
 	static long m_Address_Text, m_Spacements;
 };
