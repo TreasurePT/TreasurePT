@@ -115,7 +115,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2C98, "Conta banida" );
 	Translate( 0x009F2C9C, "Esta conta já está logada" );
 	Translate( 0x009F2CA4, "O servidor está cheio" );
-	
+
 	//Char Select
 	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );
 	Translate( 0x009F2CF4, "Você deseja continuar esta aventura?" );
@@ -134,7 +134,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x00837EC4, "Mecânico" );
 	Translate( 0x00837EF0, "Lutador" );
 	Translate( 0x00837F1C, "Pike" );
-	Translate( 0x00837F48, "Arqueira" );	
+	Translate( 0x00837F48, "Arqueira" );
 	Translate( 0x00838310, "Cavaleiro" );
 	Translate( 0x0083833C, "Atalanta" );
 	Translate( 0x00838368, "Sacerdotisa" );
@@ -267,6 +267,22 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E694, "Vida:                \r" );
 	Translate( 0x0098E6C4, "Defesa:              \r" );
 	Translate( 0x0098E514, "Alcance:             \r" );
+	Translate( 0x0098E3E0, "Res. a Fogo:         \r" );
+	Translate( 0x0098E41C, "Número de Ataques:   \r" );
+	Translate( 0x0098E420, "Redução de Vida:     \r" );
+	Translate( 0x0098E424, "Precisão:            \r" );
+	Translate( 0x0098E428, "Crítico:             \r" );
+	Translate( 0x0098E4D8, "Área:                \r" );
+	Translate( 0x0098E430, "Dano por Fogo:       \r" );
+	Translate( 0x0098E730, "Precisão:            \r" );
+	Translate( 0x0098E72C, "Girada Brutal - Crítico" );
+	Translate( 0x0098E4E8, "Precisão:            \r" );
+	Translate( 0x0098E5F8, "Bônus vs Demônio:    \r" );
+	Translate( 0x0098E418, "Ataque:              \r" );
+	Translate( 0x0098E698, "Absorção:            \r" );
+	Translate( 0x0098E69C, "Bônus de Ataque:     \r" );
+	Translate( 0x0098E6A0, "Número de Ataques:   \r" );
+	Translate( 0x0098E6A4, "Vida:                \r" );
 
 	//Translate( 0x00, "" );
 };
