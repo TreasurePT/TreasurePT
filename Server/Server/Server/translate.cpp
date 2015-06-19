@@ -44,7 +44,10 @@ End:
 
 void CTranslate::SetTexts( )
 {
-
+	//Mensagem ao logar
+	Translate( 0x006E2A1C, "> Seja Bem Vindo ao Treasure Priston Tale > Qualquer dúvida, acesse nosso site:      > www.treasurept.com.br" );
+	
+	//Translate( 0x00, "" );
 };
 
 void __cdecl _SetTexts( )
