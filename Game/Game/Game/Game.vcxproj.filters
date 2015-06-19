@@ -40,6 +40,9 @@
     <ClCompile Include="wide_screen.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="file_manager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ChangeLog.h">
@@ -63,6 +66,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="wide_screen.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="file_manager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
