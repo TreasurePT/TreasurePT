@@ -39,6 +39,9 @@
     <ClInclude Include="translate.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="bug_fixes.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -52,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="translate.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="bug_fixes.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
