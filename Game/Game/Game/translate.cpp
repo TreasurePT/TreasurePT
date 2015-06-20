@@ -210,6 +210,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E378, "Preço:         \r" );
 
 	//Monstros
+	Translate( 0x0098E5C8, "Normal" );
 	Translate( 0x0098E5C0, "Mecânico" );
 	Translate( 0x0098E5C4, "Demônio" );
 	Translate( 0x0098E5BC, "Mutante" );
@@ -283,6 +284,43 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E69C, "Bônus de Ataque:     \r" );
 	Translate( 0x0098E6A0, "Número de Ataques:   \r" );
 	Translate( 0x0098E6A4, "Vida:                \r" );
+	Translate( 0x0098E42C, "Área:                \r" );
+	Translate( 0x0098E434, "Res. a Gelo:         \r" );
+	Translate( 0x0098E438, "Ataque:              \r" );
+	Translate( 0x0098E480, "Duração:             \r" );
+	Translate( 0x0098E440, "Bloqueio:            \r" );
+	Translate( 0x0098E444, "Tamanho:             \r" );
+	Translate( 0x0098E604, "Duração:             \r" );
+	Translate( 0x0098E600, "Número de Ataques:   \r" );
+	Translate( 0x0098E5FC, "Ataque:              \r" );
+	Translate( 0x0098E4AC, "\r" );
+	Translate( 0x0098E67C, "Visibilidade:        \r" );
+	Translate( 0x0098E678, "Bônus do 1° Ataque:  \r" );
+	Translate( 0x0098E608, "Crítico:             \r" );
+	Translate( 0x0098E6B8, "Número de Ataques:   \r" );
+	Translate( 0x0098E6B4, "Esquiva:             \r" );
+	Translate( 0x0098E6B0, "Bônus se Carregar:   \r" );
+	Translate( 0x0098E6AC, "Crítico do Oponente: \r" );
+	Translate( 0x0098E6A8, "Crítico:             \r" );
+	Translate( 0x0098ECD0, "Vel. para Carregar:  \r" );
+	Translate( 0x0098E468, "Ataque:              \r" );
+	Translate( 0x0098E718, "Ataque:              \r" );
+	Translate( 0x0098E448, "Número de Voltas:    \r" );
+	Translate( 0x0098E478, "" );
+	Translate( 0x0098E44C, "Vel. da Arma:        \r" );
+	Translate( 0x004FA210, "%%d+(NV/%%d)\r" );
+	Translate( 0x004FA49F, "NV/%%d\r" );
+	Translate( 0x0098E458, "Número de Ataques:   \r" );
+	Translate( 0x0098E504, "Ataque de Raio:      \r" );
+	Translate( 0x0098E4FC, "Ataque de Fogo:      \r" );
+	Translate( 0x0098E610, "Reg. de Vida:        \r" );
+	Translate( 0x0098E60C, "Ataque do Falcão:    \r" );
+	Translate( 0x0098E614, "Dano em Área:        \r" );
+	Translate( 0x0098E4F4, "Alcance:             \r" );
+	Translate( 0x0098E6BC, "Vida:                \r" );
+	Translate( 0x0098E6C8, "Esquiva:             \r" );
+	Translate( 0x0098E6CC, "Ataque:              \r" );
+	Translate( 0x0098E6D0, "Alcance:             \r" );
 
 	//Translate( 0x00, "" );
 };
