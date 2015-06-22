@@ -384,6 +384,18 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E70C, "Ataque:              \r" );
 	Translate( 0x0098E710, "Redução da Veloc.:   \r" );
 	Translate( 0x0098E714, "Redução do Ataque:   \r" );
+
+	//Portal
+	Translate( 0x0098E574, "Portal" );
+	Translate( 0x0098E578, "Ricarten" );
+	Translate( 0x0098E57C, "Pilai" );
+	Translate( 0x0098E580, "Floresta das Ilusões" );
+	Translate( 0x0098E584, "Floresta de Bambu" );
+	Translate( 0x0098E588, "Vila Ruinen" );
+	Translate( 0x0098E58C, "Navisco" );
+	Translate( 0x0098E590, "Terra Proibida" );
+	Translate( 0x0098E594, "Eura" );
+	Translate( 0x0098E5D8, "Castelo Sagrado" );
 };
 
 void CSkillTranslate::SetTexts( )
