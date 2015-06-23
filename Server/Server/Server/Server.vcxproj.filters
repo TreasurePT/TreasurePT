@@ -39,7 +39,13 @@
     <ClInclude Include="translate.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="bug_fixes.h">
+    <ClInclude Include="level_manager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="item_manager.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="file_manager.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,7 +63,13 @@
     <ClCompile Include="translate.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="bug_fixes.cpp">
+    <ClCompile Include="level_manager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="item_manager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="file_manager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
