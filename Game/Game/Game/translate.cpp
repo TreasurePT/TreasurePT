@@ -7,6 +7,85 @@ long CTranslate::m_Spacements = 0;
 long CSkillTranslate::m_Address_Text = 0;
 long CSkillTranslate::m_Spacements = 0;
 
+long CDoubleTextTranslate::m_Address_Text = 0;
+long CDoubleTextTranslate::m_Spacements = 0;
+
+CDoubleTextTranslate::CDoubleTextTranslate( )
+{
+	if( !m_Address_Text )
+	{
+		m_Address_Text = ( long )( 0x0098A980 );
+		m_Spacements = 0;
+		SetTexts( );
+	};
+};
+
+void CDoubleTextTranslate::Text1( const char* Text, ... )
+{
+	char Buffer[ 1024 ] = { 0 };
+
+	va_list Args = { 0 };
+	va_start( Args, Text );
+
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
+	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		VirtualProtect( ( void* )( m_Address_Text + m_Spacements ), 0x9C, PAGE_READWRITE, &Old_Protect );
+		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( void* )( m_Address_Text + m_Spacements ), 0x9C, New_Protect, &Old_Protect );
+
+		goto End;
+	};
+
+End:
+	va_end( Args );
+	return;
+};
+
+void CDoubleTextTranslate::Text2( const char* Text, ... )
+{
+	char Buffer[ 1024 ] = { 0 };
+
+	va_list Args = { 0 };
+	va_start( Args, Text );
+
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
+	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		VirtualProtect( ( void* )( m_Address_Text + m_Spacements + 32 ), 0x9C, PAGE_READWRITE, &Old_Protect );
+		lstrcpyA( ( char* )( m_Address_Text + m_Spacements + 32 ), Buffer );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( void* )( m_Address_Text + m_Spacements + 32 ), 0x9C, New_Protect, &Old_Protect );
+		m_Spacements += 0x9C;
+
+		goto End;
+	};
+
+End:
+	va_end( Args );
+	return;
+};
+
+void CDoubleTextTranslate::SetTexts( )
+{
+	Text1( "Quantas Poções você" );
+	Text2( "deseja comprar?" );
+
+	//Text1( "" );
+	//Text2( "" );
+};
+
+CSkillTranslate::CSkillTranslate( )
+{
+	if( !m_Address_Text )
+	{
+		m_Address_Text = ( long )( 0x0098F668 );
+		m_Spacements = 0;
+		SetTexts( );
+	};
+};
+
 void CSkillTranslate::Name( const char* Text, ... )
 {
 	char Buffer[ 1024 ] = { 0 };
@@ -52,223 +131,6 @@ void CSkillTranslate::Description( const char* Text, ... )
 End:
 	va_end( Args );
 	return;
-};
-
-CSkillTranslate::CSkillTranslate( )
-{
-	if( !m_Address_Text )
-	{
-		m_Address_Text = ( long )( 0x0098F668 );
-		m_Spacements = 0;
-		SetTexts( );
-	};
-};
-
-CTranslate::CTranslate( )
-{
-	if( !m_Address_Text )
-	{
-		m_Address_Text = ( long )( VirtualAlloc(
-			nullptr,
-			TOTAL_TEXT_TRANSLATED * 100,
-			MEM_COMMIT | MEM_RESERVE,
-			PAGE_READWRITE ) );
-		m_Spacements = 0;
-	};
-};
-
-void CTranslate::Translate( long Address, const char* Text, ... )
-{
-	char Buffer[ 1024 ] = { 0 };
-
-	va_list Args = { 0 };
-	va_start( Args, Text );
-
-	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
-	{
-		DWORD Old_Protect = 0, New_Protect = 0;
-		VirtualProtect( ( void* )( Address ), 4, PAGE_READWRITE, &Old_Protect );
-		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
-		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
-		New_Protect = Old_Protect;
-		VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
-		m_Spacements += lstrlenA( Buffer ) + 1;
-
-		goto End;
-	};
-
-End:
-	va_end( Args );
-	return;
-};
-
-void CTranslate::SetTexts( )
-{
-	//Login
-	Translate( 0x008368F0, "TreasurePT" );
-	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
-	Translate( 0x005A94FD, "Versão: " );
-	Translate( 0x009F2C88, "Estabelecendo a conexão..." );
-	Translate( 0x009F2C8C, "Impossível conectar" );
-	Translate( 0x009F2C90, "Conta incorreta" );
-	Translate( 0x009F2C94, "Senha incorreta" );
-	Translate( 0x009F2C98, "Conta banida" );
-	Translate( 0x009F2C9C, "Esta conta já está logada" );
-	Translate( 0x009F2CA4, "O servidor está cheio" );
-	
-	//Char Select
-	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );
-	Translate( 0x009F2CF4, "Você deseja continuar esta aventura?" );
-	Translate( 0x009F2CF8, "Cada conta só pode ter no máximo 5 personagens" );
-	Translate( 0x009F2CFC, "Você tem certeza que deseja este nome para o seu personagem?" );
-	Translate( 0x009F2D00, "Digite um nome para o seu personagem" );
-	Translate( 0x009F2D04, "Já existe um personagem com este nome. Por favor, escolha outro" );
-	Translate( 0x009F2D08, "Escolha um personagem" );
-	Translate( 0x009F2D0C, "Escolha uma tribo" );
-	Translate( 0x009F2D10, "Escolha uma classe" );
-	Translate( 0x009F2D18, "Este personagem faz parte de um Clã e por isso não pode ser deletado" );
-	Translate( 0x009F2D50, "Tempskron" );
-	Translate( 0x009F2D34, "Morion" );
-
-	//Classes
-	Translate( 0x00837EC4, "Mecânico" );
-	Translate( 0x00837EF0, "Lutador" );
-	Translate( 0x00837F1C, "Pike" );
-	Translate( 0x00837F48, "Arqueira" );	
-	Translate( 0x00838310, "Cavaleiro" );
-	Translate( 0x0083833C, "Atalanta" );
-	Translate( 0x00838368, "Sacerdotisa" );
-	Translate( 0x00838394, "Mago" );
-
-	//Ajuda e Guia
-	Translate( 0x0098E524, "    Ajuda" );
-	Translate( 0x0064FFF6, "> Abrir Guia" );
-	Translate( 0x00650015, "> Abrir Guia" );
-
-	//Menu D
-	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
-	Translate( 0x009F2D58, "Amigos: %%d / %%d" );
-	Translate( 0x009F2D54, "Recentes" );
-
-	//Comandos
-	Translate( 0x004ACEB4, "/nivel" );
-	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
-
-	//Itens
-	Translate( 0x0098E230, "Ataque:        \r" );
-	Translate( 0x0098E234, "Vel. da Arma:  \r" );
-	Translate( 0x0098E238, "Alcance:       \r" );
-	Translate( 0x0098E23C, "Crítico:       \r" );
-	Translate( 0x0098E240, "Defesa:        \r" );
-	Translate( 0x0098E244, "Precisão:      \r" );
-	Translate( 0x0098E248, "Absorção:      \r" );
-	Translate( 0x0098E24C, "Bloqueio:      \r" );
-	Translate( 0x0098E250, "Velocidade:    \r" );
-	Translate( 0x0098E254, "Integridade:   \r" );
-	Translate( 0x0098E258, "Rec. Mana:     \r" );
-	Translate( 0x0098E25C, "Rec. de Vida:  \r" );
-	Translate( 0x0098E260, "Rec. Estamina: \r" );
-	Translate( 0x0098E264, "Res. a Terra:  \r" );
-	Translate( 0x0098E26C, "Res. a Fogo:   \r" );
-	Translate( 0x0098E270, "Res. a Gelo:   \r" );
-	Translate( 0x0098E274, "Res. a Raio:   \r" );
-	Translate( 0x0098E278, "Res. a Veneno: \r" );
-	Translate( 0x0098E284, "Reg. Vida:     \r" );
-	Translate( 0x0098E288, "Reg. Mana:     \r" );
-	Translate( 0x0098E28C, "Reg. Estamina: \r" );
-	Translate( 0x0098E290, "Vida:          \r" );
-	Translate( 0x0098E294, "Mana:          \r" );
-	Translate( 0x0098E298, "Estamina:      \r" );
-	Translate( 0x0098E29C, "Poções:        \r" );
-	Translate( 0x0098E2A0, "Nível:         \r" );
-	Translate( 0x0098E2A4, "Força:         \r" );
-	Translate( 0x0098E2A8, "Inteligência:  \r" );
-	Translate( 0x0098E2AC, "Talento:       \r" );
-	Translate( 0x0098E2B0, "Agilidade:     \r" );
-	Translate( 0x0098E2B4, "Vitalidade:    \r" );
-	Translate( 0x0098E3C0, "Spec %%s\r" );
-	Translate( 0x0098E2F8, "Vel. da Arma:  \r" );
-	Translate( 0x0098E2FC, "Crítico:       \r" );
-	Translate( 0x0098E300, "Defesa:        \r" );
-	Translate( 0x0098E304, "Absorção:      \r" );
-	Translate( 0x0098E308, "Bloqueio:      \r" );
-	Translate( 0x0098E30C, "Bônus Mágico:  \r" );
-	Translate( 0x0098E310, "Velocidade:    \r" );
-	Translate( 0x0098E334, "Ataque:        \r" );
-	Translate( 0x004CDB06, "NV/%%d\r" );
-	Translate( 0x0098E338, "Precisão:      \r" );
-	Translate( 0x004CDB51, "NV/%%d\r" );
-	Translate( 0x0098E33C, "Alcance:       \r" );
-	Translate( 0x0098E360, "Vida:          \r" );
-	Translate( 0x004CDE4F, "NV/%%d\r" );
-	Translate( 0x0098E364, "Mana:          \r" );
-	Translate( 0x004CDE9A, "NV/%%d\r" );
-	Translate( 0x0098E368, "Reg. Vida:     \r" );
-	Translate( 0x0098E36C, "Reg. Mana:     \r" );
-	Translate( 0x0098E370, "Reg. Estamina: \r" );
-	Translate( 0x0098E374, "Preço:         \r" );
-	Translate( 0x0098E378, "Preço:         \r" );
-
-	//Monstros
-	Translate( 0x0098E5C0, "Mecânico" );
-	Translate( 0x0098E5C4, "Demônio" );
-	Translate( 0x0098E5BC, "Mutante" );
-	Translate( 0x0098E5CC, "Morto-Vivo" );
-
-	//Habilidades
-	std::shared_ptr<CSkillTranslate> lpSkillTranslate = std::make_shared<CSkillTranslate>( );
-	Translate( 0x0098E3D0, "Ataque Padrão\r" );
-	Translate( 0x0098E3D4, "%%s (Nível Necessário: %%d)\r" );
-	Translate( 0x0098E3D8, "Itens Compatíveis\r" );
-	Translate( 0x0098E3CC, "Próximo Nível\r" );
-	Translate( 0x0098E3F8, "Bloqueio:            \r" );
-	Translate( 0x0098E3FC, "Duração:             \r" );
-	Translate( 0x004F757A, "%%d segundos\r" );
-	Translate( 0x0098E410, " segundos" );
-	Translate( 0x0098E400, "Mana:                \r" );
-	Translate( 0x0098E45C, "Estamina:            \r" );
-	Translate( 0x0098E404, "Ataque:              \r" );
-	Translate( 0x0098E408, "Alcance:             \r" );
-	Translate( 0x004F6F0A, "(%%s, %%s - %%d%%s %%s" );
-	Translate( 0x0098E5D0, "Ataque Bônus)\r" );
-	Translate( 0x0098E3DC, "Res. a Veneno:       \r" );
-	Translate( 0x0098E40C, "Absorção:            \r" );
-	Translate( 0x0098E450, "Precisão:            \r" );
-	Translate( 0x0098E538, "Ataque Máximo:       \r" );
-	Translate( 0x0098E3F0, "Ataque:              \r" );
-	Translate( 0x0098E3EC, "Ataque Máximo:       \r" );
-	Translate( 0x0098E3F4, "Vel. da Arma:        \r" );
-	Translate( 0x0098E3E4, "Área:                \r" );
-	Translate( 0x004F799D, "%%d-%%d+(NV)\r" );
-	Translate( 0x004F6ED8, "(%%s - %%d%%s %%s" );
-	Translate( 0x004F7043, "(%%s - %%d%%s %%s" );
-	Translate( 0x004F718F, "(%%s - %%d%%s %%s" );
-	Translate( 0x0098E668, "Defesa:              \r" );
-	Translate( 0x0098E71C, ")\r" );
-	Translate( 0x0098E724, "Absorção Física" );
-	Translate( 0x004F6FBF, "(%%s %%d%%s%%s" );
-	Translate( 0x004F7129, "(%%s %%d%%s%%s" );
-	Translate( 0x004F71BA, "(%%s %%d%%s%%s" );
-	Translate( 0x004F7277, "(%%s %%d%%s%%s" );
-	Translate( 0x0098E7C0, "Dano Refletido:      \r" );
-	Translate( 0x0098E5F4, "Defesa:              \r" );
-	Translate( 0x0098E680, "Ataque:              \r" );
-	Translate( 0x0098E520, "Alcance:             \r" );
-	Translate( 0x0098E684, "Número de Ataques:   \r" );
-	Translate( 0x0098E688, "Absorção:            \r" );
-	Translate( 0x0098E68C, "Área:                \r" );
-	Translate( 0x0098E690, "Ataque:              \r" );
-	Translate( 0x0098E408, "Alcance:             \r" );
-	Translate( 0x0098E65C, "Intervalo de Ataque: \r" );
-	Translate( 0x0098ECDC, "Tipo de Ataque:      \r" );
-	Translate( 0x0098ECE4, "Automático\r" );
-	Translate( 0x0098ECE0, "Manual\r" );
-	Translate( 0x0098E6C0, "Precisão:            \r" );
-	Translate( 0x0098E694, "Vida:                \r" );
-	Translate( 0x0098E6C4, "Defesa:              \r" );
-	Translate( 0x0098E514, "Alcance:             \r" );
-
-	//Translate( 0x00, "" );
 };
 
 void CSkillTranslate::SetTexts( )
@@ -433,6 +295,46 @@ void CSkillTranslate::SetTexts( )
 	Description( "T5_3_AS" );
 	Name( "T5_4_AS" );
 	Description( "T5_4_AS" );
+	Name( "T1_1_ASS" );
+	Description( "T1_1_ASS" );
+	Name( "T1_2_ASS" );
+	Description( "T1_2_ASS" );
+	Name( "T1_3_ASS" );
+	Description( "T1_3_ASS" );
+	Name( "T1_4_ASS" );
+	Description( "T1_4_ASS" );
+	Name( "T2_1_ASS" );
+	Description( "T2_1_ASS" );
+	Name( "T2_2_ASS" );
+	Description( "T2_2_ASS" );
+	Name( "T2_3_ASS" );
+	Description( "T2_3_ASS" );
+	Name( "T2_4_ASS" );
+	Description( "T2_4_ASS" );
+	Name( "T3_1_ASS" );
+	Description( "T3_1_ASS" );
+	Name( "T3_2_ASS" );
+	Description( "T3_2_ASS" );
+	Name( "T3_3_ASS" );
+	Description( "T3_3_ASS" );
+	Name( "T3_4_ASS" );
+	Description( "T3_4_ASS" );
+	Name( "T4_1_ASS" );
+	Description( "T4_1_ASS" );
+	Name( "T4_2_ASS" );
+	Description( "T4_2_ASS" );
+	Name( "T4_3_ASS" );
+	Description( "T4_3_ASS" );
+	Name( "T4_4_ASS" );
+	Description( "T4_4_ASS" );
+	Name( "T5_1_ASS" );
+	Description( "T5_1_ASS" );
+	Name( "T5_2_ASS" );
+	Description( "T5_2_ASS" );
+	Name( "T5_3_ASS" );
+	Description( "T5_3_ASS" );
+	Name( "T5_4_ASS" );
+	Description( "T5_4_ASS" );
 	Name( "Rajada Sagrada" );
 	Description( "Carrega sua espada com a força   divina e lança uma rajada nosoponentes" );
 	Name( "Corpo Sagrado" );
@@ -593,6 +495,383 @@ void CSkillTranslate::SetTexts( )
 	Description( "T5_3_MGS" );
 	Name( "T5_4_MGS" );
 	Description( "T5_4_MGS" );
+	Name( "T1_1_SS" );
+	Description( "T1_1_SS" );
+	Name( "T1_2_SS" );
+	Description( "T1_2_SS" );
+	Name( "T1_3_SS" );
+	Description( "T1_3_SS" );
+	Name( "T1_4_SS" );
+	Description( "T1_4_SS" );
+	Name( "T2_1_SS" );
+	Description( "T2_1_SS" );
+	Name( "T2_2_SS" );
+	Description( "T2_2_SS" );
+	Name( "T2_3_SS" );
+	Description( "T2_3_SS" );
+	Name( "T2_4_SS" );
+	Description( "T2_4_SS" );
+	Name( "T3_1_SS" );
+	Description( "T3_1_SS" );
+	Name( "T3_2_SS" );
+	Description( "T3_2_SS" );
+	Name( "T3_3_SS" );
+	Description( "T3_3_SS" );
+	Name( "T3_4_SS" );
+	Description( "T3_4_SS" );
+	Name( "T4_1_SS" );
+	Description( "T4_1_SS" );
+	Name( "T4_2_SS" );
+	Description( "T4_2_SS" );
+	Name( "T4_3_SS" );
+	Description( "T4_3_SS" );
+	Name( "T4_4_SS" );
+	Description( "T4_4_SS" );
+	Name( "T5_1_SS" );
+	Description( "T5_1_SS" );
+	Name( "T5_2_SS" );
+	Description( "T5_2_SS" );
+	Name( "T5_3_SS" );
+	Description( "T5_3_SS" );
+	Name( "T5_4_SS" );
+	Description( "T5_4_SS" );
+};
+
+CTranslate::CTranslate( )
+{
+	if( !m_Address_Text )
+	{
+		m_Address_Text = ( long )( VirtualAlloc(
+			nullptr,
+			TOTAL_TEXT_TRANSLATED * 100,
+			MEM_COMMIT | MEM_RESERVE,
+			PAGE_READWRITE ) );
+		m_Spacements = 0;
+	};
+};
+
+void CTranslate::Translate( long Address, const char* Text, ... )
+{
+	char Buffer[ 1024 ] = { 0 };
+
+	va_list Args = { 0 };
+	va_start( Args, Text );
+
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
+	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		VirtualProtect( ( void* )( Address ), 4, PAGE_READWRITE, &Old_Protect );
+		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
+		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
+		m_Spacements += lstrlenA( Buffer ) + 1;
+
+		goto End;
+	};
+
+End:
+	va_end( Args );
+	return;
+};
+
+void CTranslate::SetTexts( )
+{
+	//Login
+	Translate( 0x008368F0, "TreasurePT" );
+	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
+	Translate( 0x005A94FD, "Versão: " );
+	Translate( 0x009F2C88, "Estabelecendo a conexão..." );
+	Translate( 0x009F2C8C, "Impossível conectar" );
+	Translate( 0x009F2C90, "Conta incorreta" );
+	Translate( 0x009F2C94, "Senha incorreta" );
+	Translate( 0x009F2C98, "Conta banida" );
+	Translate( 0x009F2C9C, "Esta conta já está logada" );
+	Translate( 0x009F2CA4, "O servidor está cheio" );
+
+	//Char Select
+	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );
+	Translate( 0x009F2CF4, "Você deseja continuar esta aventura?" );
+	Translate( 0x009F2CF8, "Cada conta só pode ter no máximo 5 personagens" );
+	Translate( 0x009F2CFC, "Você tem certeza que deseja este nome para o seu personagem?" );
+	Translate( 0x009F2D00, "Digite um nome para o seu personagem" );
+	Translate( 0x009F2D04, "Já existe um personagem com este nome. Por favor, escolha outro" );
+	Translate( 0x009F2D08, "Escolha um personagem" );
+	Translate( 0x009F2D0C, "Escolha uma tribo" );
+	Translate( 0x009F2D10, "Escolha uma classe" );
+	Translate( 0x009F2D18, "Este personagem faz parte de um Clã e por isso não pode ser deletado" );
+	Translate( 0x009F2D50, "Tempskron" );
+	Translate( 0x009F2D34, "Morion" );
+
+	//Classes
+	Translate( 0x00837EC4, "Mecânico" );
+	Translate( 0x00837EF0, "Lutador" );
+	Translate( 0x00837F1C, "Pike" );
+	Translate( 0x00837F48, "Arqueira" );
+	Translate( 0x00838310, "Cavaleiro" );
+	Translate( 0x0083833C, "Atalanta" );
+	Translate( 0x00838368, "Sacerdotisa" );
+	Translate( 0x00838394, "Mago" );
+
+	//Ajuda e Guia
+	Translate( 0x0098E524, "    Ajuda" );
+	Translate( 0x0064FFF6, "> Abrir Guia" );
+	Translate( 0x00650015, "> Abrir Guia" );
+
+	//Menu D
+	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
+	Translate( 0x009F2D58, "Amigos: %%d / %%d" );
+	Translate( 0x009F2D54, "Recentes" );
+
+	//Comandos
+	Translate( 0x004ACEB4, "/nivel" );
+	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
+
+	//Itens
+	Translate( 0x0098E230, "Ataque:        \r" );
+	Translate( 0x0098E234, "Vel. da Arma:  \r" );
+	Translate( 0x0098E238, "Alcance:       \r" );
+	Translate( 0x0098E23C, "Crítico:       \r" );
+	Translate( 0x0098E240, "Defesa:        \r" );
+	Translate( 0x0098E244, "Precisão:      \r" );
+	Translate( 0x0098E248, "Absorção:      \r" );
+	Translate( 0x0098E24C, "Bloqueio:      \r" );
+	Translate( 0x0098E250, "Velocidade:    \r" );
+	Translate( 0x0098E254, "Integridade:   \r" );
+	Translate( 0x0098E258, "Rec. Mana:     \r" );
+	Translate( 0x0098E25C, "Rec. de Vida:  \r" );
+	Translate( 0x0098E260, "Rec. Estamina: \r" );
+	Translate( 0x0098E264, "Res. a Terra:  \r" );
+	Translate( 0x0098E26C, "Res. a Fogo:   \r" );
+	Translate( 0x0098E270, "Res. a Gelo:   \r" );
+	Translate( 0x0098E274, "Res. a Raio:   \r" );
+	Translate( 0x0098E278, "Res. a Veneno: \r" );
+	Translate( 0x0098E284, "Reg. Vida:     \r" );
+	Translate( 0x0098E288, "Reg. Mana:     \r" );
+	Translate( 0x0098E28C, "Reg. Estamina: \r" );
+	Translate( 0x0098E290, "Vida:          \r" );
+	Translate( 0x0098E294, "Mana:          \r" );
+	Translate( 0x0098E298, "Estamina:      \r" );
+	Translate( 0x0098E29C, "Poções:        \r" );
+	Translate( 0x0098E2A0, "Nível:         \r" );
+	Translate( 0x0098E2A4, "Força:         \r" );
+	Translate( 0x0098E2A8, "Inteligência:  \r" );
+	Translate( 0x0098E2AC, "Talento:       \r" );
+	Translate( 0x0098E2B0, "Agilidade:     \r" );
+	Translate( 0x0098E2B4, "Vitalidade:    \r" );
+	Translate( 0x0098E3C0, "Spec %%s\r" );
+	Translate( 0x0098E2F8, "Vel. da Arma:  \r" );
+	Translate( 0x0098E2FC, "Crítico:       \r" );
+	Translate( 0x0098E300, "Defesa:        \r" );
+	Translate( 0x0098E304, "Absorção:      \r" );
+	Translate( 0x0098E308, "Bloqueio:      \r" );
+	Translate( 0x0098E30C, "Bônus Mágico:  \r" );
+	Translate( 0x0098E310, "Velocidade:    \r" );
+	Translate( 0x0098E334, "Ataque:        \r" );
+	Translate( 0x004CDB06, "NV/%%d\r" );
+	Translate( 0x0098E338, "Precisão:      \r" );
+	Translate( 0x004CDB51, "NV/%%d\r" );
+	Translate( 0x0098E33C, "Alcance:       \r" );
+	Translate( 0x0098E360, "Vida:          \r" );
+	Translate( 0x004CDE4F, "NV/%%d\r" );
+	Translate( 0x0098E364, "Mana:          \r" );
+	Translate( 0x004CDE9A, "NV/%%d\r" );
+	Translate( 0x0098E368, "Reg. Vida:     \r" );
+	Translate( 0x0098E36C, "Reg. Mana:     \r" );
+	Translate( 0x0098E370, "Reg. Estamina: \r" );
+	Translate( 0x0098E374, "Preço:         \r" );
+	Translate( 0x0098E378, "Preço:         \r" );
+
+	//Monstros
+	Translate( 0x0098E5C8, "Normal" );
+	Translate( 0x0098E5C0, "Mecânico" );
+	Translate( 0x0098E5C4, "Demônio" );
+	Translate( 0x0098E5BC, "Mutante" );
+	Translate( 0x0098E5CC, "Morto-Vivo" );
+
+	//Habilidades
+	std::shared_ptr<CSkillTranslate> lpSkillTranslate = std::make_shared<CSkillTranslate>( );
+	Translate( 0x0098E3D0, "Ataque Padrão\r" );
+	Translate( 0x0098E3D4, "%%s (Nível Necessário: %%d)\r" );
+	Translate( 0x0098E3D8, "Itens Compatíveis\r" );
+	Translate( 0x0098E3CC, "Próximo Nível\r" );
+	Translate( 0x0098E3F8, "Bloqueio:            \r" );
+	Translate( 0x0098E3FC, "Duração:             \r" );
+	Translate( 0x004F757A, "%%d segundos\r" );
+	Translate( 0x0098E410, " segundos" );
+	Translate( 0x0098E400, "Mana:                \r" );
+	Translate( 0x0098E45C, "Estamina:            \r" );
+	Translate( 0x0098E404, "Ataque:              \r" );
+	Translate( 0x0098E408, "Alcance:             \r" );
+	Translate( 0x004F6F0A, "(%%s, %%s - %%d%%s %%s" );
+	Translate( 0x004F70A1, "(%%s, %%s - %%d%%s %%s" );
+	Translate( 0x004F721E, "(%%s, %%s - %%d%%s %%s" );
+	Translate( 0x0098E5D0, "Ataque Bônus)\r" );
+	Translate( 0x0098E3DC, "Res. a Veneno:       \r" );
+	Translate( 0x0098E40C, "Absorção:            \r" );
+	Translate( 0x0098E450, "Precisão:            \r" );
+	Translate( 0x0098E538, "Ataque Máximo:       \r" );
+	Translate( 0x0098E3F0, "Ataque:              \r" );
+	Translate( 0x0098E3EC, "Ataque Máximo:       \r" );
+	Translate( 0x0098E3F4, "Vel. da Arma:        \r" );
+	Translate( 0x0098E3E4, "Área:                \r" );
+	Translate( 0x004F799D, "%%d-%%d+(NV)\r" );
+	Translate( 0x004F6ED8, "(%%s - %%d%%s %%s" );
+	Translate( 0x004F7043, "(%%s - %%d%%s %%s" );
+	Translate( 0x004F718F, "(%%s - %%d%%s %%s" );
+	Translate( 0x0098E668, "Defesa:              \r" );
+	Translate( 0x0098E71C, ")\r" );
+	Translate( 0x0098E724, "Absorção Física" );
+	Translate( 0x004F6FBF, "(%%s %%d%%s%%s" );
+	Translate( 0x004F7129, "(%%s %%d%%s%%s" );
+	Translate( 0x004F71BA, "(%%s %%d%%s%%s" );
+	Translate( 0x004F7277, "(%%s %%d%%s%%s" );
+	Translate( 0x0098E7C0, "Dano Refletido:      \r" );
+	Translate( 0x0098E5F4, "Defesa:              \r" );
+	Translate( 0x0098E680, "Ataque:              \r" );
+	Translate( 0x0098E520, "Alcance:             \r" );
+	Translate( 0x0098E684, "Número de Ataques:   \r" );
+	Translate( 0x0098E688, "Absorção:            \r" );
+	Translate( 0x0098E68C, "Área:                \r" );
+	Translate( 0x0098E690, "Ataque:              \r" );
+	Translate( 0x0098E408, "Alcance:             \r" );
+	Translate( 0x0098E65C, "Intervalo de Ataque: \r" );
+	Translate( 0x0098ECDC, "Tipo de Ataque:      \r" );
+	Translate( 0x0098ECE4, "Automático\r" );
+	Translate( 0x0098ECE0, "Manual\r" );
+	Translate( 0x0098E6C0, "Precisão:            \r" );
+	Translate( 0x0098E694, "Vida:                \r" );
+	Translate( 0x0098E6C4, "Defesa:              \r" );
+	Translate( 0x0098E514, "Alcance:             \r" );
+	Translate( 0x0098E3E0, "Res. a Fogo:         \r" );
+	Translate( 0x0098E41C, "Número de Ataques:   \r" );
+	Translate( 0x0098E420, "Redução de Vida:     \r" );
+	Translate( 0x0098E424, "Precisão:            \r" );
+	Translate( 0x0098E428, "Crítico:             \r" );
+	Translate( 0x0098E4D8, "Área:                \r" );
+	Translate( 0x0098E430, "Dano por Fogo:       \r" );
+	Translate( 0x0098E730, "Precisão:            \r" );
+	Translate( 0x0098E72C, "Girada Brutal - Crítico" );
+	Translate( 0x0098E4E8, "Precisão:            \r" );
+	Translate( 0x0098E5F8, "Bônus vs Demônio:    \r" );
+	Translate( 0x0098E418, "Ataque:              \r" );
+	Translate( 0x0098E698, "Absorção:            \r" );
+	Translate( 0x0098E69C, "Bônus de Ataque:     \r" );
+	Translate( 0x0098E6A0, "Número de Ataques:   \r" );
+	Translate( 0x0098E6A4, "Vida:                \r" );
+	Translate( 0x0098E42C, "Área:                \r" );
+	Translate( 0x0098E434, "Res. a Gelo:         \r" );
+	Translate( 0x0098E438, "Ataque:              \r" );
+	Translate( 0x0098E480, "Duração:             \r" );
+	Translate( 0x0098E440, "Bloqueio:            \r" );
+	Translate( 0x0098E444, "Tamanho:             \r" );
+	Translate( 0x0098E604, "Duração:             \r" );
+	Translate( 0x0098E600, "Número de Ataques:   \r" );
+	Translate( 0x0098E5FC, "Ataque:              \r" );
+	Translate( 0x0098E4AC, "\r" );
+	Translate( 0x0098E67C, "Visibilidade:        \r" );
+	Translate( 0x0098E678, "Bônus do 1° Ataque:  \r" );
+	Translate( 0x0098E608, "Crítico:             \r" );
+	Translate( 0x0098E6B8, "Número de Ataques:   \r" );
+	Translate( 0x0098E6B4, "Esquiva:             \r" );
+	Translate( 0x0098E6B0, "Bônus se Carregar:   \r" );
+	Translate( 0x0098E6AC, "Crítico do Oponente: \r" );
+	Translate( 0x0098E6A8, "Crítico:             \r" );
+	Translate( 0x0098ECD0, "Vel. para Carregar:  \r" );
+	Translate( 0x0098E468, "Ataque:              \r" );
+	Translate( 0x0098E718, "Ataque:              \r" );
+	Translate( 0x0098E448, "Número de Voltas:    \r" );
+	Translate( 0x0098E478, "" );
+	Translate( 0x0098E44C, "Vel. da Arma:        \r" );
+	Translate( 0x004FA210, "%%d+(NV/%%d)\r" );
+	Translate( 0x004FA49F, "NV/%%d\r" );
+	Translate( 0x0098E458, "Número de Ataques:   \r" );
+	Translate( 0x0098E504, "Ataque de Raio:      \r" );
+	Translate( 0x0098E4FC, "Ataque de Fogo:      \r" );
+	Translate( 0x0098E610, "Reg. de Vida:        \r" );
+	Translate( 0x0098E60C, "Ataque do Falcão:    \r" );
+	Translate( 0x0098E614, "Dano em Área:        \r" );
+	Translate( 0x0098E4F4, "Alcance:             \r" );
+	Translate( 0x0098E6BC, "Vida:                \r" );
+	Translate( 0x0098E6C8, "Esquiva:             \r" );
+	Translate( 0x0098E6CC, "Ataque:              \r" );
+	Translate( 0x0098E6D0, "Alcance:             \r" );
+	Translate( 0x004FB05F, "%%d-%%d+(NV/2)\r" );
+	Translate( 0x0098E49C, "Estamina:            \r" );
+	Translate( 0x0098E4E0, "Alcance:             \r" );
+	Translate( 0x0098E628, "Bônus vs Morto-Vivo: \r" );
+	Translate( 0x0098E4E4, "Área:                \r" );
+	Translate( 0x0098E4EC, "Alcance:             \r" );
+	Translate( 0x0098E4F0, "Defesa:              \r" );
+	Translate( 0x0098E61C, "Dano Convertido:     \r" );
+	Translate( 0x0098E620, "Chance de Sucesso:   \r" );
+	Translate( 0x0098E624, "Vida Adicional:      \r" );
+	Translate( 0x0098E738, "Escudo Divino - Bloqueio" );
+	Translate( 0x0098E6E0, "Absorção:            \r" );
+	Translate( 0x0098E62C, "Número de Ataques:   \r" );
+	Translate( 0x0098E498, "(Ataque com Escudo)\r" );
+	Translate( 0x004FC0B3, "%%d-%%d+(NV)\r" );
+	Translate( 0x004FC036, "+(NV)" );
+	Translate( 0x0098E4C8, "Ataque:              \r" );
+	Translate( 0x004FC338, "%%d-%%d+(NV/2)\r" );
+	Translate( 0x0098E534, "Ataque:              \r" );
+	Translate( 0x0098E4F8, "Dano Convertido:     \r" );
+	Translate( 0x0098E5D4, "Ataque de Fogo)\r" );
+	Translate( 0x004FC4B8, "%%d-%%d+(NV/3)\r" );
+	Translate( 0x004FC616, "%%d-%%d+(NV/3)\r" );
+	Translate( 0x0098E634, "Ataque Máximo:       \r" );
+	Translate( 0x004FC4FB, "%%d+(NV/4)\r" );
+	Translate( 0x0098E638, "Ataque:              \r" );
+	Translate( 0x0098E734, "Triunfo de Valhala -" );
+	Translate( 0x0098E6E4, "Área:                \r" );
+	Translate( 0x0098ECD4, "Ataque:              \r" );
+	Translate( 0x0098ECD8, "Congelamento:        \r" );
+	Translate( 0x0098E6E8, "Redução da Veloc.:   \r" );
+	Translate( 0x0098E4A0, "Rec. de Vida:        \r" );
+	Translate( 0x0098E4D0, "Ataque:              \r" );
+	Translate( 0x0098E4D4, "Número de Ataques:   \r" );
+	Translate( 0x0098E4B0, "Redução do Ataque:   \r" );
+	Translate( 0x0098E508, "Reg. de Mana:        \r" );
+	Translate( 0x0098E50C, "Número de Ataques:   \r" );
+	Translate( 0x0098E510, "Dano Refletido:      \r" );
+	Translate( 0x0098E63C, "Chance de Sucesso:   \r" );
+	Translate( 0x0098E648, "Chance de Sucesso:   \r" );
+	Translate( 0x0098E64C, "Redução de Vida:     \r" );
+	Translate( 0x0098E650, "Vida:                \r" );
+	Translate( 0x0098E6F0, "Reg. de Mana:        \r" );
+	Translate( 0x0098E6EC, "Reg. de Vida:        \r" );
+	Translate( 0x0098E6F4, "Área:                \r" );
+	Translate( 0x0098E6FC, "Alcance:             \r" );
+	Translate( 0x0098E6F8, "Número de Ataques:   \r" );
+	Translate( 0x0098E700, "Absorção:            \r" );
+	Translate( 0x0098E704, "Esquiva:             \r" );
+	Translate( 0x004FD8CF, "%%d+(NV/5)%%s\r" );
+	Translate( 0x0098E4B4, "Mana Convertida:     \r" );
+	Translate( 0x0098E4B8, "Resistências:        \r" );
+	Translate( 0x0098E518, "Mana:                \r" );
+	Translate( 0x0098E500, "Ataque de Gelo:      \r" );
+	Translate( 0x0098E654, "Dano Convertido:     \r" );
+	Translate( 0x0098E658, "Ataque:              \r" );
+	Translate( 0x0098E664, "Ataque de Gelo:      \r" );
+	Translate( 0x0098E660, "Ataque de Fogo:      \r" );
+	Translate( 0x0098E70C, "Ataque:              \r" );
+	Translate( 0x0098E710, "Redução da Veloc.:   \r" );
+	Translate( 0x0098E714, "Redução do Ataque:   \r" );
+
+	//Portal
+	Translate( 0x0098E574, "Portal" );
+	Translate( 0x0098E578, "Ricarten" );
+	Translate( 0x0098E57C, "Pilai" );
+	Translate( 0x0098E580, "Floresta das Ilusões" );
+	Translate( 0x0098E584, "Floresta de Bambu" );
+	Translate( 0x0098E588, "Vila Ruinen" );
+	Translate( 0x0098E58C, "Navisco" );
+	Translate( 0x0098E590, "Terra Proibida" );
+	Translate( 0x0098E594, "Eura" );
+	Translate( 0x0098E5D8, "Castelo Sagrado" );
+
+	//Textos
+	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
 };
 
 void __cdecl _SetTexts( )

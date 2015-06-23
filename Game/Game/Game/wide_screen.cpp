@@ -15,8 +15,8 @@ CWideScreen::CWideScreen( )
 	{
 		DefaultConfig( &Config, true );
 		SetConfig( &Config );
-		MessageBoxA( 0, "Não foi possível encontrar o arquivo \"game.ini\" na pasta \"game\" ou a configuração é inválida, um novo arquivo será criado com os valores padrões.\n"
-					 "Nova configuração: 800x600 - Modo Janela.\n"
+		MessageBoxA( 0, "Ou a configuração é inválida ou não foi possível encontrar o arquivo \"Game\\Game.ini\". Um novo arquivo foi criado.\n"
+					 "Resolução: 800x600 - Modo Janela.\n"
 					 "\n"
 					 "Resoluções suportadas:\n"
 					 "800x600 - 1024x768 - 1152x864\n"
@@ -30,7 +30,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 	if( CreateIni )
 	{
 		std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "game\\game.ini" );
-		DeleteFileA( "game\\game.ini" );
+		DeleteFileA( "Game\\Game.ini" );
 		lpFile->SetString( "Video", "Largura", "800" );
 		lpFile->SetString( "Video", "Altura", "600" );
 		lpFile->SetString( "Video", "Tela Cheia", "Desativada" );
@@ -39,7 +39,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 		lpFile->SetString( "Usuario", "Camera Invertida", "Desativada" );
 		lpFile->SetString( "Usuario", "Fog de Camera", "Longe" );
 		lpFile->SetString( "Usuario", "Som", "Ativado" );
-		lpFile->SetString( "Servidor", "Protocolo Interno", "192.168.25.233" );
+		lpFile->SetString( "Servidor", "Protocolo Interno", "127.0.0.1" );
 	};
 	Config->Width = 800;
 	Config->Height = 600;
@@ -49,13 +49,13 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 	StringCbCopyA( Config->CammInvert, 32, "Desativada" );
 	StringCbCopyA( Config->CammFog, 16, "Longe" );
 	StringCbCopyA( Config->Sound, 16, "Ativado" );
-	StringCbCopyA( Config->InternalProtocal, 32, "192.168.25.233" );
+	StringCbCopyA( Config->InternalProtocal, 32, "127.0.0.1" );
 	Config->isWide = false;
 };
 
 void CWideScreen::ReadConfig( s_Config* Config )
 {
-	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "game\\game.ini" );
+	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "Game\\Game.ini" );
 	char Buffer[ 256 ] = { 0 };
 	lpFile->GetString( "Video", "Largura", Buffer );
 	Config->Width = atoi( Buffer );
