@@ -4,8 +4,10 @@ class CFileManager
 public:
 	CFileManager( const char* FileName );
 
+	void SetFileName( const char* FileName );
 	void GetString( const char* Section, const char* Key, char* Buffer );
 	void SetString( const char* Section, const char* Key, const char* String );
+	void Log( const char* Format, ... );
 
 	const char* Format( const char* String, ... );
 
@@ -19,6 +21,5 @@ private:
 
 	char m_Buffer[ 256 ];
 	FILE* m_File;
-	char* m_FileBuffer;
 };
 
