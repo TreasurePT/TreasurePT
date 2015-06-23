@@ -15,7 +15,7 @@ CWideScreen::CWideScreen( )
 	{
 		DefaultConfig( &Config, true );
 		SetConfig( &Config );
-		MessageBoxA( 0, "Ou a configuração é inválida ou não foi possível encontrar o arquivo \"Game\\Game.ini\". Um novo arquivo foi criado.\n"
+		MessageBoxA( 0, "A configuração é inválida ou não foi possível encontrar o arquivo \"Game\\Game.ini\". Um novo arquivo foi criado.\n"
 					 "Resolução: 800x600 - Modo Janela.\n"
 					 "\n"
 					 "Resoluções suportadas:\n"
