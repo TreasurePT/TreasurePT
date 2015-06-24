@@ -535,6 +535,22 @@ void CSkillTranslate::SetTexts( )
 	Description( "T5_3_SS" );
 	Name( "T5_4_SS" );
 	Description( "T5_4_SS" );
+	Name( " - Força Orb" );
+	Description( "          Aumenta o Ataque     temporariamente" );
+	Name( "Desafio" );
+	Description( "Mate os monstros indicados" );
+	Name( "Desafio" );
+	Description( "Mate os monstros indicados" );
+	Name( "Desafio" );
+	Description( "Mate os monstros indicados" );
+	Name( "Desafio" );
+	Description( "Mate os monstros indicados" );
+	Name( "Absorção Extrema" );
+	Description( "Aumenta a Absorção em 20 pontos" );
+	Name( "Força Oculta" );
+	Description( "Aumenta o Ataque em 15%%" );
+	Name( "Instinto de Sobrevivência" );
+	Description( "Aumenta a Esquiva em 20%%" );
 };
 
 CTranslate::CTranslate( )
@@ -691,8 +707,10 @@ void CTranslate::SetTexts( )
 
 	//Habilidades
 	std::shared_ptr<CSkillTranslate> lpSkillTranslate = std::make_shared<CSkillTranslate>( );
+	Translate( 0x0098E460, "Preço:               \r" );
 	Translate( 0x0098E3D0, "Ataque Padrão\r" );
 	Translate( 0x0098E3D4, "%%s (Nível Necessário: %%d)\r" );
+	Translate( 0x0098E7C4, "(Próximo Nível: %%d)\r" );
 	Translate( 0x0098E3D8, "Itens Compatíveis\r" );
 	Translate( 0x0098E3CC, "Próximo Nível\r" );
 	Translate( 0x0098E3F8, "Bloqueio:            \r" );
@@ -869,6 +887,68 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E590, "Terra Proibida" );
 	Translate( 0x0098E594, "Eura" );
 	Translate( 0x0098E5D8, "Castelo Sagrado" );
+
+	//Controlador Cameron
+	Translate( 0x0098E960, "Preço: " );
+	Translate( 0x0098E95C, "Preço: " );
+	Translate( 0x0098E958, "Cristal de Raio" );
+	Translate( 0x0098E954, "ataques de gelo" );
+	Translate( 0x0098E950, "Atordoa os inimigos usando" );
+	Translate( 0x0098E94C, "Cristal de Raio" );
+	Translate( 0x0098E948, "Cristal de Fogo" );
+	Translate( 0x0098E944, "ataques de fogo" );
+	Translate( 0x0098E940, "Destrói os inimigos usando" );
+	Translate( 0x0098E93C, "Cristal de Fogo" );
+	Translate( 0x0098E938, "Cristal de Gelo" );
+	Translate( 0x0098E934, "ataques de gelo" );
+	Translate( 0x0098E930, "Atrasa os inimigos usando" );
+	Translate( 0x0098E92C, "Cristal de Gelo" );
+	Translate( 0x0098E928, "Total: %%d / 20" );
+	Translate( 0x0098E924, "treinados para a guerra" );
+	Translate( 0x0098E920, "Os Soldados de Ricarten são" );
+	Translate( 0x0098E91C, "Soldado de Ricarten" );
+	Translate( 0x0098E918, "Total: %%d / 20" );
+	Translate( 0x0098E914, "treinados para defender o Castelo" );
+	Translate( 0x0098E910, "Os Soldados do Castelo são" );
+	Translate( 0x0098E90C, "Soldado do Castelo" );
+	Translate( 0x0098E8F8, "Total: %%d / 20" );
+	Translate( 0x0098E8F4, "treinados para o combate" );
+	Translate( 0x0098E8F0, "Os Milícias de Ricarten são" );
+	Translate( 0x0098E8EC, "Milícia de Ricarten" );
+	Translate( 0x0098E8E8, "A taxa atual é %%d%%s" );
+	Translate( 0x0098E8E4, "Você deseja retirar Ouro?" );
+	Translate( 0x0098E8E0, " Ouro" );
+	Translate( 0x0098ECE8, " Ouro" );
+	Translate( 0x0098E8DC, "Total de Ouro acumulado" );
+	Translate( 0x0098E8D8, "A nova taxa será %%d%%s" );
+
+	//Bellatra
+	Translate( 0x0098E964, "Líder" );
+	Translate( 0x0098E8B8, "A taxa atual é %%d%%s" );
+	Translate( 0x0098E8B4, "adquirido pelos guerreiros durante o desafio." );
+	Translate( 0x0098E8B0, "O Clã líder de Bellatra recebe parte do Ouro" );
+	Translate( 0x0098E8C0, "O Líder do Clã pode retirar o Ouro acumulado." );
+	Translate( 0x0098E8BC, "Parabéns! O seu Clã é o líder de Bellatra." );
+	Translate( 0x0098E8CC, "Clique em Retirar para retirar o Ouro acumulado." );
+	Translate( 0x0098E8C8, "O Clã receberá parte do Ouro adquirido." );
+	Translate( 0x0098E8C4, "Parabéns! O seu Clã é o líder de Bellatra." );
+
+	//Habilidades
+	Translate( 0x0098E20C, "Pontos Especiais: %%d" );
+	Translate( 0x0098E208, "Pontos Simples: %%d" );
+	Translate( 0x0098E1F0, "Habilidades para treinar." );
+	Translate( 0x0098E1EC, "Você não tem Pontos de" );
+	Translate( 0x0098E1E8, "aprender ou melhorar." );
+	Translate( 0x0098E1E4, "Escolha uma Habilidade para" );
+	Translate( 0x0098E1E0, "Habilidades" );
+
+	//Tela de Morte
+	Translate( 0x0098E1C0, "Voltar para o Campo" );
+	Translate( 0x0098E1D0, "Custa Experiência e Ouro" );	
+	Translate( 0x0098E1CC, "Você não tem Ouro" );
+	Translate( 0x0098E1DC, "ou Experiência" );
+	Translate( 0x0098E1C4, "Voltar para a Cidade" );
+	Translate( 0x0098E1C8, "Sair" );
 
 	//Textos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
