@@ -633,6 +633,52 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E524, "    Ajuda" );
 	Translate( 0x0064FFF6, "> Abrir Guia" );
 	Translate( 0x00650015, "> Abrir Guia" );
+	Translate( 0x0064DCE0, "     Guia" );
+	Translate( 0x0064E071, "     Guia" );
+	Translate( 0x0064CCE1, "Nível 1" );
+	Translate( 0x0064CCF3, "Nível 2" );
+	Translate( 0x0064CD07, "Níve" );
+	Translate( 0x0064CD15, "l 3" );
+	Translate( 0x0064CD1E, "" );
+	Translate( 0x0064CD44, "Níve" );
+	Translate( 0x0064CD52, "l 4" );
+	Translate( 0x0064CD5B, "" );
+	Translate( 0x0064CD63, "Nível 5" );
+	Translate( 0x0064CD78, "Níve" );
+	Translate( 0x0064CD86, "l 6" );
+	Translate( 0x0064CD8F, "" );
+	Translate( 0x0064CDAC, "Níve" );
+	Translate( 0x0064CDBA, "l 7" );
+	Translate( 0x0064CDC4, "" );
+	Translate( 0x0064CDCD, "Nível 8" );
+	Translate( 0x0064CDE1, "Níve" );
+	Translate( 0x0064CDEF, "l 9" );
+	Translate( 0x0064CDF9, "" );
+	Translate( 0x0064CE0C, "Níve" );
+	Translate( 0x0064CE1A, "l 10" );
+	Translate( 0x0064CE23, "" );
+	Translate( 0x0064CE2C, "Níve" );
+	Translate( 0x0064CE3A, "l 11" );
+	Translate( 0x0064CE43, "" );
+	Translate( 0x0064CE68, "Nível 12" );
+	Translate( 0x0064CE70, "Nível 15" );
+	Translate( 0x0064CE85, "Nível 17" );
+	Translate( 0x0064CE99, "Nível 20" );
+	Translate( 0x0064CEAE, "Nível 22" );
+	Translate( 0x0064CEC0, "Nível 25" );
+	Translate( 0x0064CED9, "Nível 30" );
+	Translate( 0x0064CEE9, "Níve" );
+	Translate( 0x0064CEF7, "l 39" );
+	Translate( 0x0064CF00, "" );
+	Translate( 0x0064CF1C, "Nível 40" );
+	Translate( 0x0064CF2E, "Nível 50" );
+	Translate( 0x0064CF42, "Nível 55" );
+	Translate( 0x0064CF57, "Nível 60" );
+	Translate( 0x0064CF6B, "Nível 65" );
+	Translate( 0x0064CF7D, "Nível 70" );
+	Translate( 0x0064CF90, "Nível 75" );
+	Translate( 0x0064CFA3, "Nível 79" );
+	Translate( 0x0064CFB6, "Nível 80" );
 
 	//Menu D
 	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
@@ -950,7 +996,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E1C4, "Voltar para a Cidade" );
 	Translate( 0x0098E1C8, "Sair" );
 
-	//Textos
+	//Textos Duplos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
 };
 
