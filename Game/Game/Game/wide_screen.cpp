@@ -15,7 +15,7 @@ CWideScreen::CWideScreen( )
 	{
 		DefaultConfig( &Config, true );
 		SetConfig( &Config );
-		MessageBoxA( 0, "Ou a configuração é inválida ou não foi possível encontrar o arquivo \"Game\\Game.ini\". Um novo arquivo foi criado.\n"
+		MessageBoxA( 0, "A configuração é inválida ou não foi possível encontrar o arquivo \"Game\\Game.ini\". Um novo arquivo foi criado.\n"
 					 "Resolução: 800x600 - Modo Janela.\n"
 					 "\n"
 					 "Resoluções suportadas:\n"
@@ -218,25 +218,11 @@ void CWideScreen::SetConfig( s_Config* Config )
 	{
 		DWORD VP = 0;
 
-		VirtualProtect( ( LPVOID )( 0x00433FB9 + 6 ), 4, PAGE_EXECUTE_READWRITE, &VP );
-		*( DWORD* )( 0x00433FB9 + 6 ) = NULL;
-		VirtualProtect( ( LPVOID )( 0x00433FB9 + 6 ), 4, VP, &VP );
-
-		VirtualProtect( ( LPVOID )( 0x004340F0 + 6 ), 4, PAGE_EXECUTE_READWRITE, &VP );
-		*( DWORD* )( 0x004340F0 + 6 ) = NULL;
-		VirtualProtect( ( LPVOID )( 0x004340F0 + 6 ), 4, VP, &VP );
-
-		VirtualProtect( ( LPVOID )( 0x004571DF + 6 ), 4, PAGE_EXECUTE_READWRITE, &VP );
-		*( DWORD* )( 0x004571DF + 6 ) = NULL;
-		VirtualProtect( ( LPVOID )( 0x004571DF + 6 ), 4, VP, &VP );
-
-		VirtualProtect( ( LPVOID )( 0x00457238 + 6 ), 4, PAGE_EXECUTE_READWRITE, &VP );
-		*( DWORD* )( 0x00457238 + 6 ) = NULL;
-		VirtualProtect( ( LPVOID )( 0x00457238 + 6 ), 4, VP, &VP );
-
-		VirtualProtect( ( LPVOID )( 0x00457DBA + 6 ), 4, PAGE_EXECUTE_READWRITE, &VP );
-		*( DWORD* )( 0x00457DBA + 6 ) = NULL;
-		VirtualProtect( ( LPVOID )( 0x00457DBA + 6 ), 4, VP, &VP );
+		WriteMemory( 0x00433FB9 + 6, NULL );
+		WriteMemory( 0x004340F0 + 6, NULL );
+		WriteMemory( 0x004571DF + 6, NULL );
+		WriteMemory( 0x00457238 + 6, NULL );
+		WriteMemory( 0x00457DBA + 6, NULL );
 
 		*( DWORD* )( 0x03511C68 ) = NULL;
 
