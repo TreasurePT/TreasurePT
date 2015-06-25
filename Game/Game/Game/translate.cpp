@@ -689,6 +689,14 @@ void CTranslate::SetTexts( )
 	Translate( 0x004ACEB4, "/nivel" );
 	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
 
+	//Comandos Player
+	Translate( 0x0045DFC4, "/clan " );
+	Translate( 0x0041C848, "/clan %%s" );
+	Translate( 0x0041C868, "/troca %%s" );
+	Translate( 0x004173B4, "/grupo %%s" );
+	Translate( 0x00638CF8, "/ligacamera" );
+	Translate( 0x00638CD2, "/desligacamera" );
+
 	//Itens
 	Translate( 0x0098E230, "Ataque:        \r" );
 	Translate( 0x0098E234, "Vel. da Arma:  \r" );
@@ -935,6 +943,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E5D8, "Castelo Sagrado" );
 
 	//Controlador Cameron
+	Translate( 0x0098ED70, "Concluído" );
 	Translate( 0x0098E960, "Preço: " );
 	Translate( 0x0098E95C, "Preço: " );
 	Translate( 0x0098E958, "Cristal de Raio" );
@@ -995,6 +1004,16 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E1DC, "ou Experiência" );
 	Translate( 0x0098E1C4, "Voltar para a Cidade" );
 	Translate( 0x0098E1C8, "Sair" );
+
+	//Sábio Newter
+	Translate( 0x0098E528, "Teletransporte" );
+	Translate( 0x0098EAEC, "Mata das Acácias/Caverna dos Cogumelos" );
+	Translate( 0x0098EAF0, "Floresta das Ilusões/Caverna das Abelhas" );
+	Translate( 0x0098EAF4, "Terra Maldita/Calabouço Antigo" );
+	Translate( 0x0098EAF8, "Terra Proibida/Estrada de Ferro do Caos" );
+
+	//Grupo
+	Translate( 0x009F2D4C, "quer criar um grupo" );
 
 	//Textos Duplos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
