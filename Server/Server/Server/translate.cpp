@@ -47,6 +47,54 @@ void CTranslate::SetTexts( )
 	//Mensagem ao logar
 	Translate( 0x006E2A1C, "> Seja Bem Vindo ao Treasure Priston Tale > Qualquer dúvida, acesse nosso site:      > www.treasurept.com.br" );
 	
+	//Mensagens
+	Translate( 0x006E29F8, "Você recebeu um item: %%s" );
+
+	//Cristais, Summon, Navisco
+	Translate( 0x006E2A2C, "Zumbi" );
+
+	//Grupo
+	Translate( 0x006E26B4, "A diferença de níveis é muito grande" );
+	Translate( 0x006E26A8, "%%s já está em outro grupo" );
+	Translate( 0x006E26AC, "%%s já está em outro grupo" );
+	Translate( 0x006E26B0, "%%s já está em outro grupo" );
+	Translate( 0x006E26A4, "Você enviou um pedido de grupo para %%s" );
+	Translate( 0x006E2704, "%%s é o novo líder do grupo" );
+	Translate( 0x006E4E08, "%%s é o novo líder do grupo" );
+	Translate( 0x006E26A0, "%%s decidirá se %%s entrará no grupo" );
+	Translate( 0x006E26F4, "Você saiu do grupo" );
+	Translate( 0x006E4E18, "%%s saiu do grupo" );
+	Translate( 0x006E26F8, "%%s foi removido do grupo" );
+	Translate( 0x006E2700, "O grupo foi desfeito" );
+	Translate( 0x006E4E0C, "O grupo foi desfeito" );
+
+	//Mensagem Pessoal
+	Translate( 0x006E26BC, "%%s não existe ou está desconectado" );
+	Translate( 0x0056F1B8, "Para> %%s: %%s" );
+	Translate( 0x00552E18, "De> %%s: %%s" );
+	Translate( 0x0056F149, "De> %%s: %%s" );
+	Translate( 0x0056F218, "De> %%s: %%s" );
+	Translate( 0x006E2724, "O jogador desativou as mensagens pessoais" );
+	Translate( 0x006E2728, "Mensagem Pessoal desativada" );
+	Translate( 0x006E272C, "Mensagem Pessoal ativada" );
+
+	//Comandos Player
+	Translate( 0x00414105, "/troca %s" );
+	Translate( 0x004140E5, "/clan %s" );
+	Translate( 0x0056BEA6, "/grupo" );
+	Translate( 0x0056BE94, "/GRUPO" );
+	Translate( 0x0056BDF2, "/troca " );
+	Translate( 0x0056C25E, "/clan " );
+	Translate( 0x0056C1C5, "/desligamensagem" );
+	Translate( 0x0056C209, "/ligamensagem" );
+	Translate( 0x0056C16E, "%%s: %%s" );
+	Translate( 0x0056C2A9, "%%s: %%s" );
+	Translate( 0x0047B01B, "%%s: %%s" );
+	Translate( 0x00488196, "%%s: %%s" );
+	Translate( 0x0048E00B, "%%s: %%s" );
+	Translate( 0x004A1137, "%%s: %%s" );
+	Translate( 0x0056BE4D, "%%s: %%s" );
+
 	//Translate( 0x00, "" );
 };
 
