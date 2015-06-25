@@ -9,22 +9,16 @@ class CServer
 {
 public:
 	void Main( );
-	void ReadVersion( );
 };
 
 void CServer::Main( )
 {
 	_SetTexts( );
 	_BuildItems( );
-	ReadVersion( );
 
 	*( long* )( PDATA + 0 ) = ( long )( &_CheckExpGained );
 };
 
-void CServer::ReadVersion( )
-{
-	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "hotuk.ini" );
-};
 
 
 
