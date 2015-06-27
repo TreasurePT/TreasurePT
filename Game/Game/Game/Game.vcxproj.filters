@@ -22,6 +22,15 @@
     <Filter Include="Global Definitions">
       <UniqueIdentifier>{4bb76a5d-ab35-4d77-af94-242f00f8fa00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{82582b0d-a799-48bd-83cd-d579d728bb67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Header">
+      <UniqueIdentifier>{e8fee730-7eaa-4f32-a607-9e52ddc09bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Source">
+      <UniqueIdentifier>{0533008c-eb6d-46a5-97c5-79f118e42983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +51,15 @@
     </ClCompile>
     <ClCompile Include="file_manager.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="packets.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_templates.cpp">
+      <Filter>UI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_login.cpp">
+      <Filter>UI\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="file_manager.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="packets.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_templates.h">
+      <Filter>UI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_login.h">
+      <Filter>UI\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

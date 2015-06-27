@@ -17,6 +17,9 @@ public:
 	void SetLevel( int Level ) { *( int* )( m_Address + 0xC8 ) = Level; };
 
 
+	//Soquete alocado.
+	int GetSocket( ) { return *( int* )( m_Address + 0x06DFC ); };
+
 	//Possibilita o operador =.
 	operator int( ) const { return m_Address; };
 	//Possibilita o operador +.

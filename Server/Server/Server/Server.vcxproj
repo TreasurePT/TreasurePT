@@ -88,6 +88,7 @@
     <ClInclude Include="file_manager.h" />
     <ClInclude Include="item_manager.h" />
     <ClInclude Include="level_manager.h" />
+    <ClInclude Include="packets.h" />
     <ClInclude Include="player_info.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="translate.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="item_manager.cpp" />
     <ClCompile Include="level_manager.cpp" />
+    <ClCompile Include="packets.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

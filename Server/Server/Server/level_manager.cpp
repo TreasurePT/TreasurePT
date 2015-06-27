@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "level_manager.h"
-#include "player_info.h"
 
 int CLevelManager::CheckExpGained( int Exp, CPlayerInfo* Player )
 {

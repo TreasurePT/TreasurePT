@@ -87,8 +87,11 @@
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\stdafx.h" />
     <ClInclude Include="file_manager.h" />
+    <ClInclude Include="packets.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="translate.h" />
+    <ClInclude Include="UI_templates.h" />
+    <ClInclude Include="UI_login.h" />
     <ClInclude Include="wide_screen.h" />
   </ItemGroup>
   <ItemGroup>
@@ -103,11 +106,14 @@
     </ClCompile>
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="packets.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="translate.cpp" />
+    <ClCompile Include="UI_templates.cpp" />
+    <ClCompile Include="UI_login.cpp" />
     <ClCompile Include="wide_screen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
