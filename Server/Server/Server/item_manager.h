@@ -4,10 +4,10 @@ class CItemManager
 public:
 	void BuildItems( );
 	void ReferenceItems( );
-	void CreateItem( long ID, const char* Code1, const char* Code2, long Width,
-					 long Height, const char* Folder, long Hand, long City,
-					 long Sound, long Range, long Unknown );
+	void CreateItem( int ID, const char* Code1, const char* Code2, int Width,
+					 int Height, const char* Folder, int Hand, int City,
+					 int Sound, int Range, int Unknown );
 private:
-	long m_Item_Address, m_Number_of_Items;
+	int m_Item_Address, m_Number_of_Items;
 };
 

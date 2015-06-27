@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "global.h"
 
-void _WriteMemory( long Address, long Value, long NumberOfBytes )
+void _WriteMemory( int Address, int Value, int NumberOfBytes )
 {
 	DWORD VP = 0;
 	VirtualProtect( ( void* )( Address ), 4, PAGE_EXECUTE_READWRITE, &VP );
@@ -14,7 +14,7 @@ void _WriteMemory( long Address, long Value, long NumberOfBytes )
 			*( short* )( Address ) = ( short )( Value );
 			break;
 		case 4:
-			*( long* )( Address ) = ( long )( Value );
+			*( int* )( Address ) = ( int )( Value );
 			break;
 	}
 	VirtualProtect( ( void* )( Address ), 4, VP, &VP );

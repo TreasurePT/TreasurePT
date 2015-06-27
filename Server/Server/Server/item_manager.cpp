@@ -1,17 +1,17 @@
 #include "stdafx.h"
 #include "item_manager.h"
 
-void CItemManager::CreateItem( long ID, const char* Code1, const char* Code2, long Width,
-							   long Height, const char* Folder, long Hand, long City,
-							   long Sound, long Range, long Unknown )
+void CItemManager::CreateItem( int ID, const char* Code1, const char* Code2, int Width,
+							   int Height, const char* Folder, int Hand, int City,
+							   int Sound, int Range, int Unknown )
 {
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) ) = ID;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x34 ) = Width;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x38 ) = Height;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x7C ) = Hand;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC0 ) = City;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC4 ) = Sound;
-	*( long* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC8 ) = Range;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) ) = ID;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x34 ) = Width;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x38 ) = Height;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x7C ) = Hand;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC0 ) = City;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC4 ) = Sound;
+	*( int* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0xC8 ) = Range;
 	*( char* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x7D ) = ( char )Unknown;
 	lstrcpyA( ( char* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x24 ), Code1 );
 	lstrcpyA( ( char* )( m_Item_Address + ( m_Number_of_Items * 0x314 ) + 0x3C ), Folder );
@@ -21,7 +21,7 @@ void CItemManager::CreateItem( long ID, const char* Code1, const char* Code2, lo
 
 void CItemManager::BuildItems( )
 {
-	m_Item_Address = ( long )( VirtualAlloc( nullptr, ( NUMBER_OF_ITEMS + 1 ) * 0x314,
+	m_Item_Address = ( int )( VirtualAlloc( nullptr, ( NUMBER_OF_ITEMS + 1 ) * 0x314,
 		MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE ) );
 	m_Number_of_Items = 0;
 

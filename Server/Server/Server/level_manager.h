@@ -1,8 +1,10 @@
 #pragma once
+#include "player_info.h"
+
 class CLevelManager
 {
 public:
-	long CheckExpGained( long Exp, long Player );
+	int CheckExpGained( int Exp, CPlayerInfo* Player );
 private:
-	long m_Player_GmLevel, m_Player_Level;
+
 };

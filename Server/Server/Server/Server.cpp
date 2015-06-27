@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "file_manager.h"
+#include "player_info.h"
 
 extern void __cdecl _SetTexts( );
-extern long __cdecl _CheckExpGained( long Exp, long Player );
+extern int __cdecl _CheckExpGained( int Exp, CPlayerInfo* Player );
 extern void __cdecl _BuildItems( );
 
 class CServer
@@ -16,7 +17,7 @@ void CServer::Main( )
 	_SetTexts( );
 	_BuildItems( );
 
-	*( long* )( PDATA + 0 ) = ( long )( &_CheckExpGained );
+	*( int* )( PDATA + 0 ) = ( int )( &_CheckExpGained );
 };
 
 

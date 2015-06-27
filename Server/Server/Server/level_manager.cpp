@@ -1,15 +1,13 @@
 #include "stdafx.h"
 #include "level_manager.h"
+#include "player_info.h"
 
-long CLevelManager::CheckExpGained( long Exp, long Player )
+int CLevelManager::CheckExpGained( int Exp, CPlayerInfo* Player )
 {
-	m_Player_GmLevel = *( long* )( Player + 0x6E1C );
-	m_Player_Level = *( long* )( Player + 0xC8 );
-
-	if( m_Player_GmLevel == 4 )
+	if( Player->GetPrivilege( ) == 4 )
 		return true;
 
-	if( m_Player_Level <= 10 )
+	if( Player->GetLevel( ) <= 10 )
 	{
 		//TODO: Estabelecer comparação com a EXP.
 		// return true = permitir exp, return false = negar exp ( banir );
@@ -19,8 +17,9 @@ long CLevelManager::CheckExpGained( long Exp, long Player )
 	return true;
 };
 
-long __cdecl _CheckExpGained( long Exp, long Player )
+int __cdecl _CheckExpGained( int Exp, CPlayerInfo* Player )
 {
 	std::shared_ptr<CLevelManager> lpLv = std::make_shared<CLevelManager>( );
+	Player->SetAddress( ( int )Player );
 	return lpLv->CheckExpGained( Exp, Player );
 };
