@@ -688,11 +688,21 @@ void CTranslate::SetTexts( )
 	//Comandos
 	Translate( 0x004ACEB4, "/nivel" );
 	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
-	//Translate( 0x00, "/caminho" );
-	//Translate( 0x00, "/salvar" );
-	//Translate( 0x00, "/mapa" );
-	//Translate( 0x00, "/mapa" );
-	//Translate( 0x00, "/cabelo" );
+	Translate( 0x006396BC, "/caminho" );
+	Translate( 0x0063968F, "/salvar" );
+	Translate( 0x006394A2, "/mapa" );
+	Translate( 0x0063948C, "/MAPA" );
+	Translate( 0x00639382, "/cabelo" );
+	Translate( 0x0063928D, "/carregar" );
+	Translate( 0x006390B3, "/localizacao" );
+	Translate( 0x006391E2, "/absorcao" );
+	Translate( 0x00639174, "/fala" );	
+	Translate( 0x00638FE9, "/salvarbau" );
+	Translate( 0x00638FEA, "Baú salvo com sucesso" );
+	Translate( 0x00638E9F, "/experiencia" );
+	Translate( 0x00638C4A, "/conexao" );	
+	Translate( 0x00638C34, "/CONEXAO" );
+	Translate( 0x00638CA4, ">Conexão: %%dms" );
 	//Translate( 0x00, "" );
 
 	//Comandos Player
