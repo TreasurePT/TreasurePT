@@ -79,9 +79,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ChangeLog.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\server.h" />
     <ClInclude Include="Configuration\stdafx.h" />

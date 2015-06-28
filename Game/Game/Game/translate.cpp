@@ -602,7 +602,9 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2C94, "Senha incorreta" );
 	Translate( 0x009F2C98, "Conta banida" );
 	Translate( 0x009F2C9C, "Esta conta já está logada" );
+	Translate( 0x009F2CA0, "Versão incompatível" );
 	Translate( 0x009F2CA4, "O servidor está cheio" );
+
 
 	//Char Select
 	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );

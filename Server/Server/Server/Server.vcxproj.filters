@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Configuration">
       <UniqueIdentifier>{18c1c77e-30e9-4b99-8f58-d993fbc04cb2}</UniqueIdentifier>
     </Filter>
@@ -81,10 +77,5 @@
     <ClCompile Include="packets.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ChangeLog.h">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>
