@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "G:\Treasure PT\Game\game\game.dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "C:\Cliente\game\game.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

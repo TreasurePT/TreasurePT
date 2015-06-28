@@ -688,6 +688,12 @@ void CTranslate::SetTexts( )
 	//Comandos
 	Translate( 0x004ACEB4, "/nivel" );
 	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
+	//Translate( 0x00, "/caminho" );
+	//Translate( 0x00, "/salvar" );
+	//Translate( 0x00, "/mapa" );
+	//Translate( 0x00, "/mapa" );
+	//Translate( 0x00, "/cabelo" );
+	//Translate( 0x00, "" );
 
 	//Comandos Player
 	Translate( 0x0045DFC4, "/clan " );
