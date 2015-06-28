@@ -605,7 +605,6 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2CA0, "Versão incompatível" );
 	Translate( 0x009F2CA4, "O servidor está cheio" );
 
-
 	//Char Select
 	Translate( 0x009F2CF0, "Você tem certeza que deseja deletar esse personagem?" );
 	Translate( 0x009F2CF4, "Você deseja continuar esta aventura?" );
