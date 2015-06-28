@@ -37,7 +37,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 		lpFile->SetString( "Video", "Graficos", "Muito Alto" );
 		lpFile->SetString( "Video", "Profundidade das Cores", "32" );
 		lpFile->SetString( "Usuario", "Camera Invertida", "Desativada" );
-		lpFile->SetString( "Usuario", "Fog de Camera", "Longe" );
+		lpFile->SetString( "Usuario", "Fog de Camera", "inte" );
 		lpFile->SetString( "Usuario", "Som", "Ativado" );
 		lpFile->SetString( "Servidor", "Protocolo Interno", "127.0.0.1" );
 	};
@@ -47,7 +47,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 	StringCbCopyA( Config->Graphics, 16, "Muito Alto" );
 	Config->ColorDepth = 32;
 	StringCbCopyA( Config->CammInvert, 32, "Desativada" );
-	StringCbCopyA( Config->CammFog, 16, "Longe" );
+	StringCbCopyA( Config->CammFog, 16, "inte" );
 	StringCbCopyA( Config->Sound, 16, "Ativado" );
 	StringCbCopyA( Config->InternalProtocal, 32, "127.0.0.1" );
 	Config->isWide = false;
@@ -186,29 +186,29 @@ void CWideScreen::SetConfig( s_Config* Config )
 {
 	if( NewConfig.ColorDepth != 0 )
 	{
-		*( long* )( 0x00D0A550 ) = NewConfig.Graphics;
+		*( int* )( 0x00D0A550 ) = NewConfig.Graphics;
 		if( NewConfig.ColorDepth == 16 )
-			*( long* )( 0x00D0A54C ) = NewConfig.ColorDepth;
-		*( long* )( 0x00A45590 ) = NewConfig.CammInvert;
-		*( long* )( 0x00A45594 ) = NewConfig.CammFog;
-		*( long* )( 0x00D0A544 ) = NewConfig.Width;
-		*( long* )( 0x00D0A548 ) = NewConfig.Height;
-		*( long* )( 0x00D0A554 ) = NewConfig.Sound;
-		*( long* )( 0x00D0A540 ) = NewConfig.FullScreen;
+			*( int* )( 0x00D0A54C ) = NewConfig.ColorDepth;
+		*( int* )( 0x00A45590 ) = NewConfig.CammInvert;
+		*( int* )( 0x00A45594 ) = NewConfig.CammFog;
+		*( int* )( 0x00D0A544 ) = NewConfig.Width;
+		*( int* )( 0x00D0A548 ) = NewConfig.Height;
+		*( int* )( 0x00D0A554 ) = NewConfig.Sound;
+		*( int* )( 0x00D0A540 ) = NewConfig.FullScreen;
 		StringCbCopyA( ( char* )( 0x00D0C1D8 ), 32, Config->InternalProtocal );
 		StringCbCopyA( ( char* )( 0x00D0C1B4 ), 32, Config->InternalProtocal );
 		StringCbCopyA( ( char* )( 0x00D0C1FC ), 32, Config->InternalProtocal );
 	}
 	else
 	{
-		*( long* )( 0x00D0A550 ) = VERYHIGH;
-		*( long* )( 0x00D0A54C ) = 0;
-		*( long* )( 0x00A45590 ) = 0;
-		*( long* )( 0x00A45594 ) = _FAR;
-		*( long* )( 0x00D0A544 ) = 800;
-		*( long* )( 0x00D0A548 ) = 600;
-		*( long* )( 0x00D0A554 ) = ON;
-		*( long* )( 0x00D0A540 ) = OFF;
+		*( int* )( 0x00D0A550 ) = VERYHIGH;
+		*( int* )( 0x00D0A54C ) = 0;
+		*( int* )( 0x00A45590 ) = 0;
+		*( int* )( 0x00A45594 ) = _FAR;
+		*( int* )( 0x00D0A544 ) = 800;
+		*( int* )( 0x00D0A548 ) = 600;
+		*( int* )( 0x00D0A554 ) = ON;
+		*( int* )( 0x00D0A540 ) = OFF;
 		StringCbCopyA( ( char* )( 0x00D0C1D8 ), 32, Config->InternalProtocal );
 		StringCbCopyA( ( char* )( 0x00D0C1B4 ), 32, Config->InternalProtocal );
 		StringCbCopyA( ( char* )( 0x00D0C1FC ), 32, Config->InternalProtocal );
@@ -236,10 +236,10 @@ void CWideScreen::SetConfig( s_Config* Config )
 		*( DWORD* )( 0x0083F25C ) = *( DWORD* )( 0x00D0A544 );
 	};
 
-	*( long* )( 0x00D0C1F8 ) = TCP_PORT;
-	*( long* )( 0x00D0C1D4 ) = TCP_PORT;
-	*( long* )( 0x00D0C21C ) = TCP_PORT;
-	*( long* )( 0x00D0C240 ) = TCP_PORT;
+	*( int* )( 0x00D0C1F8 ) = TCP_PORT;
+	*( int* )( 0x00D0C1D4 ) = TCP_PORT;
+	*( int* )( 0x00D0C21C ) = TCP_PORT;
+	*( int* )( 0x00D0C240 ) = TCP_PORT;
 
 	DWORD Time = GetTickCount( );
 	DWORD XorTime = *( DWORD* )( 0x00D0C244 );

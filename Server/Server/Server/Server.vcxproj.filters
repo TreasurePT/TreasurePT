@@ -48,6 +48,12 @@
     <ClInclude Include="file_manager.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="player_info.h">
+      <Filter>Global Definitions</Filter>
+    </ClInclude>
+    <ClInclude Include="packets.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -70,6 +76,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="file_manager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="packets.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

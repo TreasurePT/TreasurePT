@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "translate.h"
 
-long CTranslate::m_Address_Text = 0;
-long CTranslate::m_Spacements = 0;
+int CTranslate::m_Address_Text = 0;
+int CTranslate::m_Spacements = 0;
 
 CTranslate::CTranslate( )
 {
 	if( !m_Address_Text )
 	{
-		m_Address_Text = ( long )( VirtualAlloc(
+		m_Address_Text = ( int )( VirtualAlloc(
 			nullptr,
 			TOTAL_TEXT_TRANSLATED * 100,
 			MEM_COMMIT | MEM_RESERVE,
@@ -17,7 +17,7 @@ CTranslate::CTranslate( )
 	};
 };
 
-void CTranslate::Translate( long Address, const char* Text, ... )
+void CTranslate::Translate( int Address, const char* Text, ... )
 {
 	char Buffer[ 1024 ] = { 0 };
 
@@ -29,7 +29,7 @@ void CTranslate::Translate( long Address, const char* Text, ... )
 		DWORD Old_Protect = 0, New_Protect = 0;
 		VirtualProtect( ( void* )( Address ), 4, PAGE_READWRITE, &Old_Protect );
 		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
-		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
+		*( int* )( Address ) = ( m_Address_Text + m_Spacements );
 		New_Protect = Old_Protect;
 		VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
 		m_Spacements += lstrlenA( Buffer ) + 1;

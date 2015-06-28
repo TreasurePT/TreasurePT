@@ -1,4 +1,4 @@
 #pragma once
 
-extern void _WriteMemory( long Address, long Value, long NumberOfBytes = 4 );
+extern void _WriteMemory( int Address, int Value, int NumberOfBytes = 4 );
 #define WriteMemory _WriteMemory

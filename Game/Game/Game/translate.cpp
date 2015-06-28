@@ -1,20 +1,20 @@
 #include "stdafx.h"
 #include "translate.h"
 
-long CTranslate::m_Address_Text = 0;
-long CTranslate::m_Spacements = 0;
+int CTranslate::m_Address_Text = 0;
+int CTranslate::m_Spacements = 0;
 
-long CSkillTranslate::m_Address_Text = 0;
-long CSkillTranslate::m_Spacements = 0;
+int CSkillTranslate::m_Address_Text = 0;
+int CSkillTranslate::m_Spacements = 0;
 
-long CDoubleTextTranslate::m_Address_Text = 0;
-long CDoubleTextTranslate::m_Spacements = 0;
+int CDoubleTextTranslate::m_Address_Text = 0;
+int CDoubleTextTranslate::m_Spacements = 0;
 
 CDoubleTextTranslate::CDoubleTextTranslate( )
 {
 	if( !m_Address_Text )
 	{
-		m_Address_Text = ( long )( 0x0098A980 );
+		m_Address_Text = ( int )( 0x0098A980 );
 		m_Spacements = 0;
 		SetTexts( );
 	};
@@ -80,7 +80,7 @@ CSkillTranslate::CSkillTranslate( )
 {
 	if( !m_Address_Text )
 	{
-		m_Address_Text = ( long )( 0x0098F668 );
+		m_Address_Text = ( int )( 0x0098F668 );
 		m_Spacements = 0;
 		SetTexts( );
 	};
@@ -557,7 +557,7 @@ CTranslate::CTranslate( )
 {
 	if( !m_Address_Text )
 	{
-		m_Address_Text = ( long )( VirtualAlloc(
+		m_Address_Text = ( int )( VirtualAlloc(
 			nullptr,
 			TOTAL_TEXT_TRANSLATED * 100,
 			MEM_COMMIT | MEM_RESERVE,
@@ -566,7 +566,7 @@ CTranslate::CTranslate( )
 	};
 };
 
-void CTranslate::Translate( long Address, const char* Text, ... )
+void CTranslate::Translate( int Address, const char* Text, ... )
 {
 	char Buffer[ 1024 ] = { 0 };
 
@@ -578,7 +578,7 @@ void CTranslate::Translate( long Address, const char* Text, ... )
 		DWORD Old_Protect = 0, New_Protect = 0;
 		VirtualProtect( ( void* )( Address ), 4, PAGE_READWRITE, &Old_Protect );
 		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
-		*( long* )( Address ) = ( m_Address_Text + m_Spacements );
+		*( int* )( Address ) = ( m_Address_Text + m_Spacements );
 		New_Protect = Old_Protect;
 		VirtualProtect( ( void* )( Address ), 4, New_Protect, &Old_Protect );
 		m_Spacements += lstrlenA( Buffer ) + 1;
@@ -596,7 +596,6 @@ void CTranslate::SetTexts( )
 	//Login
 	Translate( 0x008368F0, "TreasurePT" );
 	Translate( 0x009F2A7C, "http://www.treasurept.com.br" );
-	Translate( 0x005A94FD, "Versão: " );
 	Translate( 0x009F2C88, "Estabelecendo a conexão..." );
 	Translate( 0x009F2C8C, "Impossível conectar" );
 	Translate( 0x009F2C90, "Conta incorreta" );
