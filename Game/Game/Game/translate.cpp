@@ -1022,7 +1022,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E1C8, "Sair" );
 
 	//Sábio Newter
-	Translate( 0x0098E528, "Teletransporte" );
+	Translate( 0x0098E528, "Desafio" );
 	Translate( 0x0098EAEC, "Mata das Acácias/Caverna dos Cogumelos" );
 	Translate( 0x0098EAF0, "Floresta das Ilusões/Caverna das Abelhas" );
 	Translate( 0x0098EAF4, "Terra Maldita/Calabouço Antigo" );
