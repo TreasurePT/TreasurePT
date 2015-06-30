@@ -684,26 +684,69 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
 	Translate( 0x009F2D58, "Amigos: %%d / %%d" );
 	Translate( 0x009F2D54, "Recentes" );
-	/*
-	//Comandos
+	
+	//Comandos GM
+	Translate( 0x004AD8E5, "GM: Habilidades temporárias canceladas" );
+	Translate( 0x004AD88D, "/cancelar_habilidades_temporarias" );
+	Translate( 0x004AD859, "GM: Atalhos de Habilidades resetados" );
+	Translate( 0x004AD83F, "/resetar_atalhos_habilidades" );
+	Translate( 0x004AD5F1, "GM: Booster cancelado" );
+	Translate( 0x004AD5DD, "/cancelar_booster" );
+	Translate( 0x004AD4F2, "GM: Força Orb cancelada" );
+	Translate( 0x004AD4DA, "/cancelar_forca_orb" );
+	Translate( 0x004AD465, "/desconhecido_go" );
+	Translate( 0x004AD3E6, "/desconhecido_come" );
+	Translate( 0x004AD3AD, "GM: Desafio Ativo cancelado" );
+	Translate( 0x004AD399, "/cancelar_desafio_ativo" );
+	Translate( 0x004AD365, "GM: Você ainda não completou o 3° Desafio de Classe" );
+	Translate( 0x004AD35E, "GM: Você ainda não está no Nível 80" );
+	Translate( 0x004AD357, "GM: Faça a 4ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD327, "GM: Faça a 3ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD30D, "GM: Faça a 2ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD2F3, "GM: Faça a 1ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD287, "/desafio_de_classe_4" );
+	Translate( 0x004AD212, "GM: Faça o Desafio agora" ); // dupla
+	Translate( 0x004AD253, "GM: Faça o Desafio agora" ); // dupla
+	Translate( 0x004AD1D1, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD1A7, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD175, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD115, "/terminar_desafio_de_classe" );
+	Translate( 0x004AD0AD, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD099, "/completar_desafio_de_classe" );
+	Translate( 0x004AD065, "GM: Retire seus itens no Distribuidor de Itens" );
+	Translate( 0x004AD03F, "/distribuidor" );
+	Translate( 0x004AD00B, "GM: Pontos de Atributos resetados" );
+	Translate( 0x004ACFA0, "/resetar_atributos" );
+	Translate( 0x004ACF6C, "GM: Pontos de Habilidades resetados" );
+	Translate( 0x004ACF50, "/resetar_habilidades" );
+	Translate( 0x004ACF1C, "GM: Você mudou de Nível" );
 	Translate( 0x004ACEB4, "/nivel" );
-	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
-	Translate( 0x006396BC, "/caminho" );
-	Translate( 0x0063968F, "/salvar" );
-	Translate( 0x006394A2, "/mapa" );
-	Translate( 0x0063948C, "/MAPA" );
-	Translate( 0x00639382, "/cabelo" );
-	Translate( 0x0063928D, "/carregar" );
-	Translate( 0x006390B3, "/localizacao" );
-	Translate( 0x006391E2, "/absorcao" );
-	Translate( 0x00639174, "/fala" );	
-	Translate( 0x00638FE9, "/salvarbau" );
-	Translate( 0x00638FEA, "Baú salvo com sucesso" );
-	Translate( 0x00638EA0, "/muitogrande" );
-	Translate( 0x00638C4A, "/conexao" );	
-	Translate( 0x00638C34, "/CONEXAO" );
-	Translate( 0x00638CA4, ">Conexão: %%dms" );*/
-	//Translate( 0x00, "" );
+	Translate( 0x004ACE44, "GM: Desafio O Ataque a Eura completo" );
+	Translate( 0x004ACE23, "GM: Desafio Poder Máximo completo" );
+	Translate( 0x004ACE02, "GM: Desafio A Maldição completo" );
+	Translate( 0x004ACDD0, "GM: Desafio Lágrimas de Kália completo" );
+	Translate( 0x004ACDAC, "GM: Desafio A Rebelião completo" );
+	Translate( 0x004ACD7E, "GM: Desafio A Transformação completo" );
+	Translate( 0x004ACD48, "GM: Desafio A Caverna completo" );
+	Translate( 0x004ACD07, "GM: Desafio Por Ela completo" );
+	Translate( 0x004ACC82, "/completar_desafio" );
+	Translate( 0x004ACC3A, "GM: Desafio de Classe completo" ); //dupla
+	Translate( 0x004ACE6D, "GM: Desafio de Classe completo" ); //dupla
+	Translate( 0x004ACBEE, "/desafio_de_classe_2" );
+	Translate( 0x004ACB91, "/desafio_de_classe_3" );
+	Translate( 0x004ACB5D, "GM: Desafio completo" );
+	Translate( 0x004ACB07, "/desafio_amanda" );
+	Translate( 0x004ACAD3, "GM: Desafio 100 completo" );
+	Translate( 0x004ACA2C, "/completar_desafio_100" );
+	Translate( 0x004AC9C5, "GM: Itens removidos do Inventório" );
+	Translate( 0x004AC96F, "/remover_itens" );
+	Translate( 0x004AC932, "/hoho" );
+	Translate( 0x008405E4, "GM: Eu sou muito legal!" );
+	Translate( 0x008405E8, "GM: Estou me sentindo ótimo hoje!" );
+	Translate( 0x008405EC, "GM: Ser GM é demais!" );
+	Translate( 0x008405F0, "GM: Está um lindo dia, não está?" );
+	Translate( 0x008405F4, "GM: TreasurePT é o melhor!" );
+	Translate( 0x008405F8, "GM: Eu amo Priston Tale!" );
 
 	//Comandos Player
 	Translate( 0x0045DFC4, "/clan " );
@@ -1033,6 +1076,7 @@ void CTranslate::SetTexts( )
 
 	//Textos Duplos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
+	
 };
 
 void __cdecl _SetTexts( )
