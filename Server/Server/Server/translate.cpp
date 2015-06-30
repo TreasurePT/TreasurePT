@@ -78,6 +78,9 @@ void CTranslate::SetTexts( )
 	Translate( 0x006E2728, "Mensagem Pessoal desativada" );
 	Translate( 0x006E272C, "Mensagem Pessoal ativada" );
 
+	//Comandos GM
+	//Translate( 0x00, "" );
+
 	//Comandos Player
 	Translate( 0x00414105, "/troca %s" );
 	Translate( 0x004140E5, "/clan %s" );
