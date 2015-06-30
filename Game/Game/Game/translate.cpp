@@ -684,7 +684,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
 	Translate( 0x009F2D58, "Amigos: %%d / %%d" );
 	Translate( 0x009F2D54, "Recentes" );
-
+	/*
 	//Comandos
 	Translate( 0x004ACEB4, "/nivel" );
 	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
@@ -699,10 +699,10 @@ void CTranslate::SetTexts( )
 	Translate( 0x00639174, "/fala" );	
 	Translate( 0x00638FE9, "/salvarbau" );
 	Translate( 0x00638FEA, "Baú salvo com sucesso" );
-	Translate( 0x00638E9F, "/experiencia" );
+	Translate( 0x00638EA0, "/muitogrande" );
 	Translate( 0x00638C4A, "/conexao" );	
 	Translate( 0x00638C34, "/CONEXAO" );
-	Translate( 0x00638CA4, ">Conexão: %%dms" );
+	Translate( 0x00638CA4, ">Conexão: %%dms" );*/
 	//Translate( 0x00, "" );
 
 	//Comandos Player
