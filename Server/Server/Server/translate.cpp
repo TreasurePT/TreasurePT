@@ -85,8 +85,8 @@ void CTranslate::SetTexts( )
 	Translate( 0x0056BE94, "/GRUPO" );
 	Translate( 0x0056BDF2, "/troca " );
 	Translate( 0x0056C25E, "/clan " );
-	Translate( 0x0056C1C5, "/desligamensagem" );
-	Translate( 0x0056C209, "/ligamensagem" );
+	Translate( 0x0056C1C5, "/desliga_mensagem" );
+	Translate( 0x0056C209, "/liga_mensagem" );
 	Translate( 0x0056C16E, "%%s: %%s" );
 	Translate( 0x0056C2A9, "%%s: %%s" );
 	Translate( 0x0047B01B, "%%s: %%s" );

@@ -747,14 +747,49 @@ void CTranslate::SetTexts( )
 	Translate( 0x008405F0, "GM: Está um lindo dia, não está?" );
 	Translate( 0x008405F4, "GM: TreasurePT é o melhor!" );
 	Translate( 0x008405F8, "GM: Eu amo Priston Tale!" );
+	Translate( 0x006396BC, "/caminho" );
+	Translate( 0x0063968F, "/salvar" );
+	Translate( 0x00639662, "/desconhecido_localizacao" );
+	Translate( 0x006394DB, "/desconhecido_acesso" );
+	Translate( 0x006394A2, "/MAPA" );
+	Translate( 0x0063948C, "/mapa" );
+	Translate( 0x0063946B, "/desconhecido_lago_do_crepusculo" );
+	Translate( 0x0063942B, "/desconhecido_ren" );
+	Translate( 0x006393F3, "/desconhecido_baload" );
+	Translate( 0x006393BB, "/desconhecido_deload" );
+	Translate( 0x00639382, "/cabelo" );
+	Translate( 0x0063933B, "/desconhecido_mymodel" );
+	Translate( 0x00639303, "/desconhecido_body" );
+	Translate( 0x006392CB, "/desconhecido_char_load" );
+	Translate( 0x0063928D, "/carregar_personagem" );
+	Translate( 0x0063923C, "/desconhecido_broke_mem" );
+	Translate( 0x006390B3, "/posicao" );
+	Translate( 0x0063907B, "/absorcao" );
+	Translate( 0x00639042, "/fala" );
+	Translate( 0x00639017, "Armazém salvo" );
+	Translate( 0x00638FEA, "/salvar_armazem" );
+	Translate( 0x00638FBF, "Informações do Grupo: %%d" );
+	Translate( 0x00638F9A, "/informacoes_grupo" );
+	Translate( 0x00638F65, "Experiência Perdida: %%d %%c" );
+	Translate( 0x00638F56, "Experiência Ganha: %%d %%c" );
+	Translate( 0x00638F0D, "/experiencia_porcento" );
+	Translate( 0x00638EE2, "Você ganhou %%d de Experiência" );
+	Translate( 0x00638EA0, "/experiencia_quantidade" );	
+	Translate( 0x00638D88, "/desconhecido_color" );
+	Translate( 0x00638D2D, "/desconhecido_dark" );
 
 	//Comandos Player
 	Translate( 0x0045DFC4, "/clan " );
 	Translate( 0x0041C848, "/clan %%s" );
 	Translate( 0x0041C868, "/troca %%s" );
 	Translate( 0x004173B4, "/grupo %%s" );
-	Translate( 0x00638CF8, "/ligacamera" );
-	Translate( 0x00638CD2, "/desligacamera" );
+	Translate( 0x00638E59, "/noticias" );
+	Translate( 0x00638CF8, "/liga_camera" );
+	Translate( 0x00638CD2, "/desliga_camera" );
+	Translate( 0x00638CA4, "> Conexão: %%dms" );
+	Translate( 0x00638C4A, "/CONEXAO" );
+	Translate( 0x00638C34, "/conexao" );
+	Translate( 0x00638B73, "yahoo" );
 
 	//Itens
 	Translate( 0x0098E230, "Ataque:        \r" );
