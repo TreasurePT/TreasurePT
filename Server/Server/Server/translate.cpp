@@ -156,6 +156,12 @@ void CTranslate::SetTexts( )
 	Translate( 0x0056D309, "/grupo_info" );
 	Translate( 0x0056D1F2, "/inserir" );
 	Translate( 0x0056D180, "/servidor_desligar" );
+	Translate( 0x006E2828, "GM> Aviso!" );
+	Translate( 0x006E282C, "GM> O servidor entrará em manutenção" );
+	Translate( 0x006E2830, "GM> Por favor, desconecte-se imediatamente" );
+	Translate( 0x006E2834, "GM> Mais informações no nosso site" );
+	Translate( 0x006E2838, "GM> Obrigado por jogar no TreasurePT" );
+	Translate( 0x006E29E0, "GM> O servidor desligará em %dmin%ds" );
 	Translate( 0x0056D0A3, "/abrir_armazem" );
 	Translate( 0x0056CFF9, "Você matou %%s" );
 	Translate( 0x0056CF73, "/matar" );
@@ -202,6 +208,10 @@ void CTranslate::SetTexts( )
 	Translate( 0x0048E00B, "%%s: %%s" );
 	Translate( 0x004A1137, "%%s: %%s" );
 	Translate( 0x0056BE4D, "%%s: %%s" );
+
+	//Castelo Sagrado
+	Translate( 0x006E29E8, "GM> A batalha pelo controle do Castelo Sagrado começou. Boa sorte a todos os Clãs." );
+	Translate( 0x006E29EC, "GM> A batalha pelo controle do Castelo Sagrado terminou. Parabéns ao Clã vencedor." );
 
 	//Translate( 0x00, "" );
 };

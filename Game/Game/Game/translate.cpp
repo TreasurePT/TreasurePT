@@ -621,13 +621,37 @@ void CTranslate::SetTexts( )
 
 	//Classes
 	Translate( 0x00837EC4, "Mecânico" );
+	Translate( 0x00837FA0, "Mestre Mecânico" );
+	Translate( 0x0083807C, "Líder Mecânico" );
+	Translate( 0x00838158, "Metaleiro" );
 	Translate( 0x00837EF0, "Lutador" );
+	Translate( 0x00837FCC, "Guerreiro" );
+	Translate( 0x008380A8, "Campeão" );
+	Translate( 0x00838184, "Guerreiro Imortal" );
 	Translate( 0x00837F1C, "Pike" );
+	Translate( 0x00837FF8, "Combatente" );
+	Translate( 0x008380D4, "Lancer" );
+	Translate( 0x008381B0, "Lancelot" );
 	Translate( 0x00837F48, "Arqueira" );
+	Translate( 0x00838024, "Mestra da Caça" );
+	Translate( 0x00838100, "Discípula de Dion" );
+	Translate( 0x008381DC, "Sagitária" );
 	Translate( 0x00838310, "Cavaleiro" );
+	Translate( 0x008383EC, "Paladino" );
+	Translate( 0x008384C8, "Cavaleiro Sagrado" );
+	Translate( 0x008385A4, "Cavaleiro Santo" );
 	Translate( 0x0083833C, "Atalanta" );
+	Translate( 0x00838418, "Valquíria" );
+	Translate( 0x008384F4, "Brynhild" );
+	Translate( 0x008385D0, "Valhala" );
 	Translate( 0x00838368, "Sacerdotisa" );
+	Translate( 0x00838444, "Santa" );
+	Translate( 0x00838520, "Episcopisa" );
+	Translate( 0x008385FC, "Celestial" );
 	Translate( 0x00838394, "Mago" );
+	Translate( 0x00838470, "Feiticeiro" );
+	Translate( 0x0083854C, "Feiticeiro Real" );
+	Translate( 0x00838628, "Bruxo" );
 
 	//Ajuda e Guia
 	Translate( 0x0098E524, "    Ajuda" );
