@@ -1095,6 +1095,14 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E8DC, "Total de Ouro acumulado" );
 	Translate( 0x0098E8D8, "A nova taxa será %%d%%s" );
 
+	//Evento Castelo Sagrado
+	Translate( 0x0098F444, "Castelo Sagrado" );
+	Translate( 0x0098F43C, "Tempo: " );
+	Translate( 0x0098F438, "P.B: " );
+	Translate( 0x0098F430, "Pontos de Batalha: " );
+	Translate( 0x0098F440, "Hit Rate: " );
+	Translate( 0x0098F434, "Con Rate: " );
+
 	//Bellatra
 	Translate( 0x0098E964, "Líder" );
 	Translate( 0x0098E8B8, "A taxa atual é %%d%%s" );
