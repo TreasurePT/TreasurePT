@@ -600,7 +600,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2C8C, "Impossível conectar" );
 	Translate( 0x009F2C90, "Conta incorreta" );
 	Translate( 0x009F2C94, "Senha incorreta" );
-	Translate( 0x009F2C98, "Conta banida" );
+	Translate( 0x009F2C98, "Conta bloqueada" );
 	Translate( 0x009F2C9C, "Esta conta já está logada" );
 	Translate( 0x009F2CA0, "Versão incompatível" );
 	Translate( 0x009F2CA4, "O servidor está cheio" );
@@ -621,13 +621,37 @@ void CTranslate::SetTexts( )
 
 	//Classes
 	Translate( 0x00837EC4, "Mecânico" );
+	Translate( 0x00837FA0, "Mestre Mecânico" );
+	Translate( 0x0083807C, "Líder Mecânico" );
+	Translate( 0x00838158, "Metaleiro" );
 	Translate( 0x00837EF0, "Lutador" );
+	Translate( 0x00837FCC, "Guerreiro" );
+	Translate( 0x008380A8, "Campeão" );
+	Translate( 0x00838184, "Guerreiro Imortal" );
 	Translate( 0x00837F1C, "Pike" );
+	Translate( 0x00837FF8, "Combatente" );
+	Translate( 0x008380D4, "Lancer" );
+	Translate( 0x008381B0, "Lancelot" );
 	Translate( 0x00837F48, "Arqueira" );
+	Translate( 0x00838024, "Mestra da Caça" );
+	Translate( 0x00838100, "Discípula de Dion" );
+	Translate( 0x008381DC, "Sagitária" );
 	Translate( 0x00838310, "Cavaleiro" );
+	Translate( 0x008383EC, "Paladino" );
+	Translate( 0x008384C8, "Cavaleiro Sagrado" );
+	Translate( 0x008385A4, "Cavaleiro Santo" );
 	Translate( 0x0083833C, "Atalanta" );
+	Translate( 0x00838418, "Valquíria" );
+	Translate( 0x008384F4, "Brynhild" );
+	Translate( 0x008385D0, "Valhala" );
 	Translate( 0x00838368, "Sacerdotisa" );
+	Translate( 0x00838444, "Santa" );
+	Translate( 0x00838520, "Episcopisa" );
+	Translate( 0x008385FC, "Celestial" );
 	Translate( 0x00838394, "Mago" );
+	Translate( 0x00838470, "Feiticeiro" );
+	Translate( 0x0083854C, "Feiticeiro Real" );
+	Translate( 0x00838628, "Bruxo" );
 
 	//Ajuda e Guia
 	Translate( 0x0098E524, "    Ajuda" );
@@ -684,34 +708,112 @@ void CTranslate::SetTexts( )
 	Translate( 0x009F2D5C, "Ignorados: %%d / %%d" );
 	Translate( 0x009F2D58, "Amigos: %%d / %%d" );
 	Translate( 0x009F2D54, "Recentes" );
-
-	//Comandos
+	
+	//Comandos GM
+	Translate( 0x004AD8E5, "GM: Habilidades temporárias canceladas" );
+	Translate( 0x004AD88D, "/cancelar_habilidades_temporarias" );
+	Translate( 0x004AD859, "GM: Atalhos de Habilidades resetados" );
+	Translate( 0x004AD83F, "/resetar_atalhos_habilidades" );
+	Translate( 0x004AD5F1, "GM: Booster cancelado" );
+	Translate( 0x004AD5DD, "/cancelar_booster" );
+	Translate( 0x004AD4F2, "GM: Força Orb cancelada" );
+	Translate( 0x004AD4DA, "/cancelar_forca_orb" );
+	Translate( 0x004AD465, "/desconhecido_go" );
+	Translate( 0x004AD3E6, "/desconhecido_come" );
+	Translate( 0x004AD3AD, "GM: Desafio Ativo cancelado" );
+	Translate( 0x004AD399, "/cancelar_desafio_ativo" );
+	Translate( 0x004AD365, "GM: Você ainda não completou o 3° Desafio de Classe" );
+	Translate( 0x004AD35E, "GM: Você ainda não está no Nível 80" );
+	Translate( 0x004AD357, "GM: Faça a 4ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD327, "GM: Faça a 3ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD30D, "GM: Faça a 2ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD2F3, "GM: Faça a 1ª Parte do 4° Desafio de Classe" );
+	Translate( 0x004AD287, "/desafio_de_classe_4" );
+	Translate( 0x004AD212, "GM: Faça o Desafio agora" ); // dupla
+	Translate( 0x004AD253, "GM: Faça o Desafio agora" ); // dupla
+	Translate( 0x004AD1D1, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD1A7, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD175, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD115, "/terminar_desafio_de_classe" );
+	Translate( 0x004AD0AD, "GM: Desafio de Classe completo" );
+	Translate( 0x004AD099, "/completar_desafio_de_classe" );
+	Translate( 0x004AD065, "GM: Retire seus itens no Distribuidor de Itens" );
+	Translate( 0x004AD03F, "/distribuidor" );
+	Translate( 0x004AD00B, "GM: Pontos de Atributos resetados" );
+	Translate( 0x004ACFA0, "/resetar_atributos" );
+	Translate( 0x004ACF6C, "GM: Pontos de Habilidades resetados" );
+	Translate( 0x004ACF50, "/resetar_habilidades" );
+	Translate( 0x004ACF1C, "GM: Você mudou de Nível" );
 	Translate( 0x004ACEB4, "/nivel" );
-	Translate( 0x004ACF1C, "GM: Nível alterado com sucesso" );
+	Translate( 0x004ACE44, "GM: Desafio O Ataque a Eura completo" );
+	Translate( 0x004ACE23, "GM: Desafio Poder Máximo completo" );
+	Translate( 0x004ACE02, "GM: Desafio A Maldição completo" );
+	Translate( 0x004ACDD0, "GM: Desafio Lágrimas de Kália completo" );
+	Translate( 0x004ACDAC, "GM: Desafio A Rebelião completo" );
+	Translate( 0x004ACD7E, "GM: Desafio A Transformação completo" );
+	Translate( 0x004ACD48, "GM: Desafio A Caverna completo" );
+	Translate( 0x004ACD07, "GM: Desafio Por Ela completo" );
+	Translate( 0x004ACC82, "/completar_desafio" );
+	Translate( 0x004ACC3A, "GM: Desafio de Classe completo" ); //dupla
+	Translate( 0x004ACE6D, "GM: Desafio de Classe completo" ); //dupla
+	Translate( 0x004ACBEE, "/desafio_de_classe_2" );
+	Translate( 0x004ACB91, "/desafio_de_classe_3" );
+	Translate( 0x004ACB5D, "GM: Desafio completo" );
+	Translate( 0x004ACB07, "/desafio_amanda" );
+	Translate( 0x004ACAD3, "GM: Desafio 100 completo" );
+	Translate( 0x004ACA2C, "/completar_desafio_100" );
+	Translate( 0x004AC9C5, "GM: Itens removidos do Inventório" );
+	Translate( 0x004AC96F, "/remover_itens" );
+	Translate( 0x004AC932, "/hoho" );
+	Translate( 0x008405E4, "GM: Eu sou muito legal!" );
+	Translate( 0x008405E8, "GM: Estou me sentindo ótimo hoje!" );
+	Translate( 0x008405EC, "GM: Ser GM é demais!" );
+	Translate( 0x008405F0, "GM: Está um lindo dia, não está?" );
+	Translate( 0x008405F4, "GM: TreasurePT é o melhor!" );
+	Translate( 0x008405F8, "GM: Eu amo Priston Tale!" );
 	Translate( 0x006396BC, "/caminho" );
 	Translate( 0x0063968F, "/salvar" );
-	Translate( 0x006394A2, "/mapa" );
-	Translate( 0x0063948C, "/MAPA" );
+	Translate( 0x00639662, "/desconhecido_localizacao" );
+	Translate( 0x006394DB, "/desconhecido_acesso" );
+	Translate( 0x006394A2, "/MAPA" );
+	Translate( 0x0063948C, "/mapa" );
+	Translate( 0x0063946B, "/desconhecido_lago_do_crepusculo" );
+	Translate( 0x0063942B, "/desconhecido_ren" );
+	Translate( 0x006393F3, "/desconhecido_baload" );
+	Translate( 0x006393BB, "/desconhecido_deload" );
 	Translate( 0x00639382, "/cabelo" );
-	Translate( 0x0063928D, "/carregar" );
-	Translate( 0x006390B3, "/localizacao" );
-	Translate( 0x006391E2, "/absorcao" );
-	Translate( 0x00639174, "/fala" );	
-	Translate( 0x00638FE9, "/salvarbau" );
-	Translate( 0x00638FEA, "Baú salvo com sucesso" );
-	Translate( 0x00638E9F, "/experiencia" );
-	Translate( 0x00638C4A, "/conexao" );	
-	Translate( 0x00638C34, "/CONEXAO" );
-	Translate( 0x00638CA4, ">Conexão: %%dms" );
-	//Translate( 0x00, "" );
+	Translate( 0x0063933B, "/desconhecido_mymodel" );
+	Translate( 0x00639303, "/desconhecido_body" );
+	Translate( 0x006392CB, "/desconhecido_char_load" );
+	Translate( 0x0063928D, "/carregar_personagem" );
+	Translate( 0x0063923C, "/desconhecido_broke_mem" );
+	Translate( 0x006390B3, "/posicao" );
+	Translate( 0x0063907B, "/absorcao" );
+	Translate( 0x00639042, "/fala" );
+	Translate( 0x00639017, "Armazém salvo" );
+	Translate( 0x00638FEA, "/salvar_armazem" );
+	Translate( 0x00638FBF, "Informações do Grupo: %%d" );
+	Translate( 0x00638F9A, "/informacoes_grupo" );
+	Translate( 0x00638F65, "Experiência Perdida: %%d %%c" );
+	Translate( 0x00638F56, "Experiência Ganha: %%d %%c" );
+	Translate( 0x00638F0D, "/experiencia_porcento" );
+	Translate( 0x00638EE2, "Você ganhou %%d de Experiência" );
+	Translate( 0x00638EA0, "/experiencia_quantidade" );	
+	Translate( 0x00638D88, "/desconhecido_color" );
+	Translate( 0x00638D2D, "/desconhecido_dark" );
 
 	//Comandos Player
 	Translate( 0x0045DFC4, "/clan " );
 	Translate( 0x0041C848, "/clan %%s" );
 	Translate( 0x0041C868, "/troca %%s" );
 	Translate( 0x004173B4, "/grupo %%s" );
-	Translate( 0x00638CF8, "/ligacamera" );
-	Translate( 0x00638CD2, "/desligacamera" );
+	Translate( 0x00638E59, "/noticias" );
+	Translate( 0x00638CF8, "/liga_camera" );
+	Translate( 0x00638CD2, "/desliga_camera" );
+	Translate( 0x00638CA4, "> Conexão: %%dms" );
+	Translate( 0x00638C4A, "/CONEXAO" );
+	Translate( 0x00638C34, "/conexao" );
+	Translate( 0x00638B73, "yahoo" );
 
 	//Itens
 	Translate( 0x0098E230, "Ataque:        \r" );
@@ -993,6 +1095,14 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E8DC, "Total de Ouro acumulado" );
 	Translate( 0x0098E8D8, "A nova taxa será %%d%%s" );
 
+	//Evento Castelo Sagrado
+	Translate( 0x0098F444, "Castelo Sagrado" );
+	Translate( 0x0098F43C, "Tempo: " );
+	Translate( 0x0098F438, "P.B: " );
+	Translate( 0x0098F430, "Pontos de Batalha: " );
+	Translate( 0x0098F440, "Hit Rate: " );
+	Translate( 0x0098F434, "Con Rate: " );
+
 	//Bellatra
 	Translate( 0x0098E964, "Líder" );
 	Translate( 0x0098E8B8, "A taxa atual é %%d%%s" );
@@ -1022,7 +1132,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0098E1C8, "Sair" );
 
 	//Sábio Newter
-	Translate( 0x0098E528, "Teletransporte" );
+	Translate( 0x0098E528, "Desafio" );
 	Translate( 0x0098EAEC, "Mata das Acácias/Caverna dos Cogumelos" );
 	Translate( 0x0098EAF0, "Floresta das Ilusões/Caverna das Abelhas" );
 	Translate( 0x0098EAF4, "Terra Maldita/Calabouço Antigo" );
@@ -1031,8 +1141,85 @@ void CTranslate::SetTexts( )
 	//Grupo
 	Translate( 0x009F2D4C, "quer criar um grupo" );
 
+	//Desafios	
+	Translate( 0x00836BF8, "Vigia Cansado" );
+	Translate( 0x00836C08, "Vigia Cansado" );
+	Translate( 0x00836BFC, "Vigia Cansado" );
+	Translate( 0x00836C0C, "Vigia Cansado" );
+	Translate( 0x00836C18, "Primeira Caça" );
+	Translate( 0x00836C28, "Primeira Caça" );
+	Translate( 0x00836C1C, "Primeira Caça" );
+	Translate( 0x00836C2C, "Primeira Caça" );
+	Translate( 0x00836C38, "Doce Especial" );
+	Translate( 0x00836C48, "Doce Especial" );
+	Translate( 0x00836C3C, "Doce Especial" );
+	Translate( 0x00836C4C, "Doce Especial" );
+	Translate( 0x00836C58, "Invasão dos Duendes" );
+	Translate( 0x00836C68, "Invasão dos Duendes" );
+	Translate( 0x00836C5C, "Invasão dos Duendes" );
+	Translate( 0x00836C6C, "Invasão dos Duendes" );
+	Translate( 0x00836C78, "Morto-Vivo" );
+	Translate( 0x00836C88, "Morto-Vivo" );
+	Translate( 0x00836C7C, "Morto-Vivo" );
+	Translate( 0x00836C8C, "Morto-Vivo" );
+	Translate( 0x00836C9C, "Os Cíclopes" );
+	Translate( 0x00836C98, "Os Cíclopes" );
+	Translate( 0x00836CAC, "Martelo Perdido" );
+	Translate( 0x00836CA8, "Martelo Perdido" );
+	Translate( 0x0083697C, "1° Desafio de Classe" );
+	Translate( 0x0083698C, "1° Desafio de Classe" );
+	Translate( 0x0083699C, "1° Desafio de Classe" );
+	Translate( 0x008369BC, "1° Desafio de Classe" );
+	Translate( 0x00836978, "1° Desafio de Classe" );
+	Translate( 0x008369BC, "1° Desafio de Classe" );
+	Translate( 0x00836A5C, "Por Ela" );
+	Translate( 0x00836A58, "Por Ela" );
+	Translate( 0x008369B8, "2° Desafio de Classe" );
+	Translate( 0x008369C8, "2° Desafio de Classe" );
+	Translate( 0x008369AC, "2° Desafio de Classe" );
+	Translate( 0x00836998, "2° Desafio de Classe" );
+	Translate( 0x00836A6F, "A Caverna" );
+	Translate( 0x00836A7F, "A Caverna" );
+	Translate( 0x00836A68, "A Caverna" );
+	Translate( 0x00836A78, "A Caverna" );
+	Translate( 0x00836A1C, "3° Desafio de Classe" );
+	Translate( 0x00836A18, "5ª Parte" );
+	Translate( 0x00836A0C, "4ª Parte" );
+	Translate( 0x00836A08, "3ª Parte" );
+	Translate( 0x008469FC, "2ª Parte" );
+	Translate( 0x008369F8, "1ª Parte" );
+	Translate( 0x00836A8C, "Transformação de Monstros" );
+	Translate( 0x00836A88, "Transformação de Monstros" );
+	Translate( 0x00836A9C, "A Rebelião" );
+	Translate( 0x00836A98, "A Rebelião" );
+	Translate( 0x00836ACC, "Maldição do Poder" );
+	Translate( 0x00836ADC, "Maldição do Poder" );
+	Translate( 0x00836AEC, "Maldição do Poder" );
+	Translate( 0x00836AC8, "Maldição do Poder" );
+	Translate( 0x00836ADB, "Maldição do Poder" );
+	Translate( 0x00836AEB, "Maldição do Poder" );
+	Translate( 0x00836AAC, "Lágrimas de Kália" );
+	Translate( 0x00836AA8, "Lágrimas de Kália" );
+	Translate( 0x00836AB8, "Ataque a Eura" );
+	Translate( 0x00836ABC, "Ataque a Eura" );
+	Translate( 0x00836AFC, "Poder Máximo" );
+	Translate( 0x00836B0C, "Poder Máximo" );
+	Translate( 0x00836B1C, "Poder Máximo" );
+	Translate( 0x00836B2C, "Poder Máximo" );
+	Translate( 0x00836AF8, "Poder Máximo" );
+	Translate( 0x00836B08, "Poder Máximo" );
+	Translate( 0x00836B18, "Poder Máximo" );
+	Translate( 0x00836B28, "Poder Máximo" );
+	Translate( 0x00836CDC, "A Ilusão" );
+	Translate( 0x00836CD8, "5ª Parte" );
+	Translate( 0x00836CCC, "4ª Parte" );
+	Translate( 0x00836CC8, "3ª Parte" );
+	Translate( 0x00836CBC, "2ª Parte" );
+	Translate( 0x00836CB8, "1ª Parte" );
+
 	//Textos Duplos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
+	
 };
 
 void __cdecl _SetTexts( )
