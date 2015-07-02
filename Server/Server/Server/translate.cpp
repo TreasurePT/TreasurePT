@@ -50,6 +50,17 @@ void CTranslate::SetTexts( )
 	//Mensagens
 	Translate( 0x006E29F8, "Você recebeu um item: %%s" );
 
+	//Interface
+	Translate( 0x0055C30F, "[%s]\r\n%s: %%d\r\n%s: %%s\r\n%s: %%09d\r\n%s: %%d\r\n%s: %%d\r\n%s: %%d\r\n%s: %%d",
+			   "Configuração",
+			   "Código do Servidor",
+			   "Nome do Servidor",
+			   "Versão",
+			   "Contagem de Códigos Seguros",
+			   "Contagem de CheckSum's",
+			   "Monstros",
+			   "Items" );
+
 	//Cristais, Summon, Navisco
 	Translate( 0x006E2A2C, "Zumbi" );
 

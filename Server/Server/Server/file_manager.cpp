@@ -44,7 +44,6 @@ void CFileManager::Log( const char* Format, ... )
 	va_end( Args );
 };
 
-
 const char* CFileManager::Format( const char* String, ... )
 {
 	SecureZeroMemory( m_Buffer, 256 );
