@@ -1162,8 +1162,8 @@ void CTranslate::SetTexts( )
 	Translate( 0x00836C88, "Morto-Vivo" );
 	Translate( 0x00836C7C, "Morto-Vivo" );
 	Translate( 0x00836C8C, "Morto-Vivo" );
-	Translate( 0x00836C9C, "Os Cíclopes" );
-	Translate( 0x00836C98, "Os Cíclopes" );
+	Translate( 0x00836C9C, "Destruição dos Cíclopes" );
+	Translate( 0x00836C98, "Destruição dos Cíclopes" );
 	Translate( 0x00836CAC, "Martelo Perdido" );
 	Translate( 0x00836CA8, "Martelo Perdido" );
 	Translate( 0x0083697C, "1° Desafio de Classe" );
