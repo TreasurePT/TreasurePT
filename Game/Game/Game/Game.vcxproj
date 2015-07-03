@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "C:\Cliente\game\game.dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "G:\Treasure PT\Game\game\game.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="assembly.h" />
     <ClInclude Include="Configuration\game.h" />
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\stdafx.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="wide_screen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="assembly.cpp" />
     <ClCompile Include="Configuration\global.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

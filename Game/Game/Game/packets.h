@@ -2,7 +2,7 @@
 class CPackets
 {
 public:
-	void ReceivedPacket( int Packet );
+	void ReceivedPacket( int Packet, LPARAM lParam );
 
 private:
 	enum CustomPacket

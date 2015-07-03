@@ -57,6 +57,9 @@
     <ClCompile Include="UI_login.cpp">
       <Filter>UI\Source</Filter>
     </ClCompile>
+    <ClCompile Include="assembly.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="UI_login.h">
       <Filter>UI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
