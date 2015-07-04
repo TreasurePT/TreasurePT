@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "packets.h"
 
-void CPackets::ReceivedPacket( int Packet, LPARAM lParam )
+void CPackets::ReceivedPacket( s_Packet* Packet, LPARAM lParam )
 {
-	switch( *( int* )( Packet + 4 ) )
+	switch( Packet->Opcode )
 	{
 
 	};
 
 };
 
-void __cdecl _ReceivedPacket( int Packet, LPARAM lParam )
+void __cdecl _ReceivedPacket( s_Packet* Packet, LPARAM lParam )
 {
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
 	lpPacket->ReceivedPacket( Packet, lParam );

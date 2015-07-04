@@ -2,7 +2,7 @@
 class CPackets
 {
 public:
-	void ReceivedPacket( int Packet, LPARAM lParam );
+	void ReceivedPacket( s_Packet* Packet, LPARAM lParam );
 
 private:
 	enum CustomPacket
@@ -15,4 +15,3 @@ private:
 		Version = 0x4847008A,
 	};
 };
-

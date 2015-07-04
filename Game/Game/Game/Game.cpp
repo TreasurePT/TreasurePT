@@ -4,7 +4,7 @@
 extern void __cdecl _SetTexts( );
 extern int __cdecl _ReadConfiguration( );
 extern int __cdecl _ShowVersion( HDC hDC );
-extern void __cdecl _ReceivedPacket( int Packet, LPARAM lParam );
+extern void __cdecl _ReceivedPacket( s_Packet* Packet, LPARAM lParam );
 
 class CGame
 {
