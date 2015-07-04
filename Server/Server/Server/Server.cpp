@@ -46,11 +46,7 @@ void CServer::Main( )
 	lpAsm->Test( EAX, EAX );
 	lpAsm->Jnz( 0x00450135 );
 	lpAsm->FillNops( 112 );
-
-		//*( int* )( PDATA + 0 ) = ( int )( &_CheckExpGained );
 };
-
-
 
 
 

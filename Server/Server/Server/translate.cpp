@@ -89,7 +89,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x006E2728, "Mensagem Pessoal desativada" );
 	Translate( 0x006E272C, "Mensagem Pessoal ativada" );
 
-	//Comandos GM
+	/*//Comandos GM
 	Translate( 0x0056EF64, "Autorizado: %%d - %%d" );
 	Translate( 0x0056EEE9, "/autorizacao" );
 	Translate( 0x0056EEA8, "Evento: %%d" );
@@ -201,7 +201,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0056C3F3, "/servidor_horario" );
 	Translate( 0x0056C3B7, "/bellatra_entrar" );
 	Translate( 0x0056C38B, "/bellatra_info" );
-	Translate( 0x0056C332, "/noticias" );
+	Translate( 0x0056C332, "/noticias" );*/
 
 	//Comandos Player
 	Translate( 0x00414105, "/troca %s" );
