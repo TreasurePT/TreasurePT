@@ -1,13 +1,12 @@
 #pragma once
-#include "player_info.h"
 
 class CPackets
 {
 public:
 	CPackets( );
 	~CPackets( );
-	int ReceivedPacket( int Packet, CPlayerInfo* Player );
-	void SendPacket( void* Packet, CPlayerInfo* Player, bool IntegerOnly );
+	void ReceivedPacket( s_Packet* Packet, int Player );
+	void SendPacket( void* Packet, int Player, bool IntegerOnly );
 private:
 	CRITICAL_SECTION m_Send_Section;
 	char m_Buffer[ 256 ];

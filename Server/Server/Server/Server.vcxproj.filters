@@ -44,10 +44,10 @@
     <ClInclude Include="file_manager.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="player_info.h">
-      <Filter>Global Definitions</Filter>
-    </ClInclude>
     <ClInclude Include="packets.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,6 +75,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="packets.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="assembly.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

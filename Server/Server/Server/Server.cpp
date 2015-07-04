@@ -1,49 +1,69 @@
 #include "stdafx.h"
 #include "file_manager.h"
-#include "player_info.h"
+#include "assembly.h"
 
 extern void __cdecl _SetTexts( );
-extern int __cdecl _CheckExpGained( int Exp, CPlayerInfo* Player );
+extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
+extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
 
 class CServer
 {
 public:
 	void Main( );
-	void ReadConfigs( );
 private:
 	char m_Buffer[ 256 ];
 };
 
-void __cdecl _ReadConfigs( )
-{
-	std::shared_ptr<CServer> lpSv = std::make_shared<CServer>( );
-	lpSv->ReadConfigs( );
-};
-
 void CServer::Main( )
 {
-	ReadConfigs( );
+	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
 	_SetTexts( );
 	_BuildItems( );
 
-	*( int* )( PDATA + 0 ) = ( int )( &_CheckExpGained );
-	*( int* )( PDATA + 4 ) = ( int )( &_ReadConfigs );
+	// Chamada dos Pacotes
+	lpAsm->MakeBaseAddress( ( int )EditData );
+	lpAsm->Push( EAX );
+	lpAsm->Push( EBP );
+	lpAsm->Push( EDI );
+	lpAsm->Call( ( int )&_ReceivedPacket );
+	lpAsm->AddEsp( 8 );
+	lpAsm->Pop( EAX );
+	lpAsm->Cmp( ESI, 0x48478400 );
+	lpAsm->Jmp( 0x0056F527 );
+	lpAsm->SetLastAddress( );
+	lpAsm->MakeBaseAddress( ( int )0x0056F521 );
+	lpAsm->Jmp( ( int )EditData );
+	lpAsm->FillNops( 1 );
+	lpAsm->AtualizeAddress( &EditData, true );
+
+	// Chamada da Checagem de Experiência Ganha
+	lpAsm->MakeBaseAddress( 0x00450099 );
+	lpAsm->Push( EBP );
+	lpAsm->PushPtrEsp( 0x14 );
+	lpAsm->Call( ( int )&_CheckExpGained );
+	lpAsm->AddEsp( 8 );
+	lpAsm->Test( EAX, EAX );
+	lpAsm->Jnz( 0x00450135 );
+	lpAsm->FillNops( 112 );
+
+		//*( int* )( PDATA + 0 ) = ( int )( &_CheckExpGained );
 };
 
-void CServer::ReadConfigs( )
-{
-	SecureZeroMemory( m_Buffer, 256 );
-	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "hotuk.ini" );
-	lpFile->GetString( "TreasurePT", "Versao", m_Buffer );
-	int Version = atoi( lpFile->Format( "%09d", atoi( m_Buffer ) ) );
-	*( int* )( 0x006E4F5C ) = Version;
-	*( int* )( 0x00845988 ) = Version;
-	*( int* )( 0x0084598C ) = Version;
-};
+
+
+
+
+
+
+
+
+
+
 
 void Main( )
 {
+	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	std::shared_ptr<CServer> lpServer = std::make_shared<CServer>( );
 	return lpServer->Main( );
 };

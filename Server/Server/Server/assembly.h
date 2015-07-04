@@ -21,6 +21,8 @@ public:
 	void JmpPtr( int Address );
 	void CallPtr( int Address );
 	void Jmp( int Address );
+	void Je( int Address );
+	void Jnz( int Address );
 	void Call( int Address );
 	void Pop( int Var );
 	void AddEsp( int Value );

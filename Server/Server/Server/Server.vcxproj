@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="assembly.h" />
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\server.h" />
     <ClInclude Include="Configuration\stdafx.h" />
@@ -86,11 +87,11 @@
     <ClInclude Include="item_manager.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="packets.h" />
-    <ClInclude Include="player_info.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="translate.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="assembly.cpp" />
     <ClCompile Include="Configuration\global.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

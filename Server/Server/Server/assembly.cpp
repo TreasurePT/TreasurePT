@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Assembly.h"
+#include "assembly.h"
 
 LPVOID EditData = nullptr;
 
@@ -96,6 +96,50 @@ void CAssembly::Jmp( int Address )
 		*( int* )( m_Address + 1 ) = ( Address - m_Address ) - 5;
 		VirtualProtect( ( void* )( m_Address ), 5, m_VP, &m_VP );
 		m_Address += 5;
+	};
+};
+
+void CAssembly::Je( int Address )
+{
+	if( Address - m_Address <= 127 && Address - m_Address >= -128 )
+	{
+		VirtualProtect( ( void* )( m_Address ), 2, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( BYTE* )( m_Address ) = 0x74;
+		m_VP = m_VP;
+		*( int* )( m_Address + 1 ) = ( Address - m_Address ) - 2;
+		VirtualProtect( ( void* )( m_Address ), 2, m_VP, &m_VP );
+		m_Address += 2;
+	}
+	else if( Address - m_Address > 127 || Address - m_Address < -128 )
+	{
+		VirtualProtect( ( void* )( m_Address ), 6, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( WORD* )( m_Address ) = 0x840F;
+		m_VP = m_VP;
+		*( int* )( m_Address + 2) = ( Address - m_Address ) - 6;
+		VirtualProtect( ( void* )( m_Address ), 6, m_VP, &m_VP );
+		m_Address += 6;
+	};
+};
+
+void CAssembly::Jnz( int Address )
+{
+	if( Address - m_Address <= 127 && Address - m_Address >= -128 )
+	{
+		VirtualProtect( ( void* )( m_Address ), 2, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( BYTE* )( m_Address ) = 0x75;
+		m_VP = m_VP;
+		*( int* )( m_Address + 1 ) = ( Address - m_Address ) - 2;
+		VirtualProtect( ( void* )( m_Address ), 2, m_VP, &m_VP );
+		m_Address += 2;
+	}
+	else if( Address - m_Address > 127 || Address - m_Address < -128 )
+	{
+		VirtualProtect( ( void* )( m_Address ), 6, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( WORD* )( m_Address ) = 0x850F;
+		m_VP = m_VP;
+		*( int* )( m_Address + 2 ) = ( Address - m_Address ) - 6;
+		VirtualProtect( ( void* )( m_Address ), 6, m_VP, &m_VP );
+		m_Address += 6;
 	};
 };
 
