@@ -89,8 +89,8 @@ void CTranslate::SetTexts( )
 	Translate( 0x006E2728, "Mensagem Pessoal desativada" );
 	Translate( 0x006E272C, "Mensagem Pessoal ativada" );
 
-	/*//Comandos GM
-	Translate( 0x0056EF64, "Autorizado: %%d - %%d" );
+	//Comandos GM
+	/*Translate( 0x0056EF64, "Autorizado: %%d - %%d" );
 	Translate( 0x0056EEE9, "/autorizacao" );
 	Translate( 0x0056EEA8, "Evento: %%d" );
 	Translate( 0x0056EE84, "/evento" );
