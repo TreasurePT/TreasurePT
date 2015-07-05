@@ -1174,6 +1174,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x008369BC, "1° Desafio de Classe" );
 	Translate( 0x00836A5C, "Por Ela" );
 	Translate( 0x00836A58, "Por Ela" );
+	Translate( 0x004A15E6, "Por Ela" );
 	Translate( 0x008369B8, "2° Desafio de Classe" );
 	Translate( 0x008369C8, "2° Desafio de Classe" );
 	Translate( 0x008369AC, "2° Desafio de Classe" );
