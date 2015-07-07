@@ -6,6 +6,7 @@ extern void __cdecl _SetTexts( );
 extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
 extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
+extern void __cdecl _SetLevels( );
 
 class CServer
 {
@@ -21,6 +22,7 @@ void Main( )
 	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	_SetTexts( );
 	_BuildItems( );
+	//_SetLevels( );
 
 	lpServer->PacketHook( );
 	lpServer->CheckExpGainedHook( );
