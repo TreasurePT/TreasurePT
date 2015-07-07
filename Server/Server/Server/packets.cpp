@@ -7,10 +7,10 @@ CPackets::CPackets( )
 	InitializeCriticalSection( &m_Send_Section );
 }
 
-void CPackets::SendPacket( void* Packet, int Player, bool IntegerOnly )
+void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 {
 	EnterCriticalSection( &m_Send_Section );
-	typedef void( __thiscall* t_SendPacket ) ( int, void *, int, int );
+	typedef void( __thiscall* t_SendPacket ) ( int, char*, int, int );
 	t_SendPacket SendNumberPacket = ( t_SendPacket )0x00451E80;
 	t_SendPacket SendStringPacket = ( t_SendPacket )0x00450DF0;
 
@@ -27,7 +27,7 @@ void CPackets::SendPacket( void* Packet, int Player, bool IntegerOnly )
 
 void CPackets::ReceivedPacket( s_Packet* Packet, int Player )
 {
-	switch( Packet->Opcode )
+	switch( Packet->opCode )
 	{
 		case Packet::Connection:
 			{

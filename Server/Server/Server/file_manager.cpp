@@ -21,6 +21,13 @@ void CFileManager::GetString( const char* Section, const char* Key, char* Buffer
 	GetPrivateProfileStringA( Section, Key, 0, Buffer, 256, File.FullPath );
 };
 
+void CFileManager::GetInt( const char* Section, const char* Key, int &Buffer )
+{
+	SecureZeroMemory( m_Buffer, 256 );
+	GetPrivateProfileStringA( Section, Key, 0, m_Buffer, 256, File.FullPath );
+	Buffer = atoi( m_Buffer );
+};
+
 void CFileManager::SetString( const char* Section, const char* Key, const char* String )
 {
 	WritePrivateProfileStringA( Section, Key, String, File.FullPath );

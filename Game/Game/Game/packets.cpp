@@ -5,7 +5,11 @@ void CPackets::ReceivedPacket( s_Packet* Packet, LPARAM lParam )
 {
 	switch( Packet->Opcode )
 	{
+		case Packet::AddExp:
+			{
 
+			}
+			break;
 	};
 
 };

@@ -50,6 +50,9 @@
     <ClInclude Include="assembly.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="server_config.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="assembly.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="server_config.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

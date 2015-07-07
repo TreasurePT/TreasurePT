@@ -6,26 +6,11 @@ extern int __cdecl _ReadConfiguration( );
 extern int __cdecl _ShowVersion( HDC hDC );
 extern void __cdecl _ReceivedPacket( s_Packet* Packet, LPARAM lParam );
 
-class CGame
-{
-public:
-
-	void RemoveXTrap( );
-	void Main( );
-};
-
 void Main( )
 {
-	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
-	std::shared_ptr<CGame> lpGame = std::make_shared<CGame>( );
-	return lpGame->Main( );
-};
-
-void CGame::Main( )
-{
 	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( );
+	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	_SetTexts( );
-	RemoveXTrap( );
 
 	// Chamada da Widescreen
 	lpAsm->MakeBaseAddress( ( int )0x0044A080 );
@@ -53,10 +38,8 @@ void CGame::Main( )
 	lpAsm->AddEsp( 4 );
 	lpAsm->FillNops( 113 );
 	lpAsm->Test( EAX, EAX );
-};
 
-void CGame::RemoveXTrap( )
-{
+	// Remoção do X-Trap
 	WriteMemory( 0x0078FA40, 0xC3, 1 );
 	WriteMemory( 0x0078F5A0, 0xC3, 1 );
 	WriteMemory( 0x0078F558, 0xC3, 1 );

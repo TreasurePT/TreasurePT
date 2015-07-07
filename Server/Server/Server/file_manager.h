@@ -1,4 +1,5 @@
 #pragma once
+
 class CFileManager
 {
 public:
@@ -6,6 +7,7 @@ public:
 
 	void SetFileName( const char* FileName );
 	void GetString( const char* Section, const char* Key, char* Buffer );
+	void GetInt( const char* Section, const char* Key, int &Buffer );
 	void SetString( const char* Section, const char* Key, const char* String );
 	void Log( const char* Format, ... );
 
