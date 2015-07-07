@@ -7,17 +7,10 @@ extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
 extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
 
-class CServer
-{
-public:
-	void Main( );
-private:
-	char m_Buffer[ 256 ];
-};
-
-void CServer::Main( )
+void Main( )
 {
 	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
+	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	_SetTexts( );
 	_BuildItems( );
 
@@ -46,20 +39,4 @@ void CServer::Main( )
 	lpAsm->Test( EAX, EAX );
 	lpAsm->Jnz( 0x00450135 );
 	lpAsm->FillNops( 112 );
-};
-
-
-
-
-
-
-
-
-
-
-void Main( )
-{
-	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
-	std::shared_ptr<CServer> lpServer = std::make_shared<CServer>( );
-	return lpServer->Main( );
 };

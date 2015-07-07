@@ -5,8 +5,11 @@ extern void _WriteMemory( int Address, int Value, int NumberOfBytes = 4 );
 
 struct s_Packet
 {
-	SIZE_T Size;
-	INT Opcode;
-	LPARAM lParam;
-	WPARAM wParam;
+	int size;
+	int opCode;
+
+	int lParam;
+	int wParam;
+	int sParam;
+	int eParam;
 };
