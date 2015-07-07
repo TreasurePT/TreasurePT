@@ -7,14 +7,27 @@ extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
 extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
 
+class CServer
+{
+public:
+	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
+	void PacketHook( );
+	void CheckExpGainedHook( );
+};
+
 void Main( )
 {
-	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
+	std::shared_ptr<CServer> lpServer = std::make_shared<CServer>( );
 	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	_SetTexts( );
 	_BuildItems( );
 
-	// Chamada dos Pacotes
+	lpServer->PacketHook( );
+	lpServer->CheckExpGainedHook( );
+};
+
+void CServer::PacketHook( )
+{
 	lpAsm->MakeBaseAddress( ( int )EditData );
 	lpAsm->Push( EAX );
 	lpAsm->Push( EBP );
@@ -29,8 +42,10 @@ void Main( )
 	lpAsm->Jmp( ( int )EditData );
 	lpAsm->FillNops( 1 );
 	lpAsm->AtualizeAddress( &EditData, true );
+};
 
-	// Chamada da Checagem de Experiência Ganha
+void CServer::CheckExpGainedHook( )
+{
 	lpAsm->MakeBaseAddress( 0x00450099 );
 	lpAsm->Push( EBP );
 	lpAsm->PushPtrEsp( 0x14 );
