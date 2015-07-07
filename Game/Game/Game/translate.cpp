@@ -1223,7 +1223,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x00836CB8, "1ª Parte" );
 
 	//Desafios Desconhecidos
-	Translate( 0x0041E204, "Desafio 4" );
+	/*Translate( 0x0041E204, "Desafio 4" );
 	Translate( 0x0041E99A, "Desafio 5" );
 	Translate( 0x0045E08E, "Desafio 6" );
 	Translate( 0x0046E4E1, "Desafio 7" );
@@ -1265,7 +1265,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x005A1E67, "Desafio 45" );
 	Translate( 0x005A1E7B, "Desafio 46" );
 	Translate( 0x005A8A2A, "Desafio 47" );
-	//Translate( 0x005E83F0, "Desafio 49" );
+	Translate( 0x005E83F0, "Desafio 49" );
 	Translate( 0x005E85FE, "Desafio 50" );
 	Translate( 0x00600EDE, "Desafio 51" );
 	Translate( 0x0061F4AE, "Desafio 52" );
@@ -1277,7 +1277,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x00642BA5, "Desafio 58" );
 	Translate( 0x00653D56, "Desafio 59" );
 	Translate( 0x0066203B, "Desafio 60" );
-	/*Translate( 0x0066DC63, "Desafio 61" );
+	Translate( 0x0066DC63, "Desafio 61" );
 	Translate( 0x0066DED3, "Desafio 62" );
 	Translate( 0x0066E2B3, "Desafio 63" );
 	Translate( 0x0066E513, "Desafio 64" );
@@ -1287,30 +1287,30 @@ void CTranslate::SetTexts( )
 	Translate( 0x00670C63, "Desafio 68" );
 	Translate( 0x00671043, "Desafio 69" );
 	Translate( 0x00671323, "Desafio 70" );
-	Translate( 0x006715A3, "Desafio 71" );*/
+	Translate( 0x006715A3, "Desafio 71" );
 	Translate( 0x006852D0, "Desafio 72" );
-//	Translate( 0x00688AC8, "Desafio 73" );
+	Translate( 0x00688AC8, "Desafio 73" );
 	Translate( 0x0068A855, "Desafio 74" );
 	Translate( 0x0068A8DB, "Desafio 75" );
 	Translate( 0x0068A8E0, "Desafio 76" );
 	Translate( 0x0068AE2F, "Desafio 77" );
 	Translate( 0x0068AE4E, "Desafio 78" );
-//	Translate( 0x0068DC71, "Desafio 79" );
-//	Translate( 0x0068DCB6, "Desafio 80" );
-	//Translate( 0x0068DCFF, "Desafio 81" );
-	//Translate( 0x0068DD3B, "Desafio 82" );
-	//Translate( 0x0069093D, "Desafio 83" );
-//	Translate( 0x006EA67B, "Desafio 84" );
+	Translate( 0x0068DC71, "Desafio 79" );
+	Translate( 0x0068DCB6, "Desafio 80" );
+	Translate( 0x0068DCFF, "Desafio 81" );
+	Translate( 0x0068DD3B, "Desafio 82" );
+	Translate( 0x0069093D, "Desafio 83" );
+	Translate( 0x006EA67B, "Desafio 84" );
 	Translate( 0x006ED997, "Desafio 85" );
 	Translate( 0x0070B447, "Desafio 86" );
-	/*Translate( 0x0073BE9A, "Desafio 87" );
+	Translate( 0x0073BE9A, "Desafio 87" );
 	Translate( 0x0073C037, "Desafio 88" );
 	Translate( 0x0073E72C, "Desafio 89" );
 	Translate( 0x00743462, "Desafio 90" );
 	Translate( 0x00743478, "Desafio 91" );
-	Translate( 0x00761E8D, "Desafio 92" );*/
+	Translate( 0x00761E8D, "Desafio 92" );
 	Translate( 0x007715DF, "Desafio 93" );
-	//Translate( 0x00784DAE, "Desafio 94" );
+	Translate( 0x00784DAE, "Desafio 94" );*/
 
 	//Textos Duplos
 	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
