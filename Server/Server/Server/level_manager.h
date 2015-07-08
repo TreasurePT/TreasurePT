@@ -4,6 +4,8 @@
 class CLevelManager
 {
 public:
+	int GetLevelFromExp( __int64 Exp );
+	int CheckLevelExp( int Level, __int64 Exp );
 	int CheckExpGained( int Exp, int Player );
 	void ReadLevels( );
 	void WriteLevels( );

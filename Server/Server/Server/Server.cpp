@@ -7,6 +7,8 @@ extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
 extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
 extern void __cdecl _SetLevels( );
+extern int __cdecl _CheckLevelExp( int Level, __int64 Exp );
+extern int __cdecl _GetLevelFromExp( __int64 Exp );
 
 class CServer
 {
@@ -14,6 +16,8 @@ public:
 	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
 	void PacketHook( );
 	void CheckExpGainedHook( );
+	void CheckLevelExpHook( );
+	void GetLevelFromExpHook( );
 };
 
 void Main( )
@@ -22,10 +26,12 @@ void Main( )
 	EditData = VirtualAlloc( nullptr, 0x5000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
 	_SetTexts( );
 	_BuildItems( );
-	//_SetLevels( );
+	_SetLevels( );
 
 	lpServer->PacketHook( );
 	lpServer->CheckExpGainedHook( );
+	lpServer->CheckLevelExpHook( );
+	lpServer->GetLevelFromExpHook( );
 };
 
 void CServer::PacketHook( )
@@ -56,4 +62,16 @@ void CServer::CheckExpGainedHook( )
 	lpAsm->Test( EAX, EAX );
 	lpAsm->Jnz( 0x00450135 );
 	lpAsm->FillNops( 112 );
+};
+
+void CServer::CheckLevelExpHook( )
+{
+	lpAsm->MakeBaseAddress( 0x004439E0 );
+	lpAsm->Jmp( ( int )&_CheckLevelExp );
+};
+
+void CServer::GetLevelFromExpHook( )
+{
+	lpAsm->MakeBaseAddress( 0x00443A30);
+	lpAsm->Jmp( ( int )&_GetLevelFromExp );
 };
