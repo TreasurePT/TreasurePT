@@ -13,6 +13,7 @@ void CAssembly::AtualizeAddress( void* Address, bool Last )
 	if( Last )
 	{
 		FillNops( 4, m_LastAddress );
+		m_LastAddress += 4;
 		*( int* )Address = ( int )m_LastAddress;
 	}
 	else
@@ -115,7 +116,7 @@ void CAssembly::Je( int Address )
 		VirtualProtect( ( void* )( m_Address ), 6, PAGE_EXECUTE_READWRITE, &m_VP );
 		*( WORD* )( m_Address ) = 0x840F;
 		m_VP = m_VP;
-		*( int* )( m_Address + 2) = ( Address - m_Address ) - 6;
+		*( int* )( m_Address + 2 ) = ( Address - m_Address ) - 6;
 		VirtualProtect( ( void* )( m_Address ), 6, m_VP, &m_VP );
 		m_Address += 6;
 	};

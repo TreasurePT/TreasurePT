@@ -9,6 +9,7 @@ extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
 extern void __cdecl _SetLevels( );
 extern int __cdecl _CheckLevelExp( int Level, __int64 Exp );
 extern int __cdecl _GetLevelFromExp( __int64 Exp );
+extern int __cdecl _CheckPlayerLevel( int Player );
 
 class CServer
 {
@@ -18,6 +19,7 @@ public:
 	void CheckExpGainedHook( );
 	void CheckLevelExpHook( );
 	void GetLevelFromExpHook( );
+	void CheckPlayerLevelHook( );
 };
 
 void Main( )
@@ -32,6 +34,7 @@ void Main( )
 	lpServer->CheckExpGainedHook( );
 	lpServer->CheckLevelExpHook( );
 	lpServer->GetLevelFromExpHook( );
+	lpServer->CheckPlayerLevelHook( );
 };
 
 void CServer::PacketHook( )
@@ -72,6 +75,21 @@ void CServer::CheckLevelExpHook( )
 
 void CServer::GetLevelFromExpHook( )
 {
-	lpAsm->MakeBaseAddress( 0x00443A30);
+	lpAsm->MakeBaseAddress( 0x00443A30 );
 	lpAsm->Jmp( ( int )&_GetLevelFromExp );
+};
+
+void CServer::CheckPlayerLevelHook( )
+{
+	lpAsm->MakeBaseAddress( ( int )EditData );
+	lpAsm->Push( EBX );
+	lpAsm->Call( ( int )&_CheckPlayerLevel );
+	lpAsm->Test( EAX, EAX );
+	lpAsm->Je( 0x00571A43 );
+	lpAsm->Jmp( 0x00571A04 );
+	lpAsm->SetLastAddress( );
+	lpAsm->MakeBaseAddress( ( int )0x005719FB );
+	lpAsm->Jmp( ( int )EditData );
+	lpAsm->FillNops( 4 );
+	lpAsm->AtualizeAddress( &EditData, true );
 };

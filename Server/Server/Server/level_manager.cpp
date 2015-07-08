@@ -4,7 +4,7 @@
 
 #define LEVEL_CAP ( int )( m_Level.size( ) - 2 )
 
-std::vector<__int64> CLevelManager::m_Level( 0 );
+std::vector<int64> CLevelManager::m_Level( 0 );
 
 int CLevelManager::CheckExpGained( int Exp, int Player )
 {
@@ -49,10 +49,10 @@ void CLevelManager::ReadLevels( )
 
 void CLevelManager::WriteLevels( )
 {
-	LPVOID LevelData = VirtualAlloc( nullptr, m_Level.size( ) * sizeof( __int64 ),
+	LPVOID LevelData = VirtualAlloc( nullptr, m_Level.size( ) * sizeof( int64 ),
 									 MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE );
-	memcpy_s( LevelData, m_Level.size( ) * sizeof( __int64 ),
-			  &m_Level[ 0 ], m_Level.size( ) * sizeof( __int64 ) );
+	memcpy_s( LevelData, m_Level.size( ) * sizeof( int64 ),
+			  &m_Level[ 0 ], m_Level.size( ) * sizeof( int64 ) );
 
 	WriteMemory( 0x00443B05 + 3, ( int )LevelData );
 	WriteMemory( 0x0044A26C + 3, ( int )LevelData );
@@ -94,7 +94,7 @@ void __cdecl _SetLevels( )
 	lpLevel->WriteLevels( );
 };
 
-int CLevelManager::CheckLevelExp( int Level, __int64 Exp )
+int CLevelManager::CheckLevelExp( int Level, int64 Exp )
 {
 	if( Level > 0 && Level <= LEVEL_CAP )
 	{
@@ -104,13 +104,13 @@ int CLevelManager::CheckLevelExp( int Level, __int64 Exp )
 	return FALSE;
 };
 
-int __cdecl _CheckLevelExp( int Level, __int64 Exp )
+int __cdecl _CheckLevelExp( int Level, int64 Exp )
 {
 	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
 	return lpLevel->CheckLevelExp( Level, Exp );
 };
 
-int CLevelManager::GetLevelFromExp( __int64 Exp )
+int CLevelManager::GetLevelFromExp( int64 Exp )
 {
 	for( int i = 0; i < LEVEL_CAP; i++ )
 	{
@@ -122,8 +122,21 @@ int CLevelManager::GetLevelFromExp( __int64 Exp )
 	return 0;
 };
 
-int __cdecl _GetLevelFromExp( __int64 Exp )
+int __cdecl _GetLevelFromExp( int64 Exp )
 {
 	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
 	return lpLevel->GetLevelFromExp( Exp );
+};
+
+int CLevelManager::CheckPlayerLevel( int Player )
+{
+	if( *( int* )( Player + 0xC8 ) > LEVEL_CAP )
+		return TRUE;
+	return FALSE;
+};
+
+int __cdecl _CheckPlayerLevel( int Player )
+{
+	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
+	return lpLevel->CheckPlayerLevel( Player );
 };
