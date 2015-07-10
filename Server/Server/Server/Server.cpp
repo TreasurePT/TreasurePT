@@ -5,11 +5,13 @@
 extern void __cdecl _SetTexts( );
 extern int __cdecl _CheckExpGained( int Exp, int Player );
 extern void __cdecl _BuildItems( );
-extern void __cdecl _ReceivedPacket( s_Packet* Packet, int Player );
+extern void __cdecl _ReceivedPacket( int Packet, int Player );
 extern void __cdecl _SetLevels( );
 extern int __cdecl _CheckLevelExp( int Level, __int64 Exp );
 extern int __cdecl _GetLevelFromExp( __int64 Exp );
 extern int __cdecl _CheckPlayerLevel( int Player );
+extern void __cdecl _GetSoloExp( int MonsterInfo, int CharInfo, int Player );
+extern int __cdecl _GetTotalExp( int Exp, int Level );
 
 class CServer
 {
@@ -20,6 +22,8 @@ public:
 	void CheckLevelExpHook( );
 	void GetLevelFromExpHook( );
 	void CheckPlayerLevelHook( );
+	void GetSoloExpHook( );
+	void GetTotalExpHook( );
 };
 
 void Main( )
@@ -35,6 +39,8 @@ void Main( )
 	lpServer->CheckLevelExpHook( );
 	lpServer->GetLevelFromExpHook( );
 	lpServer->CheckPlayerLevelHook( );
+	lpServer->GetSoloExpHook( );
+	lpServer->GetTotalExpHook( );
 };
 
 void CServer::PacketHook( )
@@ -92,4 +98,22 @@ void CServer::CheckPlayerLevelHook( )
 	lpAsm->Jmp( ( int )EditData );
 	lpAsm->FillNops( 4 );
 	lpAsm->AtualizeAddress( &EditData, true );
+};
+
+void CServer::GetSoloExpHook( )
+{
+	lpAsm->MakeBaseAddress( 0x00560E2C );
+	lpAsm->LeaEax( 0x20 );
+	lpAsm->Push( EAX );
+	lpAsm->Push( EDI );
+	lpAsm->Push( EBX );
+	lpAsm->Call( ( int )&_GetSoloExp );
+	lpAsm->AddEsp( 12 );
+	lpAsm->FillNops( 104 );
+};
+
+void CServer::GetTotalExpHook( )
+{
+	lpAsm->MakeBaseAddress( 0x0054FA40 );
+	lpAsm->Jmp( ( int )&_GetTotalExp );
 };

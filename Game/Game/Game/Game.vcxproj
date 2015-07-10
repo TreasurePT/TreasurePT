@@ -59,7 +59,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "C:\Cliente\game\game.dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "G:\Treasure PT\Game\game\game.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,7 +85,9 @@
     <ClInclude Include="Configuration\global.h" />
     <ClInclude Include="Configuration\stdafx.h" />
     <ClInclude Include="file_manager.h" />
+    <ClInclude Include="level_manager.h" />
     <ClInclude Include="packets.h" />
+    <ClInclude Include="quests.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="translate.h" />
     <ClInclude Include="UI_templates.h" />
@@ -105,7 +107,9 @@
     </ClCompile>
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="packets.cpp" />
+    <ClCompile Include="quests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -16,22 +16,37 @@ void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 
 	if( IntegerOnly )
 	{
-		//SendNumberPacket( Player->GetSocket( ), Packet, *( int* )Packet, TRUE );
+		SendNumberPacket( *( int* )( Player + 0x06DFC ), Packet, *( int* )Packet, TRUE );
 	}
 	else
 	{
-		//SendStringPacket( Player->GetSocket( ), Packet, *( int* )Packet, TRUE );
+		SendStringPacket( *( int* )( Player + 0x06DFC ), Packet, *( int* )Packet, TRUE );
 	};
 	LeaveCriticalSection( &m_Send_Section );
 };
 
-void CPackets::ReceivedPacket( s_Packet* Packet, int Player )
+void CPackets::ReceivedPacket( int Packet, int Player )
 {
-	switch( Packet->opCode )
+	switch( *( int* )( Packet + 4 ) )
 	{
 		case Packet::Connection:
 			{
+				struct s_LoggedOn
+				{
+					int size;
+					int opCode;
 
+					int Level_Cap;
+					float Level_Multiplier;
+					int Level_Base_Exp;
+				} Logged;
+				Logged.size = sizeof( s_LoggedOn );
+				Logged.opCode = 0x20150000;
+				Logged.Level_Cap = LEVEL_CAP;
+				Logged.Level_Multiplier = LEVEL_MULTIPLIER;
+				Logged.Level_Base_Exp = LEVEL_BASE_EXP;
+
+				SendPacket( ( char* )( &Logged ), Player, false );
 			}
 			break;
 	};
@@ -43,7 +58,7 @@ CPackets::~CPackets( )
 	DeleteCriticalSection( &m_Send_Section );
 }
 
-void __cdecl _ReceivedPacket( s_Packet* Packet, int Player )
+void __cdecl _ReceivedPacket( int Packet, int Player )
 {
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
 	lpPacket->ReceivedPacket( Packet, Player );
