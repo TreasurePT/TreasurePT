@@ -7,6 +7,17 @@ CPackets::CPackets( )
 	InitializeCriticalSection( &m_Send_Section );
 }
 
+void CPackets::ForceSend( char* Packet, int Player )
+{
+	EnterCriticalSection( &m_Send_Section );
+	typedef void( __thiscall* t_SendPacket ) ( int, char*, int, int );
+	t_SendPacket SendNumberPacket = ( t_SendPacket )0x00451E80;
+
+	SendNumberPacket( Player, Packet, *( int* )Packet, TRUE );
+
+	LeaveCriticalSection( &m_Send_Section );
+};
+
 void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 {
 	EnterCriticalSection( &m_Send_Section );

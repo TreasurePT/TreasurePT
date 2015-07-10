@@ -98,6 +98,7 @@ int CLevelManager::AddExp( int64 Exp )
 	ReformChar( );
 
 	int CharLevel = *( int* )( *( int* )( 0x00D22894 ) + 0x39DC );
+	int OldLevel = CharLevel;
 
 	//TODO: CheckSum
 
@@ -105,12 +106,16 @@ int CLevelManager::AddExp( int64 Exp )
 	{
 		while( true )
 		{
-			if( CharacterExp >= m_Level[ CharLevel ] && CharacterExp < m_Level[ CharLevel + 1 ] )
+			if( m_Level[ CharLevel ] > CharacterExp && CharacterExp <= m_Level[ CharLevel + 1 ] )
 				break;
 			CharLevel++;
 			if( CharLevel >= LEVEL_CAP )
 				break;
 		};
+
+		if( OldLevel == CharLevel )
+			return ( int )( Exp & 0xFFFFFFFF );
+
 		*( int* )( *( int* )( 0x00D22894 ) + 0x39DC ) = CharLevel;
 		*( int* )( *( int* )( 0x00D22894 ) + 0x3A64 ) = ( int )( m_Level[ CharLevel + 1 ] & 0xFFFFFFFF );
 

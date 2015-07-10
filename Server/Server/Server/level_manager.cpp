@@ -136,7 +136,7 @@ int __cdecl _CheckPlayerLevel( int Player )
 	return lpLevel->CheckPlayerLevel( Player );
 };
 
-void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo, int Player )
+void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo )
 {
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
 	struct s_AddExp
@@ -156,13 +156,13 @@ void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo, int Player )
 	AddExp.player = *( int* )( MonsterInfo + 0x10 );
 	AddExp.checksum = AddExp.player - ( int )( AddExp.exp & 0xFFFFFFFF );
 	*( int* )( CharInfo + 0xAF14 ) += ( int )( AddExp.exp & 0xFFFFFFFF );
-	lpPacket->SendPacket( ( char* )( &AddExp ), Player, true );
+	lpPacket->SendPacket( ( char* )( &AddExp ), CharInfo, true );
 };
 
-void __cdecl _GetSoloExp( int MonsterInfo, int CharInfo, int Player )
+void __cdecl _GetSoloExp( int MonsterInfo, int CharInfo )
 {
 	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
-	lpLevel->GetSoloExp( MonsterInfo, CharInfo, Player );
+	lpLevel->GetSoloExp( MonsterInfo, CharInfo );
 };
 
 int CLevelManager::GetTotalExp( int Exp, int Level )

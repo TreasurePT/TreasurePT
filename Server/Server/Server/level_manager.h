@@ -9,7 +9,7 @@ public:
 	int CheckLevelExp( int Level, int64 Exp );
 	int CheckExpGained( int Exp, int Player );
 	int GetTotalExp( int Exp, int Level );
-	void GetSoloExp( int MonsterInfo, int CharInfo, int Player );
+	void GetSoloExp( int MonsterInfo, int CharInfo );
 	void ReadLevels( );
 	void WriteLevels( );
 private:

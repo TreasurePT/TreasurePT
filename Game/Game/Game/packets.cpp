@@ -53,12 +53,12 @@ void CPackets::ReceivedPacket( int Packet, LPARAM lParam )
 
 					if( *( int* )( Packet + 4 ) == Packet::AddExp )
 					{
-						AddChatMsg( Format( "> Ganhou %s Exp.", strExp.c_str( ) ), 9 );
+						AddChatMsg( Format( "> Você ganhou %s Experiência", strExp.c_str( ) ), 9 );
 						//TODO: Quest Solo.
 					}
 					else
 					{
-						AddChatMsg( Format( "> Ganhou %s Exp em Grupo[ %d% / %d ].",
+						AddChatMsg( Format( "> Você ganhou %s Experiência com Grupo [%d% / %d]",
 							strExp.c_str( ), *( int* )( Packet + 16 ) * 40 + 100, *( int* )( Packet + 16 ) ), 9 );
 						//TODO: Quest Party.
 					};
