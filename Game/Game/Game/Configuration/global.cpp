@@ -19,3 +19,12 @@ void _WriteMemory( int Address, int Value, int NumberOfBytes )
 	}
 	VirtualProtect( ( void* )( Address ), 4, VP, &VP );
 };
+
+const char* _Format( const char* String, ... )
+{
+	static char Aux[ 256 ] = { 0 };
+	va_list Args = { 0 };
+	va_start( Args, String );
+	StringCbVPrintfA( Aux, 256, String, Args );
+	return Aux;
+};

@@ -5,7 +5,7 @@ class CPackets
 public:
 	CPackets( );
 	~CPackets( );
-	void ReceivedPacket( s_Packet* Packet, int Player );
+	void ReceivedPacket( int Packet, int Player );
 	void SendPacket( char* Packet, int Player, bool IntegerOnly );
 private:
 	CRITICAL_SECTION m_Send_Section;
