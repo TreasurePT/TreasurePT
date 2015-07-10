@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include "quests.h"
 
-
-CQuests::CQuests( )
+void CQuests::Teste( DWORD MonsterCode )
 {
-}
+	typedef void( __cdecl* t_AddChatMsg )( LPCSTR, INT );
+	t_AddChatMsg AddChatMsg = ( t_AddChatMsg )0x0062DEB0;
 
-
-CQuests::~CQuests( )
-{
-}
+	AddChatMsg( Format( "> Você matou o monstro com código: %d.", MonsterCode ), 9 );
+};

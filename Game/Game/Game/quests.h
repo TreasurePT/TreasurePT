@@ -2,8 +2,7 @@
 class CQuests
 {
 public:
-	CQuests( );
-	~CQuests( );
+	void Teste( DWORD MonsterCode );
 private:
 	enum Monster
 	{

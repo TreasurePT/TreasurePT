@@ -147,11 +147,22 @@ void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo )
 		int members;
 		int checksum;
 		int player;
+		int didshit; // fez merda
+		int total;
 	} AddExp;
 	AddExp.size = sizeof( s_AddExp );
 	AddExp.opCode = 0x48470031;
 	AddExp.exp = GetTotalExp( *( int* )( MonsterInfo + 0x3ABC ),
 							  *( int* )( MonsterInfo + 0x3944 ) - *( int* )( CharInfo + 0x15C ) );
+
+	AddExp.didshit = FALSE;
+	AddExp.total = NULL;
+	if( *( int* )( MonsterInfo + 0x3ABC ) != AddExp.exp )
+	{
+		AddExp.didshit = TRUE;
+		AddExp.total = *( int* )( MonsterInfo + 0x3ABC );
+	};
+
 	AddExp.members = 0;
 	AddExp.player = *( int* )( MonsterInfo + 0x10 );
 	AddExp.checksum = AddExp.player - ( int )( AddExp.exp & 0xFFFFFFFF );
