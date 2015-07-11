@@ -17,6 +17,42 @@ CTranslate::CTranslate( )
 	};
 };
 
+void CTranslate::DumpTranslate( int Address, const char* Text, ... )
+{
+	size_t Length = 0;
+	while( true )
+	{
+		if( *( BYTE* )( Address + Length ) == 0 )
+			if( *( BYTE* )( Address + Length + 1 ) != 0 )
+				break;
+		Length++;
+	};
+	Length++;
+
+	char Buffer[ 1024 ] = { 0 };
+
+	va_list Args = { 0 };
+	va_start( Args, Text );
+
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
+	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		size_t Size = 0;
+		StringCbLengthA( Buffer, 1024, &Size );
+
+		VirtualProtect( ( LPVOID )Address, Length, PAGE_EXECUTE_READWRITE, &Old_Protect );
+		StringCbCopyA( ( char* )Address, Length, Buffer );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( LPVOID )Address, Length, New_Protect, &Old_Protect );
+
+		goto End;
+	};
+
+End:
+	va_end( Args );
+	return;
+};
+
 void CTranslate::Translate( int Address, const char* Text, ... )
 {
 	char Buffer[ 1024 ] = { 0 };
@@ -46,7 +82,7 @@ void CTranslate::SetTexts( )
 {
 	//Mensagem ao logar
 	Translate( 0x006E2A1C, "> Seja Bem Vindo ao Treasure Priston Tale > Qualquer dúvida, acesse nosso site:      > www.treasurept.com.br" );
-	
+
 	//Mensagens
 	Translate( 0x006E29F8, "Você recebeu um item: %%s" );
 

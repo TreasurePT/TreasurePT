@@ -141,32 +141,21 @@ void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo )
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
 	struct s_AddExp
 	{
-		int size;
-		int opCode;
-		int64 exp;
-		int members;
-		int checksum;
-		int player;
-		int didshit; // fez merda
-		int total;
+		int Size;
+		int OpCode;
+		int64 Experience;
+		int Members;
+		int CheckSum;
+		int PlayerSerial;
 	} AddExp;
-	AddExp.size = sizeof( s_AddExp );
-	AddExp.opCode = 0x48470031;
-	AddExp.exp = GetTotalExp( *( int* )( MonsterInfo + 0x3ABC ),
+	AddExp.Size = sizeof( s_AddExp );
+	AddExp.OpCode = 0x48470031;
+	AddExp.Experience = GetTotalExp( *( int* )( MonsterInfo + 0x3ABC ),
 							  *( int* )( MonsterInfo + 0x3944 ) - *( int* )( CharInfo + 0x15C ) );
-
-	AddExp.didshit = FALSE;
-	AddExp.total = NULL;
-	if( *( int* )( MonsterInfo + 0x3ABC ) != AddExp.exp )
-	{
-		AddExp.didshit = TRUE;
-		AddExp.total = *( int* )( MonsterInfo + 0x3ABC );
-	};
-
-	AddExp.members = 0;
-	AddExp.player = *( int* )( MonsterInfo + 0x10 );
-	AddExp.checksum = AddExp.player - ( int )( AddExp.exp & 0xFFFFFFFF );
-	*( int* )( CharInfo + 0xAF14 ) += ( int )( AddExp.exp & 0xFFFFFFFF );
+	AddExp.Members = 0;
+	AddExp.PlayerSerial = *( int* )( MonsterInfo + 0x10 );
+	AddExp.CheckSum = AddExp.PlayerSerial - ( int )( AddExp.Experience & 0xFFFFFFFF );
+	*( int* )( CharInfo + 0xAF14 ) += ( int )( AddExp.Experience & 0xFFFFFFFF );
 	lpPacket->SendPacket( ( char* )( &AddExp ), CharInfo, true );
 };
 

@@ -7,7 +7,6 @@ public:
 	~CPackets( );
 	void ReceivedPacket( int Packet, int Player );
 	void SendPacket( char* Packet, int Player, bool IntegerOnly );
-	void ForceSend( char* Packet, int Player );
 private:
 	CRITICAL_SECTION m_Send_Section;
 	char m_Buffer[ 256 ];

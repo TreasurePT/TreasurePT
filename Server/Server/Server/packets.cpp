@@ -7,17 +7,6 @@ CPackets::CPackets( )
 	InitializeCriticalSection( &m_Send_Section );
 }
 
-void CPackets::ForceSend( char* Packet, int Player )
-{
-	EnterCriticalSection( &m_Send_Section );
-	typedef void( __thiscall* t_SendPacket ) ( int, char*, int, int );
-	t_SendPacket SendNumberPacket = ( t_SendPacket )0x00451E80;
-
-	SendNumberPacket( Player, Packet, *( int* )Packet, TRUE );
-
-	LeaveCriticalSection( &m_Send_Section );
-};
-
 void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 {
 	EnterCriticalSection( &m_Send_Section );
@@ -38,21 +27,23 @@ void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 
 void CPackets::ReceivedPacket( int Packet, int Player )
 {
+	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "Logs.log" );
+	lpFile->Log( "Operation Code = %d.", *( int* )( Packet + 4 ) );
 	switch( *( int* )( Packet + 4 ) )
 	{
 		case Packet::Connection:
 			{
 				struct s_LoggedOn
 				{
-					int size;
-					int opCode;
+					int Size;
+					int OpCode;
 
 					int Level_Cap;
 					float Level_Multiplier;
 					int Level_Base_Exp;
 				} Logged;
-				Logged.size = sizeof( s_LoggedOn );
-				Logged.opCode = 0x20150000;
+				Logged.Size = sizeof( s_LoggedOn );
+				Logged.OpCode = 0x20150000;
 				Logged.Level_Cap = LEVEL_CAP;
 				Logged.Level_Multiplier = LEVEL_MULTIPLIER;
 				Logged.Level_Base_Exp = LEVEL_BASE_EXP;
@@ -61,7 +52,6 @@ void CPackets::ReceivedPacket( int Packet, int Player )
 			}
 			break;
 	};
-
 };
 
 CPackets::~CPackets( )

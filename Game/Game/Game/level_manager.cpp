@@ -7,35 +7,32 @@ std::vector<int64> CLevelManager::m_Level( 0 );
 
 #define LEVEL_CAP ( int )( m_Level.size( ) - 2 )
 
-void CLevelManager::AddExpSystem( int Packet )
+int CLevelManager::AddExpSystem( int Packet )
 {
+	std::shared_ptr<CQuests> lpQuest = std::make_shared<CQuests>( );
 	typedef DWORD( __cdecl* t_FindAutoPlayer ) ( DWORD );
 	t_FindAutoPlayer FindAutoPlayer = ( t_FindAutoPlayer )0x0062D820;
 	typedef void( __cdecl* t_AddChatMsg )( LPCSTR, INT );
 	t_AddChatMsg AddChatMsg = ( t_AddChatMsg )0x0062DEB0;
 
-	s_AddExp* AddExp = nullptr;
-	memcpy_s( &AddExp, sizeof( s_AddExp ),
-			  ( LPVOID )Packet, sizeof( s_AddExp ) );
+	s_AddExp* AddExp = ( s_AddExp* )&Packet;
 
-	DWORD Char = FindAutoPlayer( *( DWORD* )( AddExp->player ) );
+	DWORD Char = FindAutoPlayer( *( DWORD* )( AddExp->PlayerSerial ) );
 
 	if( Char )
 	{
-		if( AddExp->player - ( AddExp->exp & 0xFFFFFFFF ) != AddExp->checksum )
-		{
-			return;
-		};
+		if( AddExp->PlayerSerial - ( AddExp->Experience & 0xFFFFFFFF ) != AddExp->CheckSum )
+			return FALSE;
 
 		//TODO: CheckServerExp
 
-		INT64 GainedExp = AddExp->exp;
-		DWORD LowBitExp = AddExperience( GainedExp );
-
-		*( DWORD* )( Char + 0x2B0 ) += LowBitExp;
-
+		INT64 GainedExp = AddExp->Experience;
 		DWORD Monster_Code = *( DWORD* )( Char + 0x3A74 );
 
+		if( *( int* )( Packet + 24 ) - ( int )( ( *( int64* )( Packet + 8 ) & 0xFFFFFFFF ) ) != *( int* )( Packet + 20 ) )
+			return FALSE;
+
+		DWORD LowBitExp = AddExperience( GainedExp );
 		std::string strExp( Format( "%d", LowBitExp ) );
 
 		for( int i = strExp.size( ) - 3; i > 0; i -= 3 )
@@ -43,21 +40,23 @@ void CLevelManager::AddExpSystem( int Packet )
 			strExp.insert( strExp.begin( ) + i, ',' );
 		}
 
-		if( AddExp->opCode == 0x48470031 )
+		if( AddExp->OpCode == 0x48470031 )
 		{
 			AddChatMsg( Format( "> Ganhou: %s de Experiência->", strExp.c_str( ) ), 9 );
-			std::shared_ptr<CQuests> lpQuest = std::make_shared<CQuests>( );
 			lpQuest->Teste( Monster_Code );
 		}
 		else
 		{
 			AddChatMsg( Format( "> Ganhou: %s de Experiência em Grupo[ %d% / %d ]->",
-				strExp.c_str( ), ( AddExp->members - 1 ) * 40 + 100,
-				AddExp->members ), 9 );
-			//TODO: Quest Party->
+				strExp.c_str( ), ( AddExp->Members - 1 ) * 40 + 100,
+				AddExp->Members ), 9 );
+			//TODO: Quest Party.
 		};
 
+		*( DWORD* )( Char + 0x2B0 ) += LowBitExp;
 	};
+
+	return TRUE;
 };
 
 
