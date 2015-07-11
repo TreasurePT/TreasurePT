@@ -7,75 +7,6 @@ int CTranslate::m_Spacements = 0;
 int CSkillTranslate::m_Address_Text = 0;
 int CSkillTranslate::m_Spacements = 0;
 
-int CDoubleTextTranslate::m_Address_Text = 0;
-int CDoubleTextTranslate::m_Spacements = 0;
-
-CDoubleTextTranslate::CDoubleTextTranslate( )
-{
-	if( !m_Address_Text )
-	{
-		m_Address_Text = ( int )( 0x0098A980 );
-		m_Spacements = 0;
-		SetTexts( );
-	};
-};
-
-void CDoubleTextTranslate::Text1( const char* Text, ... )
-{
-	char Buffer[ 1024 ] = { 0 };
-
-	va_list Args = { 0 };
-	va_start( Args, Text );
-
-	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
-	{
-		DWORD Old_Protect = 0, New_Protect = 0;
-		VirtualProtect( ( void* )( m_Address_Text + m_Spacements ), 0x9C, PAGE_READWRITE, &Old_Protect );
-		lstrcpyA( ( char* )( m_Address_Text + m_Spacements ), Buffer );
-		New_Protect = Old_Protect;
-		VirtualProtect( ( void* )( m_Address_Text + m_Spacements ), 0x9C, New_Protect, &Old_Protect );
-
-		goto End;
-	};
-
-End:
-	va_end( Args );
-	return;
-};
-
-void CDoubleTextTranslate::Text2( const char* Text, ... )
-{
-	char Buffer[ 1024 ] = { 0 };
-
-	va_list Args = { 0 };
-	va_start( Args, Text );
-
-	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
-	{
-		DWORD Old_Protect = 0, New_Protect = 0;
-		VirtualProtect( ( void* )( m_Address_Text + m_Spacements + 32 ), 0x9C, PAGE_READWRITE, &Old_Protect );
-		lstrcpyA( ( char* )( m_Address_Text + m_Spacements + 32 ), Buffer );
-		New_Protect = Old_Protect;
-		VirtualProtect( ( void* )( m_Address_Text + m_Spacements + 32 ), 0x9C, New_Protect, &Old_Protect );
-		m_Spacements += 0x9C;
-
-		goto End;
-	};
-
-End:
-	va_end( Args );
-	return;
-};
-
-void CDoubleTextTranslate::SetTexts( )
-{
-	Text1( "Quantas Poções você" );
-	Text2( "deseja comprar?" );
-
-	//Text1( "" );
-	//Text2( "" );
-};
-
 CSkillTranslate::CSkillTranslate( )
 {
 	if( !m_Address_Text )
@@ -1310,11 +1241,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x00743478, "Desafio 91" );
 	Translate( 0x00761E8D, "Desafio 92" );
 	Translate( 0x007715DF, "Desafio 93" );
-	Translate( 0x00784DAE, "Desafio 94" );*/
-
-	//Textos Duplos
-	std::shared_ptr<CDoubleTextTranslate> lpTextTranslate = std::make_shared<CDoubleTextTranslate>( );
-	
+	Translate( 0x00784DAE, "Desafio 94" );*/	
 };
 
 void __cdecl _SetTexts( )
