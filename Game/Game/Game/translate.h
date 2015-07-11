@@ -19,14 +19,3 @@ public:
 private:
 	static int m_Address_Text, m_Spacements;
 };
-
-class CDoubleTextTranslate
-{
-public:
-	CDoubleTextTranslate( );
-	void Text1( const char* Text, ... );
-	void Text2( const char* Text, ... );
-	void SetTexts( );
-private:
-	static int m_Address_Text, m_Spacements;
-};
