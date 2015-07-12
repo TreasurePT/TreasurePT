@@ -484,6 +484,42 @@ void CSkillTranslate::SetTexts( )
 	Description( "Aumenta a Esquiva em 20%%" );
 };
 
+void CTranslate::DumpTranslate( int Address, const char* Text, ... )
+{
+	size_t Length = 0;
+	while( true )
+	{
+		if( *( BYTE* )( Address + Length ) == 0 )
+			if( *( BYTE* )( Address + Length + 1 ) != 0 )
+				break;
+		Length++;
+	};
+	Length++;
+
+	char Buffer[ 1024 ] = { 0 };
+
+	va_list Args = { 0 };
+	va_start( Args, Text );
+
+	if( StringCbVPrintfA( Buffer, 1024, Text, Args ) >= 0 )
+	{
+		DWORD Old_Protect = 0, New_Protect = 0;
+		size_t Size = 0;
+		StringCbLengthA( Buffer, 1024, &Size );
+
+		VirtualProtect( ( LPVOID )Address, Length, PAGE_EXECUTE_READWRITE, &Old_Protect );
+		StringCbCopyA( ( char* )Address, Length, Buffer );
+		New_Protect = Old_Protect;
+		VirtualProtect( ( LPVOID )Address, Length, New_Protect, &Old_Protect );
+
+		goto End;
+	};
+
+End:
+	va_end( Args );
+	return;
+};
+
 CTranslate::CTranslate( )
 {
 	if( !m_Address_Text )
@@ -1241,7 +1277,11 @@ void CTranslate::SetTexts( )
 	Translate( 0x00743478, "Desafio 91" );
 	Translate( 0x00761E8D, "Desafio 92" );
 	Translate( 0x007715DF, "Desafio 93" );
-	Translate( 0x00784DAE, "Desafio 94" );*/	
+	Translate( 0x00784DAE, "Desafio 94" );*/
+
+	//Textos
+	DumpTranslate( 0x00985D30, "Não há espaço suficiente no Inventário" );
+
 };
 
 void __cdecl _SetTexts( )

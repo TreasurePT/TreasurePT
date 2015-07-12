@@ -13,6 +13,7 @@ void CAssembly::AtualizeAddress( void* Address, bool Last )
 	if( Last )
 	{
 		FillNops( 4, m_LastAddress );
+		m_LastAddress += 4;
 		*( int* )Address = ( int )m_LastAddress;
 	}
 	else
@@ -328,5 +329,30 @@ void CAssembly::LeaEax( int Value )
 		m_VP = m_VP;
 		VirtualProtect( ( void* )( m_Address ), 7, m_VP, &m_VP );
 		m_Address += 7;
+	};
+};
+
+void CAssembly::ImulEaxEax( int Value )
+{
+	if( Value > 127 || Value < -128 )
+	{
+		VirtualProtect( ( void* )( m_Address ), 6, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( WORD* )( m_Address ) = 0xC069;
+		*( DWORD* )( m_Address + 2 ) = Value;
+		m_VP = m_VP;
+		VirtualProtect( ( void* )( m_Address ), 6, m_VP, &m_VP );
+		m_Address += 6;
+	};
+};
+
+void CAssembly::MovEax( int Var)
+{
+	if( Var == ESI )
+	{
+		VirtualProtect( ( void* )( m_Address ), 2, PAGE_EXECUTE_READWRITE, &m_VP );
+		*( WORD* )( m_Address ) = 0xC68B;
+		m_VP = m_VP;
+		VirtualProtect( ( void* )( m_Address ), 2, m_VP, &m_VP );
+		m_Address += 2;
 	};
 };

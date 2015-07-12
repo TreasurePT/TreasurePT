@@ -28,7 +28,7 @@ void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 void CPackets::ReceivedPacket( int Packet, int Player )
 {
 	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "Logs.log" );
-	lpFile->Log( "Operation Code = %d.", *( int* )( Packet + 4 ) );
+	lpFile->Log( "Operation Code = %X.", *( int* )( Packet + 4 ) );
 	switch( *( int* )( Packet + 4 ) )
 	{
 		case Packet::Connection:

@@ -15,9 +15,9 @@ int CLevelManager::AddExpSystem( int Packet )
 	typedef void( __cdecl* t_AddChatMsg )( LPCSTR, INT );
 	t_AddChatMsg AddChatMsg = ( t_AddChatMsg )0x0062DEB0;
 
-	s_AddExp* AddExp = ( s_AddExp* )&Packet;
-
-	DWORD Char = FindAutoPlayer( *( DWORD* )( AddExp->PlayerSerial ) );
+	s_AddExp* AddExp = ( s_AddExp* )Packet;
+	
+	DWORD Char = FindAutoPlayer( AddExp->PlayerSerial );
 
 	if( Char )
 	{
