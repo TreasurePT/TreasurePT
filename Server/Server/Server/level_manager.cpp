@@ -139,19 +139,11 @@ int __cdecl _CheckPlayerLevel( int Player )
 void CLevelManager::GetSoloExp( int MonsterInfo, int CharInfo )
 {
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
-	struct s_AddExp
-	{
-		int Size;
-		int OpCode;
-		int64 Experience;
-		int Members;
-		int CheckSum;
-		int PlayerSerial;
-	} AddExp;
+	s_AddExp AddExp = { 0 };
 	AddExp.Size = sizeof( s_AddExp );
 	AddExp.OpCode = 0x48470031;
 	AddExp.Experience = GetTotalExp( *( int* )( MonsterInfo + 0x3ABC ),
-							  *( int* )( MonsterInfo + 0x3944 ) - *( int* )( CharInfo + 0x15C ) );
+									 *( int* )( MonsterInfo + 0x3944 ) - *( int* )( CharInfo + 0x15C ) );
 	AddExp.Members = 0;
 	AddExp.PlayerSerial = *( int* )( MonsterInfo + 0x10 );
 	AddExp.CheckSum = AddExp.PlayerSerial - ( int )( AddExp.Experience & 0xFFFFFFFF );
@@ -197,4 +189,89 @@ int __cdecl _GetTotalExp( int Exp, int Level )
 {
 	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
 	return lpLevel->GetTotalExp( Exp, Level );
+};
+
+void CLevelManager::GetPartyExp( int MonsterInfo, int PartyInfo )
+{
+	if( *( int* )( PartyInfo + 0xAFAC ) != TRUE || *( int* )( PartyInfo + 0x6DFC ) == NULL )
+		return;
+
+	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
+	const int MaximumDistance = 0x144000;
+	struct s_Player
+	{
+		DWORD Serial;
+		DWORD PositionX;
+		DWORD PositionZ;
+	};
+
+	struct s_PartyInfo
+	{
+		DWORD MonsterExp;
+		DWORD MonsterLevel;
+		DWORD AvgLevel;
+		DWORD TotalMembers;
+		DWORD Boost;
+		DWORD Distance;
+		DWORD DistanceX;
+		DWORD DistanceZ;
+		DWORD64 GainedExp;
+		s_Player Players[ 6 ];
+	} Party = { 0 };
+
+	Party.AvgLevel = *( DWORD* )( PartyInfo + 0xAFE8 );
+	Party.MonsterLevel = *( DWORD* )( MonsterInfo + 0x3944 );
+	Party.MonsterExp = *( DWORD* )( MonsterInfo + 0x3ABC );
+	Party.TotalMembers = *( DWORD* )( PartyInfo + 0xAFEC );
+	Party.MonsterExp = GetTotalExp( Party.MonsterExp, Party.AvgLevel - Party.MonsterLevel );
+	if( !Party.MonsterExp )
+		return;
+	Party.GainedExp = ( INT64 )( Party.MonsterExp *
+								 ( FLOAT )( ( ( ( 40 * ( Party.TotalMembers - 1 ) ) + 100 ) /
+								 Party.TotalMembers ) / 100 ) );
+
+	s_AddExp AddExp = { 0 };
+
+	AddExp.Size = sizeof( s_AddExp );
+	AddExp.OpCode = 0x48470029;
+	AddExp.Experience = Party.GainedExp;
+	AddExp.Members = Party.TotalMembers;
+	AddExp.PlayerSerial = *( int* )( MonsterInfo + 0x10 );
+	AddExp.CheckSum = AddExp.PlayerSerial - ( INT )( AddExp.Experience & 0xFFFFFFFF );
+
+	for( int i = 0; i < 6; i++ )
+	{
+		Party.Players[ i ].Serial = PartyInfo + ( i * 0x0AFB8 );
+		Party.Players[ i ].PositionX = *( DWORD* )( Party.Players[ i ].Serial + 0x80 );
+		Party.Players[ i ].PositionZ = *( DWORD* )( Party.Players[ i ].Serial + 0x88 );
+	};
+
+	int Leader = 0;
+	for( int i = 0; i < 6; i++ )
+	{
+		if( Party.Players[ i ].Serial )
+		{
+			if( Party.Players[ i ].Serial == PartyInfo )
+			{
+				Leader = i;
+				lpPacket->SendPacket( ( char* )( &AddExp ), Party.Players[ i ].Serial, true );
+			}
+			else
+			{
+				Party.DistanceX = ( Party.Players[ Leader ].PositionX - Party.Players[ i ].PositionX ) >> 8;
+				Party.DistanceZ = ( Party.Players[ Leader ].PositionZ - Party.Players[ i ].PositionZ ) >> 8;
+				Party.Distance = Party.DistanceX * Party.DistanceX + Party.DistanceZ * Party.DistanceZ;
+
+				if( Party.Distance < 0x144000 )
+					lpPacket->SendPacket( ( char* )( &AddExp ), Party.Players[ i ].Serial, true );
+
+			};
+		};
+	};
+};
+
+void __cdecl _GetPartyExp( int MonsterInfo, int PartyInfo )
+{
+	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
+	lpLevel->GetPartyExp( MonsterInfo, PartyInfo );
 };

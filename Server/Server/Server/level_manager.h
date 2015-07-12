@@ -3,6 +3,16 @@
 
 class CLevelManager
 {
+private:
+	struct s_AddExp
+	{
+		int Size;
+		int OpCode;
+		int64 Experience;
+		int Members;
+		int CheckSum;
+		int PlayerSerial;
+	};
 public:
 	int CheckPlayerLevel( int Player );
 	int GetLevelFromExp( int64 Exp );
@@ -10,6 +20,7 @@ public:
 	int CheckExpGained( int Exp, int Player );
 	int GetTotalExp( int Exp, int Level );
 	void GetSoloExp( int MonsterInfo, int CharInfo );
+	void GetPartyExp( int MonsterInfo, int PartyInfo );
 	void ReadLevels( );
 	void WriteLevels( );
 private:
