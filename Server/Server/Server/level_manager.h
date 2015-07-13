@@ -13,6 +13,12 @@ private:
 		int CheckSum;
 		int PlayerSerial;
 	};
+	struct s_Player
+	{
+		DWORD Serial;
+		DWORD PositionX;
+		DWORD PositionZ;
+	};
 public:
 	int CheckPlayerLevel( int Player );
 	int GetLevelFromExp( int64 Exp );
@@ -21,6 +27,7 @@ public:
 	int GetTotalExp( int Exp, int Level );
 	void GetSoloExp( int MonsterInfo, int CharInfo );
 	void GetPartyExp( int MonsterInfo, int PartyInfo );
+	bool GetDistance( s_Player* Killer, s_Player* Player );
 	void ReadLevels( );
 	void WriteLevels( );
 private:

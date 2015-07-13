@@ -12,6 +12,7 @@ extern int __cdecl _GetLevelFromExp( __int64 Exp );
 extern int __cdecl _CheckPlayerLevel( int Player );
 extern void __cdecl _GetSoloExp( int MonsterInfo, int CharInfo );
 extern int __cdecl _GetTotalExp( int Exp, int Level );
+extern void __cdecl _GetPartyExp( int MonsterInfo, int PartyInfo );
 
 class CServer
 {
@@ -24,6 +25,7 @@ public:
 	void CheckPlayerLevelHook( );
 	void GetSoloExpHook( );
 	void GetTotalExpHook( );
+	void GetPartyExpHook( );
 };
 
 void Main( )
@@ -41,6 +43,7 @@ void Main( )
 	lpServer->CheckPlayerLevelHook( );
 	lpServer->GetSoloExpHook( );
 	lpServer->GetTotalExpHook( );
+	lpServer->GetPartyExpHook( );
 };
 
 void CServer::PacketHook( )
@@ -114,4 +117,14 @@ void CServer::GetTotalExpHook( )
 {
 	lpAsm->MakeBaseAddress( 0x0054FA40 );
 	lpAsm->Jmp( ( int )&_GetTotalExp );
+};
+
+void CServer::GetPartyExpHook( )
+{
+	lpAsm->MakeBaseAddress( 0x00575020 );
+	lpAsm->Push( ECX );
+	lpAsm->PushPtrEsp( 0x4 );
+	lpAsm->Call( ( int )&_GetPartyExp );
+	lpAsm->AddEsp( 8 );
+	lpAsm->Retn( 8 );
 };
