@@ -20,6 +20,7 @@ public:
 	void CheckLevelExpHook( );
 	void GetLevelFromExpHook( );
 	void AddExpHook( );
+	void FixPartyHook( );
 };
 
 void Main( )
@@ -35,6 +36,7 @@ void Main( )
 	lpGame->CheckLevelExpHook( );
 	lpGame->GetLevelFromExpHook( );
 	lpGame->AddExpHook( );
+	lpGame->FixPartyHook( );
 };
 
 void CGame::WidescreenHook( )
@@ -94,4 +96,17 @@ void CGame::AddExpHook( )
 {
 	lpAsm->MakeBaseAddress( 0x00461D80 );
 	lpAsm->Jmp( ( int )&_AddExp );
+};
+
+void CGame::FixPartyHook( )
+{
+	lpAsm->MakeBaseAddress( ( int )EditData );
+	lpAsm->MovEax( ESI );
+	lpAsm->ImulEaxEax( 0x0B4 );
+	lpAsm->Retn( );
+	lpAsm->SetLastAddress( );
+	lpAsm->MakeBaseAddress( ( int )0x63e300 );
+	lpAsm->Call( ( int )EditData );
+	lpAsm->FillNops( 1 );
+	lpAsm->AtualizeAddress( &EditData, true );
 };

@@ -30,6 +30,8 @@ public:
 	void FillNops( int NumberOfNops, int Address = 0 );
 	void PushPtrEsp( int Value );
 	void LeaEax( int Value );
+	void ImulEaxEax( int Value );
+	void MovEax( int Var );
 	CAssembly( ) { };
 	CAssembly( int Address ) { MakeBaseAddress( Address ); };
 protected:
