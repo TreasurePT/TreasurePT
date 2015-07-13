@@ -218,9 +218,8 @@ void CLevelManager::GetPartyExp( int MonsterInfo, int PartyInfo )
 	Party.MonsterExp = GetTotalExp( Party.MonsterExp, Party.AvgLevel - Party.MonsterLevel );
 	if( !Party.MonsterExp )
 		return;
-	Party.GainedExp = ( INT64 )( Party.MonsterExp *
-								 ( FLOAT )( ( ( ( 40 * ( Party.TotalMembers - 1 ) ) + 100 ) /
-								 Party.TotalMembers ) / 100 ) );
+	Party.Boost = ( INT )( Party.MonsterExp * ( 40 * ( Party.TotalMembers - 1 ) ) + 100 );
+	Party.GainedExp = ( INT64 )( ( Party.Boost * Party.GainedExp ) / 100 );
 
 	s_AddExp AddExp = { 0 };
 
