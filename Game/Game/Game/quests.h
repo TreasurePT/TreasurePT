@@ -1,9 +1,40 @@
 #pragma once
-class CQuests
+#include "UI_templates.h"
+
+#define ActiveQuestPointer ( int* )0x035F38E8
+
+
+class CQuests : public CUITemplates
 {
-public:
-	void Teste( DWORD MonsterCode );
 private:
+	typedef int( __thiscall* t_HasActiveQuest )( int* ClassPointer );
+	t_HasActiveQuest HasActiveQuest = ( t_HasActiveQuest )0x00490290;
+	typedef int( __cdecl* t_CheckActiveQuest )( int QuestID );
+	t_CheckActiveQuest CheckActiveQuest = ( t_CheckActiveQuest )0x004E0F90;
+	struct s_Quest
+	{
+		int Code;
+		int State;
+	};
+	POINT QuestBox = { 50, 45 };
+	POINT QuestDim = { 9, 10 };
+public:
+	CQuests( ) { Clear( m_QuestPath, 512 ); };
+	typedef CUITemplates UI;
+	void SetQuestPath( const char* SinName );
+	void ShowQuestInfo( DWORD QuestState );
+	void QuestManager( DWORD NpcCode );
+private:
+	enum Quest
+	{
+		Teste = 1,
+
+	};
+	enum Npc
+	{
+		Teste = 1,
+
+	};
 	enum Monster
 	{
 		Coelho = 42,
@@ -54,4 +85,5 @@ private:
 		Omega = 13,
 		Punhos_de_Aço = 12
 	};
+	char m_QuestPath[ 512 ];
 };

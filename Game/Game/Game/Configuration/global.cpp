@@ -28,3 +28,11 @@ const char* _Format( const char* String, ... )
 	StringCbVPrintfA( Aux, 256, String, Args );
 	return Aux;
 };
+
+void _Clear( char* String, size_t Size )
+{
+	for( int i = 0; i < Size; i++ )
+	{
+		String[ i ] = 0;
+	};
+};
