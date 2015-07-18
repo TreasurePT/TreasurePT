@@ -197,14 +197,6 @@ void CLevelManager::GetPartyExp( int MonsterInfo, int PartyInfo )
 		return;
 
 	std::shared_ptr<CPackets> lpPacket = std::make_shared<CPackets>( );
-	const int MaximumDistance = 0x144000;
-	struct s_Player
-	{
-		DWORD Serial;
-		DWORD PositionX;
-		DWORD PositionZ;
-	};
-
 	struct s_PartyInfo
 	{
 		DWORD MonsterExp;
@@ -226,9 +218,8 @@ void CLevelManager::GetPartyExp( int MonsterInfo, int PartyInfo )
 	Party.MonsterExp = GetTotalExp( Party.MonsterExp, Party.AvgLevel - Party.MonsterLevel );
 	if( !Party.MonsterExp )
 		return;
-	Party.GainedExp = ( INT64 )( Party.MonsterExp *
-								 ( FLOAT )( ( ( ( 40 * ( Party.TotalMembers - 1 ) ) + 100 ) /
-								 Party.TotalMembers ) / 100 ) );
+	Party.Boost = ( INT )( Party.MonsterExp * ( 40 * ( Party.TotalMembers - 1 ) ) + 100 );
+	Party.GainedExp = ( INT64 )( ( Party.Boost * Party.GainedExp ) / 100 );
 
 	s_AddExp AddExp = { 0 };
 
@@ -239,32 +230,28 @@ void CLevelManager::GetPartyExp( int MonsterInfo, int PartyInfo )
 	AddExp.PlayerSerial = *( int* )( MonsterInfo + 0x10 );
 	AddExp.CheckSum = AddExp.PlayerSerial - ( INT )( AddExp.Experience & 0xFFFFFFFF );
 
+	int Killer = 0;
 	for( int i = 0; i < 6; i++ )
 	{
 		Party.Players[ i ].Serial = PartyInfo + ( i * 0x0AFB8 );
+		if( Party.Players[ i ].Serial == PartyInfo )
+			Killer = i;
 		Party.Players[ i ].PositionX = *( DWORD* )( Party.Players[ i ].Serial + 0x80 );
 		Party.Players[ i ].PositionZ = *( DWORD* )( Party.Players[ i ].Serial + 0x88 );
 	};
 
-	int Leader = 0;
 	for( int i = 0; i < 6; i++ )
 	{
 		if( Party.Players[ i ].Serial )
 		{
 			if( Party.Players[ i ].Serial == PartyInfo )
 			{
-				Leader = i;
 				lpPacket->SendPacket( ( char* )( &AddExp ), Party.Players[ i ].Serial, true );
 			}
 			else
 			{
-				Party.DistanceX = ( Party.Players[ Leader ].PositionX - Party.Players[ i ].PositionX ) >> 8;
-				Party.DistanceZ = ( Party.Players[ Leader ].PositionZ - Party.Players[ i ].PositionZ ) >> 8;
-				Party.Distance = Party.DistanceX * Party.DistanceX + Party.DistanceZ * Party.DistanceZ;
-
-				if( Party.Distance < 0x144000 )
+				if( !GetDistance( &Party.Players[ Killer ], &Party.Players[ i ] ) )
 					lpPacket->SendPacket( ( char* )( &AddExp ), Party.Players[ i ].Serial, true );
-
 			};
 		};
 	};
@@ -274,4 +261,22 @@ void __cdecl _GetPartyExp( int MonsterInfo, int PartyInfo )
 {
 	std::shared_ptr<CLevelManager> lpLevel = std::make_shared<CLevelManager>( );
 	lpLevel->GetPartyExp( MonsterInfo, PartyInfo );
+};
+
+bool CLevelManager::GetDistance( s_Player* Killer, s_Player* Player )
+{
+	struct s_Distance
+	{
+		DWORD PositionX;
+		DWORD PositionZ;
+		DWORD Total;
+	} Distance = { 0 };
+
+	Distance.PositionX = ( Killer->PositionX - Player->PositionX ) >> 8;
+	Distance.PositionZ = ( Killer->PositionZ - Player->PositionZ ) >> 8;
+	Distance.Total = Distance.PositionX * Distance.PositionX + Distance.PositionZ * Distance.PositionZ;
+
+	if( Distance.Total < 0x144000 )
+		return false;
+	return true;
 };
