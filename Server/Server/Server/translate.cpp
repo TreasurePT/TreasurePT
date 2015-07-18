@@ -220,7 +220,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x0056CBC4, "Vida: %%d %%d %%d %%d - Mana: %%d %%d %%d - Estamina: %%d %%d %%d %%d" );
 	Translate( 0x0056CB05, "/servidor_pocoes" );
 	Translate( 0x0056C9E6, "/cabecao" );
-	Translate( 0x0056C901, "/item_inventorio" );
+	Translate( 0x0056C901, "/item_inventario" );
 	Translate( 0x0056C89C, "/item_chao" );
 	Translate( 0x0056C834, "Ataque: %%d - Tempo Restante: 1 minuto" );
 	Translate( 0x0056C7F9, "/desconhecido_item" );
