@@ -729,7 +729,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x004ACB07, "/desafio_amanda" );
 	Translate( 0x004ACAD3, "GM: Desafio 100 completo" );
 	Translate( 0x004ACA2C, "/completar_desafio_100" );
-	Translate( 0x004AC9C5, "GM: Itens removidos do Inventório" );
+	Translate( 0x004AC9C5, "GM: Itens removidos do Inventário" );
 	Translate( 0x004AC96F, "/remover_itens" );
 	Translate( 0x004AC932, "/hoho" );
 	Translate( 0x008405E4, "GM: Eu sou muito legal!" );
@@ -1281,7 +1281,59 @@ void CTranslate::SetTexts( )
 
 	//Textos
 	DumpTranslate( 0x00985D30, "Não há espaço suficiente no Inventário" );
-
+	DumpTranslate( 0x0098, "Não há peso suficiente no Inventário" );
+	DumpTranslate( 0x0098, "Você ainda não pode usar esse item" );
+	DumpTranslate( 0x0098, "Você não tem Ouro suficiente" );
+	DumpTranslate( 0x0098, "Algo está errado. Não é possível continuar" );
+	DumpTranslate( 0x0098, "Você só pode trocar até 20 itens por vez" );
+	DumpTranslate( 0x0098, "A troca foi cancelada" );
+	DumpTranslate( 0x0098, "Você não pode guardar poções no Armazém" );
+	DumpTranslate( 0x0098, "O Mix falhou" );
+	DumpTranslate( 0x0098, "Obrigado por contribuir" );
+	DumpTranslate( 0x0098, "Você só pode armazenar até 47 itens" );
+	DumpTranslate( 0x0098, "Este item não pode passar pelo processo de Aging" );
+	DumpTranslate( 0x0098, "A troca foi alterada" );
+	DumpTranslate( 0x0098, "Você não pode carregar mais Ouro" );
+	DumpTranslate( 0x0098, "O Aging falhou" );
+	DumpTranslate( 0x0098, "Pontos resetados" );
+	DumpTranslate( 0x0098, "Ocorreu um erro ao carregar a imagem de um item" );
+	DumpTranslate( 0x0098, "Você só pode resetar uma vez por conexão" );
+	DumpTranslate( 0x0098, "Você precisa ser membro de um Clã para usar este item" );
+	DumpTranslate( 0x0098, "Você precisa ser membro de um Clã para usar este item" );
+	DumpTranslate( 0x0098, "Você ainda não possui nível suficiente para ir para este mapa" );
+	DumpTranslate( 0x0098, "O Aging falhou. O Aging desceu 1 nível" );
+	DumpTranslate( 0x0098, "O Aging falhou. O Aging desceu 2 níveis" );
+	DumpTranslate( 0x0098, "O Aging foi um sucesso. O Aging subiu 1 nível" );
+	DumpTranslate( 0x0098, "O Aging foi um sucesso. O Aging subiu 2 níveis" );
+	DumpTranslate( 0x0098, "A Velocidade do Ataque do item foi reduzida" );
+	DumpTranslate( 0x0098, "A arma foi aprimorada" );
+	DumpTranslate( 0x0098, "Vida aumentada em 15 pontos" );
+	DumpTranslate( 0x0098, "Quebra-Cabeça completo" );
+	DumpTranslate( 0x0098, "Quebra-Cabeça incompleto" );
+	DumpTranslate( 0x0098, "Não há nenhum item para vender" );
+	DumpTranslate( 0x0098, "Esse item já foi vendido" );
+	DumpTranslate( 0x0098, "O vendedor fechou a Loja Pessoal" );
+	DumpTranslate( 0x0098, "Não foi possível encontrar o vendedor" );
+	DumpTranslate( 0x0098, "Número de itens incorreto" );
+	/*DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );*/
+	//DumpTranslate( 0x0098, "" );
 };
 
 void __cdecl _SetTexts( )
