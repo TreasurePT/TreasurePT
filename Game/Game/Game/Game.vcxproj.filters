@@ -51,9 +51,6 @@
     <ClCompile Include="packets.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="UI_templates.cpp">
-      <Filter>UI\Source</Filter>
-    </ClCompile>
     <ClCompile Include="UI_login.cpp">
       <Filter>UI\Source</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="level_manager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="quests.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -102,9 +96,6 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="level_manager.h">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="quests.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

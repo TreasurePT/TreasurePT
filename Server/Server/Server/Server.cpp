@@ -1,6 +1,9 @@
 #include "stdafx.h"
-#include "file_manager.h"
 #include "assembly.h"
+#include "sql_api.h"
+#include <sql.h>
+#include <sqltypes.h>
+#include <sqlext.h>
 
 extern void __cdecl _SetTexts( );
 extern int __cdecl _CheckExpGained( int Exp, int Player );
@@ -13,11 +16,13 @@ extern int __cdecl _CheckPlayerLevel( int Player );
 extern void __cdecl _GetSoloExp( int MonsterInfo, int CharInfo );
 extern int __cdecl _GetTotalExp( int Exp, int Level );
 extern void __cdecl _GetPartyExp( int MonsterInfo, int PartyInfo );
+extern void __cdecl _Field( );
 
-class CServer
+class CServer : public CSQLApi
 {
 public:
 	std::shared_ptr<CAssembly> lpAsm = std::make_shared<CAssembly>( 0 );
+	void ConnectToSql( );
 	void PacketHook( );
 	void CheckExpGainedHook( );
 	void CheckLevelExpHook( );
@@ -26,6 +31,7 @@ public:
 	void GetSoloExpHook( );
 	void GetTotalExpHook( );
 	void GetPartyExpHook( );
+	void FieldHook( );
 };
 
 void Main( )
@@ -36,6 +42,7 @@ void Main( )
 	_BuildItems( );
 	_SetLevels( );
 
+	lpServer->ConnectToSql( );
 	lpServer->PacketHook( );
 	lpServer->CheckExpGainedHook( );
 	lpServer->CheckLevelExpHook( );
@@ -44,6 +51,17 @@ void Main( )
 	lpServer->GetSoloExpHook( );
 	lpServer->GetTotalExpHook( );
 	lpServer->GetPartyExpHook( );
+	lpServer->FieldHook( );
+};
+
+void CServer::ConnectToSql( )
+{
+	const char* SQLString = "DRIVER={SQL Server};SERVER=TPT\\SQLExpress;UID=sa;PWD=123456;";
+	SQLAllocHandle( SQL_HANDLE_ENV, SQL_NULL_HANDLE, &s_Env );
+	SQLSetEnvAttr( s_Env, SQL_ATTR_ODBC_VERSION, ( SQLPOINTER )SQL_OV_ODBC3, 0 );
+	SQLAllocHandle( SQL_HANDLE_DBC, s_Env, &s_Conn );
+	SQLDriverConnectA( s_Conn, NULL, ( SQLCHAR* )( SQLString ),
+					   SQL_NTS, NULL, NULL, NULL, SQL_DRIVER_NOPROMPT );
 };
 
 void CServer::PacketHook( )
@@ -127,4 +145,10 @@ void CServer::GetPartyExpHook( )
 	lpAsm->Call( ( int )&_GetPartyExp );
 	lpAsm->AddEsp( 8 );
 	lpAsm->Retn( 8 );
+};
+
+void CServer::FieldHook( )
+{
+	lpAsm->MakeBaseAddress( 0x00430430 );
+	lpAsm->Jmp( ( int )&_Field );
 };
