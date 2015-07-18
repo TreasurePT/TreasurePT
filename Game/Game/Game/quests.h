@@ -16,8 +16,8 @@ private:
 		int Code;
 		int State;
 	};
-	POINT QuestBox = { 50, 45 };
-	POINT QuestDim = { 9, 10 };
+	//POINT QuestBox = { 50, 45 };
+	//POINT QuestDim = { 9, 10 };
 public:
 	CQuests( ) { Clear( m_QuestPath, 512 ); };
 	typedef CUITemplates UI;
@@ -27,12 +27,10 @@ public:
 private:
 	enum Quest
 	{
-		Teste = 1,
 
 	};
 	enum Npc
 	{
-		Teste = 1,
 
 	};
 	enum Monster

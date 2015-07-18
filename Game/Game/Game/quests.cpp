@@ -15,8 +15,8 @@ void CQuests::ShowQuestInfo( DWORD QuestState )
 	{
 		case 0:
 			//Iniciar o desafio.
-			UI::ShowHelp( Quest::Teste, QuestBox.x, QuestBox.y, QuestDim.x, QuestDim.y,
-						  RGBA_MAKE( 0, 15, 128, 125 ), m_QuestPath );
+			//UI::ShowHelp( Quest::Teste, QuestBox.x, QuestBox.y, QuestDim.x, QuestDim.y,
+			//			  RGBA_MAKE( 0, 15, 128, 125 ), m_QuestPath );
 			break;
 		case 1:
 			//Desafio em andamento.
@@ -32,10 +32,9 @@ void CQuests::QuestManager( DWORD NpcCode )
 	static s_Quest Quest[ 10 ] = { 0 };
 	switch( NpcCode )
 	{
-		case Npc::Teste:
+		case 1:
 			if( HasActiveQuest( ActiveQuestPointer ) )
 			{
-				if( CheckActiveQuest )
 			};
 			//TODO: Checar nível
 			//TODO: Checar se já foi feito o desafio
@@ -43,8 +42,8 @@ void CQuests::QuestManager( DWORD NpcCode )
 			//TODO: Criar um novo código de desafios ( 0x2015 + )
 			//TODO: Mostrar as informações
 			//TODO: Ativar andamento
-			Quest[ 0 ].ID = 0x2015;
-			Quest[ 0 ].State = 0;
+			//Quest[ 0 ].ID = 0x2015;
+			//Quest[ 0 ].State = 0;
 			break;
 	};
 };

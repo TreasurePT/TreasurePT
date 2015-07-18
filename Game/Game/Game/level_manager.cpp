@@ -43,7 +43,6 @@ int CLevelManager::AddExpSystem( int Packet )
 		if( AddExp->OpCode == 0x48470031 )
 		{
 			AddChatMsg( Format( "> Ganhou: %s de Experiência->", strExp.c_str( ) ), 9 );
-			lpQuest->Teste( Monster_Code );
 		}
 		else
 		{
