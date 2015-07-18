@@ -1315,6 +1315,7 @@ void CTranslate::SetTexts( )
 	DumpTranslate( 0x0098, "O vendedor fechou a Loja Pessoal" );
 	DumpTranslate( 0x0098, "Não foi possível encontrar o vendedor" );
 	DumpTranslate( 0x0098, "Número de itens incorreto" );
+	/*DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
@@ -1331,8 +1332,7 @@ void CTranslate::SetTexts( )
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
-	DumpTranslate( 0x0098, "" );
-	DumpTranslate( 0x0098, "" );
+	DumpTranslate( 0x0098, "" );*/
 	//DumpTranslate( 0x0098, "" );
 };
 
