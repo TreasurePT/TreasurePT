@@ -1280,6 +1280,7 @@ void CTranslate::SetTexts( )
 	Translate( 0x00784DAE, "Desafio 94" );*/
 
 	//Textos
+	/*
 	DumpTranslate( 0x00985D30, "Não há espaço suficiente no Inventário" );
 	DumpTranslate( 0x0098, "Não há peso suficiente no Inventário" );
 	DumpTranslate( 0x0098, "Você ainda não pode usar esse item" );
@@ -1332,7 +1333,8 @@ void CTranslate::SetTexts( )
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
 	DumpTranslate( 0x0098, "" );
-	DumpTranslate( 0x0098, "" );*/
+	DumpTranslate( 0x0098, "" );
+	*/
 	//DumpTranslate( 0x0098, "" );
 };
 

@@ -50,7 +50,10 @@
     <ClInclude Include="assembly.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="server_config.h">
+    <ClInclude Include="maps.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="sql_api.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,7 +86,10 @@
     <ClCompile Include="assembly.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="server_config.cpp">
+    <ClCompile Include="maps.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="sql_api.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

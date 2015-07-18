@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "level_manager.h"
-#include "quests.h"
-
 
 std::vector<int64> CLevelManager::m_Level( 0 );
 
@@ -9,7 +7,6 @@ std::vector<int64> CLevelManager::m_Level( 0 );
 
 int CLevelManager::AddExpSystem( int Packet )
 {
-	std::shared_ptr<CQuests> lpQuest = std::make_shared<CQuests>( );
 	typedef DWORD( __cdecl* t_FindAutoPlayer ) ( DWORD );
 	t_FindAutoPlayer FindAutoPlayer = ( t_FindAutoPlayer )0x0062D820;
 	typedef void( __cdecl* t_AddChatMsg )( LPCSTR, INT );

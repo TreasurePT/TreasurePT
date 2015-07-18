@@ -31,7 +31,7 @@ const char* _Format( const char* String, ... )
 
 void _Clear( char* String, size_t Size )
 {
-	for( int i = 0; i < Size; i++ )
+	for( int i = 0; i < ( int )Size; i++ )
 	{
 		String[ i ] = 0;
 	};
