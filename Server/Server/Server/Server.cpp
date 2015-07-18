@@ -111,6 +111,7 @@ void CServer::CheckPlayerLevelHook( )
 	lpAsm->MakeBaseAddress( ( int )EditData );
 	lpAsm->Push( EBX );
 	lpAsm->Call( ( int )&_CheckPlayerLevel );
+	lpAsm->AddEsp( 4 );
 	lpAsm->Test( EAX, EAX );
 	lpAsm->Je( 0x00571A43 );
 	lpAsm->Jmp( 0x00571A04 );

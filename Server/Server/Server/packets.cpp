@@ -27,6 +27,8 @@ void CPackets::SendPacket( char* Packet, int Player, bool IntegerOnly )
 
 void CPackets::ReceivedPacket( int Packet, int Player )
 {
+	std::shared_ptr<CFileManager> lpFile = std::make_shared<CFileManager>( "Logs\\Debug.txt" );
+	lpFile->Log( "OpCode = %X.", *( int* )( Packet + 4 ) );
 	switch( *( int* )( Packet + 4 ) )
 	{
 		case Packet::Connection:
