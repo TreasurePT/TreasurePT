@@ -34,39 +34,31 @@ void CMaps::CreateMaps( )
 	std::shared_ptr<CSQLApi> lpSql = std::make_shared<CSQLApi>( );
 	SQLPTR Maps;
 	INT MapAddress = 0x0075B038;
+
+	Clear( ( char* )( 0x0075B038 ), 0x3AA00 );
+	
+	for( int i = 0; i < 256; i++ )
+	{
+		*( int* )( 0x0075BE94 + i * 3752 ) = i;
+	};
+
 	if( lpSql->Select( Maps, "SELECT * FROM ServerDB.dbo.Maps" ) )
 	{ 
 		INT TotalMaps = Maps.size( );
-		for( int i = 0; i < TotalMaps + 1; i++ )
-		{
-			*( UINT* )( MapAddress + i * 0xEA8 ) = i;
-		};
 
 		int c = 0;
 
 		for( int i = 0; i < TotalMaps; i++ )
 		{
 			lstrcpyA( ( char* )( MapAddress + 4 ), Maps[ i ][ 2 ].c_str( ) );
-			*( UINT* )( MapAddress + 0xC4 ) = FieldType( Maps[ i ][ 3 ].c_str( ) );
-			*( UINT* )( MapAddress + 0xCB4 ) = atoi( Maps[ i ][ 4 ].c_str( ) );
+			*( UINT* )( MapAddress + 196 ) = FieldType( Maps[ i ][ 3 ].c_str( ) );
+			*( UINT* )( MapAddress + 3256 ) = atoi( Maps[ i ][ 4 ].c_str( ) );
 
-			MapAddress += 0xEA8;
+			MapAddress += 3752;
 			c++;
 		};
-
-		if( c > 0 )
-		{
-			UINT LoopField = 0x0075B340;
-			while( c > 0 )
-			{
-				if( *( UINT* )( LoopField ) == 3 )
-					*( UINT* )( LoopField ) = 2;
-				LoopField += 938;
-				c--;
-			};
-		};
-
 	};
+
 };
 
 void __cdecl _Field( )
