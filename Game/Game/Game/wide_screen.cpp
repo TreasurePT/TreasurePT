@@ -39,7 +39,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 		lpFile->SetString( "Usuario", "Camera Invertida", "Desativada" );
 		lpFile->SetString( "Usuario", "Fog de Camera", "inte" );
 		lpFile->SetString( "Usuario", "Som", "Ativado" );
-		lpFile->SetString( "Servidor", "Protocolo Interno", "192.168.25.233" );
+		lpFile->SetString( "Servidor", "Protocolo Interno", "127.0.0.1" );
 	};
 	Config->Width = 800;
 	Config->Height = 600;
@@ -49,7 +49,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 	StringCbCopyA( Config->CammInvert, 32, "Desativada" );
 	StringCbCopyA( Config->CammFog, 16, "inte" );
 	StringCbCopyA( Config->Sound, 16, "Ativado" );
-	StringCbCopyA( Config->InternalProtocal, 32, "192.168.25.233" );
+	StringCbCopyA( Config->InternalProtocal, 32, "127.0.0.1" );
 	Config->isWide = false;
 };
 
