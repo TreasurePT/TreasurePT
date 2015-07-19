@@ -37,7 +37,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 		lpFile->SetString( "Video", "Graficos", "Muito Alto" );
 		lpFile->SetString( "Video", "Profundidade das Cores", "32" );
 		lpFile->SetString( "Usuario", "Camera Invertida", "Desativada" );
-		lpFile->SetString( "Usuario", "Fog de Camera", "inte" );
+		lpFile->SetString( "Usuario", "Fog de Camera", "Longe" );
 		lpFile->SetString( "Usuario", "Som", "Ativado" );
 		lpFile->SetString( "Servidor", "Protocolo Interno", "127.0.0.1" );
 	};
@@ -47,7 +47,7 @@ void CWideScreen::DefaultConfig( s_Config* Config, bool CreateIni )
 	StringCbCopyA( Config->Graphics, 16, "Muito Alto" );
 	Config->ColorDepth = 32;
 	StringCbCopyA( Config->CammInvert, 32, "Desativada" );
-	StringCbCopyA( Config->CammFog, 16, "inte" );
+	StringCbCopyA( Config->CammFog, 16, "Longe" );
 	StringCbCopyA( Config->Sound, 16, "Ativado" );
 	StringCbCopyA( Config->InternalProtocal, 32, "127.0.0.1" );
 	Config->isWide = false;
