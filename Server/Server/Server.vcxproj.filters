@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Escondidos">
+      <UniqueIdentifier>{beb1643d-5345-49fa-a858-516c0de47e4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -20,6 +23,12 @@
     </ClInclude>
     <ClInclude Include="Logs.h" />
     <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="packets.h">
+      <Filter>Escondidos</Filter>
+    </ClInclude>
+    <ClInclude Include="level_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -31,6 +40,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="packets.cpp">
+      <Filter>Escondidos</Filter>
+    </ClCompile>
+    <ClCompile Include="level_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

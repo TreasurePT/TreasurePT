@@ -6,6 +6,7 @@
 #include <strsafe.h>
 #include <stdlib.h>
 #include <memory>
+#include <vector>
 
 
 // Definições

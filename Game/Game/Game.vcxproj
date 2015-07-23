@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="file_manager.h" />
+    <ClInclude Include="level.h" />
     <ClInclude Include="Logs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="settings.h" />
@@ -95,6 +96,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="file_manager.cpp" />
+    <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="settings.cpp" />
     <ClCompile Include="stdafx.cpp">
