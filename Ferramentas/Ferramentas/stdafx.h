@@ -10,8 +10,5 @@
 
 // Definições
 
-#define PDATA 0x04B66010
-#define IP "127.0.0.1"
-
 extern const char* _Format( const char* String, ... );
 #define Format _Format
