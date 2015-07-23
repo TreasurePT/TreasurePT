@@ -9,7 +9,7 @@ public:
 	int ReadInt( const char* Section, const char* Key );
 	void ReadString( const char* Section, const char* Key, char* Buffer );
 	void DeleteThisFile( ) { DeleteFileA( File.FullPath ); };
-	bool FileExists()
+	bool FileExists( );
 	void Write( const char* Section, const char* Key, const char* String );
 protected:
 

@@ -32,6 +32,18 @@ void FileManager::ReadString( const char* Section, const char* Key, char* Buffer
 	GetPrivateProfileStringA( Section, Key, 0, Buffer, 256, File.FullPath );
 };
 
+bool FileManager::FileExists( )
+{
+	FILE* FileExists = nullptr;
+	fopen_s( &FileExists, File.FullPath, "r" );
+	if( FileExists )
+	{
+		fclose( FileExists );
+		return true;
+	};
+	return false;
+};
+
 void FileManager::Write( const char* Section, const char* Key, const char* String )
 {
 	WritePrivateProfileStringA( Section, Key, String, File.FullPath );

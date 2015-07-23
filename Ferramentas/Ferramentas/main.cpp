@@ -48,7 +48,7 @@ LRESULT CALLBACK Main::Proc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			break;
 	}
 
-	return DefWindowProc( hWnd, message, wParam, lParam );
+	return DefWindowProcA( hWnd, message, wParam, lParam );
 };
 
 LRESULT CALLBACK Main::s_Proc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
@@ -60,20 +60,20 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine
 {
 	WNDCLASSEX wc;
 
-	ZeroMemory( &wc, sizeof( WNDCLASSEX ) );
+	SecureZeroMemory( &wc, sizeof( WNDCLASSEX ) );
 
 	wc.cbSize = sizeof( WNDCLASSEX );
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.lpfnWndProc = lpMain->s_Proc;
 	wc.hInstance = hInstance;
-	wc.hCursor = LoadCursor( NULL, IDC_ARROW );
+	wc.hCursor = LoadCursorA( NULL, IDC_ARROW );
 	wc.hbrBackground = ( HBRUSH )COLOR_WINDOW;
 	wc.lpszClassName = "MainClass";
 
-	RegisterClassEx( &wc );
+	RegisterClassExA( &wc );
 
 
-	hWnd = CreateWindowEx( NULL, "MainClass", "Ferramentas TreasurePT",
+	hWnd = CreateWindowExA( NULL, "MainClass", "Ferramentas TreasurePT",
 						   WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
 						   ( ScreenX - 300 ) / 2,    // Coordenada X
 						   ( ScreenY - 300 ) / 2,    // Coordenada Y
@@ -86,10 +86,10 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine
 
 	while( TRUE )
 	{
-		while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
+		while( PeekMessageA( &msg, NULL, 0, 0, PM_REMOVE ) )
 		{
 			TranslateMessage( &msg );
-			DispatchMessage( &msg );
+			DispatchMessageA( &msg );
 		};
 
 		if( msg.message == WM_QUIT )

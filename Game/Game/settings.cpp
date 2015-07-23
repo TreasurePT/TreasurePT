@@ -65,6 +65,7 @@ void Settings::Read( )
 	{
 		Setting.Width = 800;
 		Setting.Height = 600;
+		Error = true;
 	};
 
 	Setting.Bpp = File->ReadInt( "Gráficos", "Cores" );
@@ -220,6 +221,7 @@ void Settings::Write( )
 void Settings::CreateIni( )
 {
 	std::shared_ptr<FileManager> File = std::make_shared<FileManager>( "game\\game.ini" );
+	bool FileExists = File->FileExists( );
 	File->DeleteThisFile( );
 	File->Write( "Vídeo", "Janela", "Ativado" );
 	File->Write( "Vídeo", "Largura", "800" );
@@ -236,9 +238,18 @@ void Settings::CreateIni( )
 		File->Write( "Atalhos", Format( "Atalho%d", i + 1 ), "" );
 	};
 
-	MessageBoxA( NULL,
-				 "Foi encontrado um erro no arquivo de Configurações.O arquivo foi restaurado com as configurações padrões."
-				 "TreasurePT", MB_OK | MB_ICONEXCLAMATION );
+	if( FileExists )
+	{
+		MessageBoxA( NULL,
+					 "Encontramos um erro no arquivo de Configuração. Um novo arquivo foi criado com as configurações padrões.",
+					 "TreasurePT", MB_OK | MB_ICONEXCLAMATION );
+	}
+	else
+	{
+		MessageBoxA( NULL,
+					 "Não foi possível encontrar o arquivo de Configuração. Um novo arquivo foi criado com as configurações padrões.",
+					 "TreasurePT", MB_OK | MB_ICONEXCLAMATION );
+	};
 };
 
 void __cdecl Game_Settings( )
