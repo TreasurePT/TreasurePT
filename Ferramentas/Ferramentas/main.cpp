@@ -7,6 +7,18 @@ HWND hWnd = 0;
 #define ScreenX GetSystemMetrics(SM_CXSCREEN)
 #define ScreenY GetSystemMetrics(SM_CYSCREEN)
 
+typedef HMENU COMMAND;
+#define CONVERT_INX 1
+
+#define BUTTON_A 10
+#define BUTTON_B 11
+#define BUTTON_C 12
+#define BUTTON_D 13
+#define BUTTON_MA 14
+#define BUTTON_MB 15
+#define BUTTON_MC 16
+#define BUTTON_MD 17
+
 LRESULT CALLBACK Main::Proc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	switch( message )
@@ -15,9 +27,43 @@ LRESULT CALLBACK Main::Proc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		case WM_CREATE:
 			{
 				hMain = hWnd;
-				hButton = NewWindow( NULL, "BUTTON", "Converter .inx's", WS_VISIBLE | WS_CHILD,
-									 10, 10, 120, 30,
-									 hWnd, ( HMENU )( 1 ), NULL, NULL );
+				//hButton = NewWindow( NULL, "BUTTON", "Converter .inx's", WS_VISIBLE | WS_CHILD,
+				//					 10, 10, 120, 30,
+				//					 hWnd, ( COMMAND )( CONVERT_INX ), NULL, NULL );
+
+				hA = NewWindow( NULL, "BUTTON", "A", WS_VISIBLE | WS_CHILD,
+								10, 10, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hB = NewWindow( NULL, "BUTTON", "B", WS_VISIBLE | WS_CHILD,
+								40, 10, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hC = NewWindow( NULL, "BUTTON", "C", WS_VISIBLE | WS_CHILD,
+								70, 10, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hD = NewWindow( NULL, "BUTTON", "D", WS_VISIBLE | WS_CHILD,
+								100, 10, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hmA = NewWindow( NULL, "BUTTON", "mA", WS_VISIBLE | WS_CHILD,
+								10, 40, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hmB = NewWindow( NULL, "BUTTON", "mB", WS_VISIBLE | WS_CHILD,
+								40, 40, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hmC = NewWindow( NULL, "BUTTON", "mC", WS_VISIBLE | WS_CHILD,
+								70, 40, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+				hmD = NewWindow( NULL, "BUTTON", "mD", WS_VISIBLE | WS_CHILD,
+								100, 40, 25, 30,
+								hWnd, ( COMMAND )( BUTTON_A ), NULL, NULL );
+
+
 			}
 			break;
 
@@ -29,11 +75,12 @@ LRESULT CALLBACK Main::Proc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			}
 			break;
 
+			//Mensagem lida ao executar um comando.
 		case WM_COMMAND:
 			{
 				switch( LOWORD( wParam ) )
 				{
-					case 1:
+					case CONVERT_INX:
 						{
 							EnableWindow( hButton, false );
 							std::shared_ptr<ConvertInx> lpInx = std::make_shared<ConvertInx>( );
@@ -74,12 +121,12 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpCmdLine
 
 
 	hWnd = CreateWindowExA( NULL, "MainClass", "Ferramentas TreasurePT",
-						   WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
-						   ( ScreenX - 300 ) / 2,    // Coordenada X
-						   ( ScreenY - 300 ) / 2,    // Coordenada Y
-						   300,    // Largura
-						   100,    // Altura
-						   NULL, NULL, hInstance, NULL );
+							WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
+							( ScreenX - 300 ) / 2,    // Coordenada X
+							( ScreenY - 300 ) / 2,    // Coordenada Y
+							400,    // Largura
+							200,    // Altura
+							NULL, NULL, hInstance, NULL );
 
 	ShowWindow( hWnd, nCmdShow );
 	MSG msg;

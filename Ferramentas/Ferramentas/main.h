@@ -20,6 +20,8 @@ public:
 
 private:
 	HWND hMain, hButton;
+
+	HWND hA, hB, hC, hD, hmA, hmB, hmC, hmD;
 };
 
 typedef std::shared_ptr<Main> Main_ptr;

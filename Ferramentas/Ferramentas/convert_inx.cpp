@@ -3,99 +3,83 @@
 
 FILE* lpDbg = nullptr;
 
+const char* ConvertInx::GetName( const char* FullPath )
+{
+	static char Name[ 512 ] = { 0 };
+	StringCbCopyA( Name, 512, FullPath );
+
+	for( int i = sizeof( Name ); i >= 0; i-- )
+	{
+		if( Name[ i ] == '.' )
+		{
+			SecureZeroMemory( &Name[ i ], sizeof( Name ) - i );
+			break;
+		};
+	};
+
+	return Name;
+};
+
 void ConvertInx::Convert( s_Inx* InxFile )
 {
-	FILE* lpFile = nullptr;
-	fopen_s( &lpFile, InxFile->FullPath, "rb" );
-	if( !lpFile )
+	FILE* oldInx = nullptr;
+	FILE* bakInx = nullptr;
+	FILE* newInx = nullptr;
+
+	INT oldAddress = 0;
+	INT newAddress = 0;
+
+	fopen_s( &oldInx, InxFile->FullPath, "rb" );
+	fopen_s( &bakInx, Format( "%s.bak", GetName( InxFile->FullPath ) ), "wb+" );
+
+	if( !oldInx )
 	{
-		fprintf( lpDbg, "ERRO      : %s\n", InxFile->FullPath );
+		fclose( bakInx );
+		fprintf( lpDbg, "[ ERROR ] : %s\n", InxFile->FullPath );
 		return;
 	};
-	fprintf( lpDbg, "Convertido: %s\n", InxFile->FullPath );
-	char DataFile[ 95268 ] = { 0 };
-	int Bytes = fread_s( &DataFile, 95268, 95268, 1, lpFile );
-	char NewData[ 67084 ] = { 0 };
-	fclose( lpFile );
 
-	FILE* Backup = nullptr;
-	fopen_s( &Backup, Format( "%s_old", InxFile->FullPath ), "wb+" );
-	fwrite( DataFile, sizeof( char ), sizeof( DataFile ), Backup );
-	fclose( Backup );
-	
+	char oldData[ OLD_INX_SIZE ] = { 0 };
+	char newData[ NEW_INX_SIZE ] = { 0 };
+
+	fread_s( &oldData, OLD_INX_SIZE, OLD_INX_SIZE, sizeof( char ), oldInx );
+	fclose( oldInx );
 	DeleteFileA( InxFile->FullPath );
-	FILE* NewFile = nullptr;
-	fopen_s( &NewFile, InxFile->FullPath, "wb+" );
 
-	int j = 0;
-	for( int i = 0; i < 95268; i++ )
+	fwrite( oldData, OLD_INX_SIZE, sizeof( char ), bakInx );
+	fclose( bakInx );
+
+	fopen_s( &newInx, InxFile->FullPath, "wb+" );
+
+	while( oldAddress < OLD_INX_SIZE )
 	{
-		if( j == 0x63C )
+		switch( newAddress )
 		{
-			i = 0x844;
-		}
-		if( j == 0x6A8 )
-		{
-			i = 0x8E4;
-		}
-		if( j == 0x720 )
-		{
-			i = 0x990;
-		}
-		if( j == 0x798 )
-		{
-			i = 0xA3C;
-		}
-		if( j == 0x814 )
-		{
-			i = 0xAEC;
-		}
-		if( j == 0x88C )
-		{
-			i = 0xB98;
-		}
-		if( j == 0x904 )
-		{
-			i = 0xC44;
-		}
-		if( j == 0x97C )
-		{
-			i = 0xCF0;
-		}
-		if( j == 0x9F4 )
-		{
-			i = 0xD9C;
-		}
-		if( j == 0xA6C )
-		{
-			i = 0xE48;
-		}
-		if( j == 0xAE4 )
-		{
-			i = 0xB18;
-		}
-		if( j == 0xB5C )
-		{
-			i = 0xBC4;
-		}
-		if( j == 0xBD4 )
-		{
-			i = 0xC70;
-		}
-		if( j == 0xF18C )
-		{
-			i = 0x1598C;
-		}
-		if( j == 0x10068 )
-		{
-			i = 0x16E80;
-		}
-		NewData[ j ] = DataFile[ i ];
-		j++;
-	}
+			case 0x63C:		oldAddress = 0x844;		break;
+			case 0x6A8:		oldAddress = 0x8E4;		break;
+			case 0x720:		oldAddress = 0x990;		break;
+			case 0x798:		oldAddress = 0xA3C;		break;
+			case 0x814:		oldAddress = 0xAEC;		break;
+			case 0x88C:		oldAddress = 0xB98;		break;
+			case 0x904:		oldAddress = 0xC44;		break;
+			case 0x97C:		oldAddress = 0xCF0;		break;
+			case 0x9F4:		oldAddress = 0xD9C;		break;
+			case 0xA6C:		oldAddress = 0xE48;		break;
+			case 0xAE4:		oldAddress = 0xB18;		break;
+			case 0xB5C:		oldAddress = 0xBC4;		break;
+			case 0xBD4:		oldAddress = 0xC70;		break;
+			case 0xF18C:	oldAddress = 0x1598C;	break;
+			case 0x10068:	oldAddress = 0x16E80;	break;
+		};
+		newData[ newAddress ] = oldData[ oldAddress ];
+		oldAddress++;
+		newAddress++;
+	};
 
-	fwrite( &NewData, sizeof( char ), sizeof( NewData ), NewFile );
-	fclose( NewFile );
+	fwrite( newData, NEW_INX_SIZE, sizeof( char ), newInx );
+	fclose( newInx );
+	fprintf( lpDbg, "Convertido: %s\n", InxFile->FullPath );
+
 };
 
 void ConvertInx::ConvertMonster( const char* Directory )
@@ -117,7 +101,7 @@ void ConvertInx::ConvertMonster( const char* Directory )
 			{
 				if( FileAttr.cFileName[ lstrlenA( FileAttr.cFileName ) - 1 ] == 'x' )
 				{
-					if( FileAttr.nFileSizeLow == 95268 )
+					if( FileAttr.nFileSizeLow == OLD_INX_SIZE )
 					{
 						StringCbCopyA( InxFile.FileName, 256, FileAttr.cFileName );
 						StringCbCopyA( InxFile.FullPath, 512, Format( "%s\\char\\monster\\%s\\%s",
@@ -131,10 +115,14 @@ void ConvertInx::ConvertMonster( const char* Directory )
 			};
 
 			if( FindNextFileA( hDirectory, &DirAttr ) == FALSE )
+			{
 				break;
+			};
 		}
 		else
+		{
 			break;
+		};
 	};
 	hDirectory = NULL;
 	hFile = NULL;
@@ -161,7 +149,7 @@ void ConvertInx::ConvertNpc( const char* Directory )
 			{
 				if( FileAttr.cFileName[ lstrlenA( FileAttr.cFileName ) - 1 ] == 'x' )
 				{
-					if( FileAttr.nFileSizeLow == 95268 )
+					if( FileAttr.nFileSizeLow == OLD_INX_SIZE )
 					{
 						StringCbCopyA( InxFile.FileName, 256, FileAttr.cFileName );
 						StringCbCopyA( InxFile.FullPath, 512, Format( "%s\\char\\npc\\%s\\%s",
@@ -175,10 +163,14 @@ void ConvertInx::ConvertNpc( const char* Directory )
 			};
 
 			if( FindNextFileA( hDirectory, &DirAttr ) == FALSE )
+			{
 				break;
+			};
 		}
 		else
+		{
 			break;
+		};
 	};
 	hDirectory = NULL;
 	hFile = NULL;
